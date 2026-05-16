@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────
+   PART THREE: COLOR SYSTEM
+───────────────────────────────────────── */
+:root {
+  /* ── BACKGROUNDS ── */
+  --bg-void:        #0C0804;
+  --bg-base:        #111008;
+  --bg-surface:     #1C1510;
+  --bg-elevated:    #241C15;
+
+  /* ── PAPER ── */
+  --paper-dark:     #2A1F14;
+  --paper-mid:      #3D2E1E;
+  --paper-warm:     #8B6D4A;
+
+  /* ── CANDLELIGHT ── */
+  --flame-core:     #FFF4CC;
+  --flame-warm:     #FFD97D;
+  --flame-amber:    #E8A020;
+  --flame-deep:     #C4681A;
+  --flame-ember:    #8B3A0F;
+
+  /* ── TEXT ── */
+  --text-primary:   #F2E8D5;
+  --text-secondary: #C4AA85;
+  --text-tertiary:  #8C7355;
+  --text-ghost:     #3D2E1E;
+
+  /* ── ACCENTS ── */
+  --ink-primary:    #D4956A;
+  --ink-faded:      #6B4E35;
+  --gold-bright:    #FFD97D;
+  --gold-muted:     #B8860B;
+  --blush:          #C4837A;
+
+  /* ── EFFECTS ── */
+  --glow-candle:    rgba(255, 180, 60, 0.15);
+  --glow-warm:      rgba(232, 160, 32, 0.08);
+  --shadow-deep:    rgba(0, 0, 0, 0.8);
+
+  /* ── Z-INDEX SCALE ── */
+  --z-base:         1;
+  --z-above:        10;
+  --z-nav:          500;
+  --z-overlay:      800;
+  --z-modal:        1000;
+  --z-body-fx:      100;
+  --z-cursor:       9000;
+}
+
+/* ─────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────
+   PART FOUR: TEXTURE SYSTEM
+───────────────────────────────────────── */
+
+/* Global Paper Noise — always present */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-body-fx);
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Vignette — always present, renders above noise via DOM order */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-body-fx);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 38%,
+    rgba(8, 5, 2, 0.55) 100%
+  );
+}
+
+/* ─────────────────────────────────────────
+   PAPER CARD TEXTURE
+───────────────────────────────────────── */
+.paper-card {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E") repeat,
+    linear-gradient(135deg, var(--bg-surface) 0%, var(--paper-dark) 50%, var(--bg-surface) 100%);
+  background-size: 150px 150px, 100% 100%;
+  border: 1px solid rgba(139, 109, 74, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 150, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 180, 60, 0.03);
+}
+
+/* ─────────────────────────────────────────
+   CANDLELIGHT AMBIENT
+───────────────────────────────────────── */
+.candle-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    rgba(255, 180, 60, 0.12) 0%,
+    rgba(200, 120, 30, 0.05) 45%,
+    transparent 68%
+  );
+  animation: candleFlicker 5s ease-in-out infinite alternate;
+}
+
+@keyframes candleFlicker {
+  0%   { opacity: 0.75; transform: scaleX(1.00); }
+  25%  { opacity: 1.00; transform: scaleX(1.02); }
+  50%  { opacity: 0.82; transform: scaleX(0.98); }
+  75%  { opacity: 0.95; transform: scaleX(1.01); }
+  100% { opacity: 0.88; transform: scaleX(0.99); }
+}
+
+/* ─────────────────────────────────────────
+   FONT UTILITY CLASSES
+───────────────────────────────────────── */
+.font-display   { font-family: 'Playfair Display', Georgia, serif; }
+.font-script    { font-family: 'EB Garamond', Georgia, serif; font-style: italic; }
+.font-body      { font-family: 'Crimson Pro', Georgia, serif; }
+.font-ui        { font-family: 'DM Sans', sans-serif; }
