@@ -449,18 +449,6 @@ export default function Journal() {
             padding: '0 24px 100px',
           }}
         >
-          <style>{`
-            .memory-masonry {
-              column-count: 2;
-              column-gap: 28px;
-            }
-            @media (max-width: 640px) {
-              .memory-masonry {
-                column-count: 1;
-              }
-            }
-          `}</style>
-
           <div className="memory-masonry">
             {memories.map((memory, i) => (
               <MemoryCard key={i} memory={memory} index={i} />

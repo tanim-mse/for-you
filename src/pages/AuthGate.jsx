@@ -181,10 +181,8 @@ export default function AuthGate() {
         }}
       />
 
-      {/* Particles */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-        <CandleParticles count={15} />
-      </div>
+      {/* Particles — already position:fixed inside component */}
+      <CandleParticles count={15} />
 
       {/* Bottom edge glow */}
       <div

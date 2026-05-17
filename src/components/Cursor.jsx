@@ -189,13 +189,6 @@ function CursorInner() {
           }}
         />
       ))}
-
-      <style>{`
-        @keyframes cursorRipple {
-          0%   { width: 0px; height: 0px; opacity: 0.4; transform: translate(-50%, -50%) scale(0); }
-          100% { width: 60px; height: 60px; opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
-        }
-      `}</style>
     </>
   )
 }

@@ -154,22 +154,10 @@ export default function Navbar({ herName = 'Her Name', visible = true }) {
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '0 32px',
-    // Hide on mobile — MobileNav takes over
-    '@media (max-width: 768px)': { display: 'none' },
   }
 
   return (
     <>
-      <style>{`
-        @media (max-width: 768px) { .desktop-nav { display: none !important; } }
-        .nav-item-wrap:hover .nav-underline { transform: scaleX(1) !important; }
-        @keyframes flameFlicker {
-          0%   { opacity: 0.4; transform: scaleX(1) scaleY(1); }
-          50%  { opacity: 0.6; transform: scaleX(0.95) scaleY(1.05); }
-          100% { opacity: 0.35; transform: scaleX(1.05) scaleY(0.95); }
-        }
-      `}</style>
-
       <motion.nav
         className="desktop-nav"
         initial={{ opacity: 0, y: -20 }}

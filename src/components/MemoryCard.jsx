@@ -107,28 +107,6 @@ export default function MemoryCard({ memory, index }) {
       >
         ✦
       </span>
-
-      {/* Hover styles injected globally once */}
-      <style>{`
-        .memory-card {
-          transition:
-            opacity 0.75s ease,
-            transform 0.75s ease,
-            border-color 0.4s ease,
-            box-shadow 0.4s ease;
-        }
-        .memory-card:hover {
-          border-color: rgba(212, 149, 106, 0.28) !important;
-          transform: translateY(-3px) !important;
-          box-shadow:
-            0 12px 48px rgba(0,0,0,0.55),
-            0 0 32px rgba(180,100,30,0.05) !important;
-        }
-        .memory-card:hover .memory-quote {
-          color: var(--text-primary);
-          opacity: 1;
-        }
-      `}</style>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, animate } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const LINE_ONE = "Some things take years to arrive..."
 const LINE_TWO = "This one took six."
