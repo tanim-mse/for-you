@@ -3,10 +3,11 @@ import { motion } from 'framer-motion'
 import CandleParticles from '../components/CandleParticles'
 import Ornament from '../components/Ornament'
 import MemoryCard from '../components/MemoryCard'
+import TimelineSection from '../components/TimelineSection'
 import { memories } from '../data/memories'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const HER_NAME    = 'Sazia Afrin Nurin'       // ← replace with her name
+const HER_NAME    = 'Her Name'       // ← replace with her name
 const BIRTH_YEAR  = 2004
 const BIRTH_DATE  = 'June 3rd, 2004' // ← displayed on cover
 
@@ -16,9 +17,9 @@ const OPENING_LINES = [
 ]
 
 const BODY_PARAGRAPHS = [
-  'Maybe you\'re reading this the same day I gave it to you. Or maybe years have passed, and the world looks completely different now. Either way, I hope you still have that smile. The one that made everything feel a little lighter just by existing. By the way, Happy Birthday, Ma\'am. ',
+  'Maybe you\'re reading this the same day I made it. Or maybe years have passed, and the world looks completely different now. Either way, I hope you still have that smile. The one that made everything feel a little lighter just by existing.',
   'This isn\'t meant to change anything. I know that. I just realized, somewhere along the way, that some things deserve to be said even when the moment has long passed. Even saying them out loud isn\'t something I can do anymore.',
-  'I don\'t need anything from you. I never did. I just always wanted to see you happy. I still do. Even if I\'m not allowed to stay with you. That part hasn\'t changed, no matter how much else has.',
+  'I don\'t need anything from you. I never did. I just always wanted to see you happy. I still do. That part hasn\'t changed, no matter how much else has.',
 ]
 
 const MARGIN_WORDS = ['years', 'still', 'always', 'why', 'you']
@@ -459,7 +460,8 @@ export default function Journal() {
           </div>
         </div>
 
-        {/* Segment 6 — Timeline will be added below */}
+        {/* Segment 6 — Timeline */}
+        <TimelineSection />
       </div>
     </div>
   )

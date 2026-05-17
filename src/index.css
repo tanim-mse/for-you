@@ -217,8 +217,51 @@ body::after {
 }
 
 /* ─────────────────────────────────────────
-   JOURNAL FIRST PAGE TYPOGRAPHY
+   TIMELINE
 ───────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(255,180,60,0.15), 0 0 12px rgba(255,180,60,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(255,180,60,0.08), 0 0 18px rgba(255,180,60,0.2); }
+}
+
+.timeline-dot--active {
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* Mobile timeline — year above content, not beside */
+@media (max-width: 640px) {
+  .timeline-entry-left {
+    width: 100% !important;
+    position: static !important;
+  }
+  .timeline-entry-right {
+    padding-left: 36px !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   LETTERS — ENVELOPE + TYPEWRITER
+───────────────────────────────────────── */
+
+/* Typewriter blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--text-tertiary);
+  animation: blink 0.9s ease-in-out infinite;
+}
+
+/* Envelope hover lift — only on unlocked envelopes */
+.envelope-unlocked:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.6),
+    0 0 30px rgba(200,130,40,0.07) !important;
+}
 
 /* Drop cap on first paragraph */
 .journal-first-para::first-letter {
@@ -236,4 +279,19 @@ body::after {
 .auth-input::placeholder {
   opacity: 0.4;
   font-style: italic;
+}
+
+/* ─────────────────────────────────────────
+   REELS GRID
+───────────────────────────────────────── */
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 1024px) {
+  .reels-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .reels-grid { grid-template-columns: 1fr; }
 }
