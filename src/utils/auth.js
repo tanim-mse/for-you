@@ -10,7 +10,7 @@
 // 4. Copy the long string it prints
 // 5. Paste it as STORED_HASH below
 
-const STORED_HASH = "REPLACE_THIS_WITH_YOUR_HASH";
+const STORED_HASH = "a17504f9a07849d8d84a31dc9b3e1e2ba901ddd0ddd06c94e72799ed3cd1dfbe";
 
 export async function checkPassword(input) {
   const encoded = new TextEncoder().encode(input.toLowerCase().trim());
