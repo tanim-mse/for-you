@@ -16,9 +16,9 @@ const OPENING_LINES = [
 ]
 
 const BODY_PARAGRAPHS = [
-  'Maybe you\'re reading this the same day I made it. Or maybe years have passed, and the world looks completely different now. Either way, I hope you still have that smile. The one that made everything feel a little lighter just by existing.',
+  'Maybe you\'re reading this the same day I gave it to you. Or maybe years have passed, and the world looks completely different now. Either way, I hope you still have that smile. The one that made everything feel a little lighter just by existing. By the way, Happy Birthday, Ma\'am. ',
   'This isn\'t meant to change anything. I know that. I just realized, somewhere along the way, that some things deserve to be said even when the moment has long passed. Even saying them out loud isn\'t something I can do anymore.',
-  'I don\'t need anything from you. I never did. I just always wanted to see you happy. I still do. That part hasn\'t changed, no matter how much else has.',
+  'I don\'t need anything from you. I never did. I just always wanted to see you happy. I still do. Even if I\'m not allowed to stay with you. That part hasn\'t changed, no matter how much else has.',
 ]
 
 const MARGIN_WORDS = ['years', 'still', 'always', 'why', 'you']
