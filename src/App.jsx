@@ -3,6 +3,8 @@ import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Preloader from './components/Preloader'
 import AuthGate from './pages/AuthGate'
 import Journal from './pages/Journal'
+import Letters from './pages/Letters'
+import Reels from './pages/Reels'
 import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
 import MobileNav from './components/MobileNav'
@@ -51,7 +53,7 @@ function GlobalChrome({ preloaderDone }) {
   return (
     <>
       <Cursor />
-      <Navbar visible={navVisible} herName="Nurin" />
+      <Navbar visible={navVisible} herName="Her Name" />
       <MobileNav visible={navVisible} />
     </>
   )
@@ -75,8 +77,8 @@ export default function App() {
         <Routes>
           <Route path="/"         element={<AuthGate />} />
           <Route path="/journal"  element={<Journal />} />
-          <Route path="/letters"  element={<Placeholder name="Letters" />} />
-          <Route path="/reels"    element={<Placeholder name="Reels" />} />
+          <Route path="/letters"  element={<Letters />} />
+          <Route path="/reels"    element={<Reels />} />
           <Route path="/birthday" element={<Placeholder name="Birthday" />} />
           <Route path="/secret"   element={<Placeholder name="Secret" />} />
           <Route path="/ending"   element={<Placeholder name="Ending" />} />
