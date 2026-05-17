@@ -51,7 +51,7 @@ function GlobalChrome({ preloaderDone }) {
   return (
     <>
       <Cursor />
-      <Navbar visible={navVisible} herName="Her Name" />
+      <Navbar visible={navVisible} herName="Nurin" />
       <MobileNav visible={navVisible} />
     </>
   )
