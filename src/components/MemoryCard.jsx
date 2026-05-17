@@ -1,0 +1,134 @@
+import { useEffect, useRef, useState } from 'react'
+
+export default function MemoryCard({ memory, index }) {
+  const ref      = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  // IntersectionObserver — triggers once when card enters viewport
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger based on index so cards cascade in
+          setTimeout(() => setVisible(true), index * 100)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [index])
+
+  return (
+    <div
+      ref={ref}
+      className="paper-card memory-card"
+      style={{
+        borderRadius: 3,
+        padding: '26px 26px 22px',
+        breakInside: 'avoid',
+        marginBottom: 24,
+        position: 'relative',
+        cursor: 'default',
+        // Entrance animation via CSS transition
+        opacity:   visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(18px)',
+        transition: 'opacity 0.75s ease, transform 0.75s ease',
+      }}
+    >
+      {/* Date label */}
+      <p
+        style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: 9,
+          letterSpacing: '0.22em',
+          color: 'var(--text-tertiary)',
+          textTransform: 'uppercase',
+          marginBottom: 12,
+        }}
+      >
+        {memory.date}
+      </p>
+
+      {/* Main quote */}
+      <p
+        className="memory-quote"
+        style={{
+          fontFamily: "'EB Garamond', Georgia, serif",
+          fontStyle: 'italic',
+          fontSize: 19,
+          lineHeight: 1.72,
+          color: 'var(--text-primary)',
+          transition: 'color 0.4s ease',
+        }}
+      >
+        {memory.quote}
+      </p>
+
+      {/* Optional separator + sub-note */}
+      {memory.note && (
+        <>
+          <div
+            style={{
+              height: 1,
+              background: 'var(--ink-faded)',
+              opacity: 0.15,
+              margin: '14px 0',
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "'Crimson Pro', Georgia, serif",
+              fontStyle: 'italic',
+              fontSize: 13,
+              lineHeight: 1.6,
+              color: 'var(--text-secondary)',
+            }}
+          >
+            {memory.note}
+          </p>
+        </>
+      )}
+
+      {/* Corner mark */}
+      <span
+        style={{
+          position: 'absolute',
+          bottom: 12,
+          right: 14,
+          fontSize: 10,
+          color: 'var(--gold-muted)',
+          opacity: 0.35,
+          lineHeight: 1,
+        }}
+      >
+        ✦
+      </span>
+
+      {/* Hover styles injected globally once */}
+      <style>{`
+        .memory-card {
+          transition:
+            opacity 0.75s ease,
+            transform 0.75s ease,
+            border-color 0.4s ease,
+            box-shadow 0.4s ease;
+        }
+        .memory-card:hover {
+          border-color: rgba(212, 149, 106, 0.28) !important;
+          transform: translateY(-3px) !important;
+          box-shadow:
+            0 12px 48px rgba(0,0,0,0.55),
+            0 0 32px rgba(180,100,30,0.05) !important;
+        }
+        .memory-card:hover .memory-quote {
+          color: var(--text-primary);
+          opacity: 1;
+        }
+      `}</style>
+    </div>
+  )
+}

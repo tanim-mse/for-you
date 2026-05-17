@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import CandleParticles from '../components/CandleParticles'
 import Ornament from '../components/Ornament'
+import MemoryCard from '../components/MemoryCard'
+import { memories } from '../data/memories'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const HER_NAME    = 'Her Name'       // ← replace with her name
@@ -10,7 +12,7 @@ const BIRTH_DATE  = 'June 3rd, 2004' // ← displayed on cover
 
 const OPENING_LINES = [
   'I never planned to write any of this down.',
-  'But some feelings don't ask permission.',
+  "But some feelings don't ask permission.",
 ]
 
 const BODY_PARAGRAPHS = [
@@ -439,20 +441,34 @@ export default function Journal() {
         {/* Memory cards (Segment 5) and Timeline (Segment 6) will be added below */}
         <MemoriesHeader />
 
-        {/* Placeholder until Segment 5 fills this in */}
+        {/* Section 4 — Memory cards masonry grid */}
         <div
           style={{
-            textAlign: 'center',
-            padding: '40px 24px 120px',
-            fontFamily: "'Crimson Pro', Georgia, serif",
-            fontStyle: 'italic',
-            fontSize: 14,
-            color: 'var(--text-ghost)',
-            opacity: 0.4,
+            maxWidth: 780,
+            margin: '0 auto',
+            padding: '0 24px 100px',
           }}
         >
-          [ memory cards — segment 5 ]
+          <style>{`
+            .memory-masonry {
+              column-count: 2;
+              column-gap: 28px;
+            }
+            @media (max-width: 640px) {
+              .memory-masonry {
+                column-count: 1;
+              }
+            }
+          `}</style>
+
+          <div className="memory-masonry">
+            {memories.map((memory, i) => (
+              <MemoryCard key={i} memory={memory} index={i} />
+            ))}
+          </div>
         </div>
+
+        {/* Segment 6 — Timeline will be added below */}
       </div>
     </div>
   )
