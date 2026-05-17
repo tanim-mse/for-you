@@ -215,3 +215,25 @@ body::after {
 .nav-item-wrap:hover .nav-underline {
   transform: scaleX(1) !important;
 }
+
+/* ─────────────────────────────────────────
+   JOURNAL FIRST PAGE TYPOGRAPHY
+───────────────────────────────────────── */
+
+/* Drop cap on first paragraph */
+.journal-first-para::first-letter {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.8em;
+  font-weight: 700;
+  line-height: 0.75;
+  float: left;
+  margin-right: 0.07em;
+  margin-top: 0.08em;
+  color: var(--text-primary);
+}
+
+/* Auth input placeholder */
+.auth-input::placeholder {
+  opacity: 0.4;
+  font-style: italic;
+}

@@ -42,12 +42,12 @@ function useWordReveal(ref, threshold = 0.2) {
 }
 
 // ── Word-by-word text component ───────────────────────────────────────────────
-function RevealText({ text, revealed, baseDelay = 0, style = {}, tag = 'span' }) {
+function RevealText({ text, revealed, baseDelay = 0, style = {}, tag = 'span', className = '' }) {
   const words = text.split(' ')
   const Tag   = tag
 
   return (
-    <Tag style={{ ...style, display: 'block' }}>
+    <Tag className={className} style={{ ...style, display: 'block' }}>
       {words.map((word, i) => (
         <span
           key={i}
@@ -290,7 +290,7 @@ function FirstPageSection() {
       </p>
 
       {/* Opening lines — word by word */}
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 32 }}>
         {OPENING_LINES.map((line, li) => {
           const wordsBeforeLine = OPENING_LINES
             .slice(0, li)
@@ -306,10 +306,11 @@ function FirstPageSection() {
               style={{
                 fontFamily: "'EB Garamond', Georgia, serif",
                 fontStyle: 'italic',
-                fontSize: 24,
-                lineHeight: 1.85,
+                fontSize: 28,
+                lineHeight: 1.75,
                 color: 'var(--text-primary)',
-                marginBottom: li < OPENING_LINES.length - 1 ? 4 : 0,
+                letterSpacing: '0.01em',
+                marginBottom: li < OPENING_LINES.length - 1 ? 8 : 0,
               }}
             />
           )
@@ -317,7 +318,7 @@ function FirstPageSection() {
       </div>
 
       {/* Body paragraphs — word by word, staggered after opening lines */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         {BODY_PARAGRAPHS.map((para, pi) => {
           const wordsBeforePara = [
             ...OPENING_LINES,
@@ -330,11 +331,13 @@ function FirstPageSection() {
               text={para}
               revealed={revealed}
               baseDelay={wordsBeforePara * 80 + 400}
+              className={pi === 0 ? 'journal-first-para' : ''}
               style={{
                 fontFamily: "'Crimson Pro', Georgia, serif",
-                fontSize: 16,
-                lineHeight: 1.95,
+                fontSize: 18,
+                lineHeight: 2.1,
                 color: 'var(--text-secondary)',
+                letterSpacing: '0.008em',
               }}
             />
           )
