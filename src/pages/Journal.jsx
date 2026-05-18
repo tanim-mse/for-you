@@ -226,57 +226,78 @@ function FirstPageSection() {
     <section
       ref={sectionRef}
       style={{
-        maxWidth: 640,
+        maxWidth: 700,
         margin: '0 auto',
-        padding: '100px 32px 120px',
+        padding: '40px 24px 80px',
         position: 'relative',
       }}
     >
-      {/* Left margin line */}
+      {/* The actual paper page */}
       <div
+        className="paper-card"
         style={{
-          position: 'absolute',
-          left: -8,
-          top: 0,
-          bottom: 0,
-          width: 1,
-          background: 'var(--ink-faded)',
-          opacity: 0.25,
+          borderRadius: 4,
+          padding: '72px 64px 80px',
+          position: 'relative',
         }}
       >
-        {/* Margin notes */}
-        {MARGIN_WORDS.map((word, i) => (
-          <div
-            key={word}
-            style={{
-              position: 'absolute',
-              top: `${15 + i * 17}%`,
-              left: 8,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <div style={{ width: 12, height: 1, background: 'var(--text-ghost)', opacity: 0.5 }} />
-            <span
+        {/* Red-ruled left margin line */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 52,
+            top: 0,
+            bottom: 0,
+            width: 1,
+            background: 'rgba(180, 80, 60, 0.12)',
+          }}
+        />
+
+        {/* Ink margin line */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 64,
+            top: 0,
+            bottom: 0,
+            width: 1,
+            background: 'var(--ink-faded)',
+            opacity: 0.20,
+          }}
+        >
+          {/* Margin notes */}
+          {MARGIN_WORDS.map((word, i) => (
+            <div
+              key={word}
               style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 9,
-                fontWeight: 300,
-                fontStyle: 'italic',
-                color: 'var(--text-ghost)',
-                letterSpacing: '0.08em',
-                opacity: 0.6,
+                position: 'absolute',
+                top: `${12 + i * 17}%`,
+                left: -36,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                whiteSpace: 'nowrap',
               }}
             >
-              {word}
-            </span>
-          </div>
-        ))}
-      </div>
+              <div style={{ width: 10, height: 1, background: 'var(--text-ghost)', opacity: 0.4 }} />
+              <span
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 8,
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  color: 'var(--text-ghost)',
+                  letterSpacing: '0.08em',
+                  opacity: 0.5,
+                }}
+              >
+                {word}
+              </span>
+            </div>
+          ))}
+        </div>
 
-      {/* Opening date */}
+      {/* Opening date — fixed: no redundant year */}
       <p
         style={{
           fontFamily: "'DM Sans', sans-serif",
@@ -287,7 +308,7 @@ function FirstPageSection() {
           marginBottom: 20,
         }}
       >
-        {BIRTH_YEAR} · {BIRTH_DATE}
+        {BIRTH_YEAR} · June 3rd
       </p>
 
       {/* Opening lines — word by word */}
@@ -345,18 +366,20 @@ function FirstPageSection() {
         })}
       </div>
 
-      {/* Page curl fade at bottom */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 120,
-          background: 'linear-gradient(to bottom, transparent 60%, var(--bg-base) 100%)',
-          pointerEvents: 'none',
-        }}
-      />
+      {/* Page curl fade at bottom — inside paper card */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 80,
+            background: 'linear-gradient(to bottom, transparent 40%, rgba(26,21,16,0.6) 100%)',
+            pointerEvents: 'none',
+            borderRadius: '0 0 4px 4px',
+          }}
+        />
+      </div>{/* end paper-card */}
     </section>
   )
 }

@@ -146,14 +146,15 @@ export default function Navbar({ herName = 'Her Name', visible = true }) {
     right: 0,
     height: 64,
     zIndex: 'var(--z-nav)',
-    background: 'rgba(12,8,4,0.75)',
-    backdropFilter: 'blur(20px) saturate(150%)',
-    WebkitBackdropFilter: 'blur(20px) saturate(150%)',
-    borderBottom: '1px solid rgba(139,109,74,0.12)',
+    background: 'rgba(18,14,8,0.92)',
+    backdropFilter: 'blur(24px) saturate(160%)',
+    WebkitBackdropFilter: 'blur(24px) saturate(160%)',
+    borderBottom: '1px solid rgba(139,109,74,0.28)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '0 32px',
+    boxShadow: '0 1px 20px rgba(0,0,0,0.5)',
   }
 
   return (
