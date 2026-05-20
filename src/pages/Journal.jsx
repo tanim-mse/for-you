@@ -215,110 +215,88 @@ function CoverSection({ scrollToPage }) {
 
 // ── Section 2 — First page ────────────────────────────────────────────────────
 function FirstPageSection() {
-  const sectionRef   = useRef(null)
-  const revealed     = useWordReveal(sectionRef, 0.2)
-
-  // Stagger delays: opening lines start at 0, paragraphs after
-  const openingWords = OPENING_LINES.join(' ').split(' ').length
-  const paragraphBaseDelay = openingWords * 80 + 400
+  const sectionRef = useRef(null)
+  const revealed   = useWordReveal(sectionRef, 0.2)
 
   return (
     <section
       ref={sectionRef}
       style={{
-        maxWidth: 700,
+        maxWidth: 640,
         margin: '0 auto',
-        padding: '40px 24px 80px',
+        padding: '100px 48px 120px',
         position: 'relative',
       }}
     >
-      {/* The actual paper page */}
+      {/* Faint top edge — suggests top of a page bleeding into darkness */}
+      <div style={{
+        position: 'absolute',
+        top: 72,
+        left: 24,
+        right: 24,
+        height: 1,
+        background: 'linear-gradient(to right, transparent, rgba(139,109,74,0.12), transparent)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Left margin line — the only "paper" signal needed */}
       <div
-        className="paper-card"
         style={{
-          borderRadius: 4,
-          padding: '72px 64px 80px',
-          position: 'relative',
+          position: 'absolute',
+          left: 16,
+          top: 72,
+          bottom: 80,
+          width: 1,
+          background: 'var(--ink-faded)',
+          opacity: 0.2,
         }}
       >
-        {/* Red-ruled left margin line */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 52,
-            top: 0,
-            bottom: 0,
-            width: 1,
-            background: 'rgba(180, 80, 60, 0.12)',
-          }}
-        />
+        {MARGIN_WORDS.map((word, i) => (
+          <div
+            key={word}
+            style={{
+              position: 'absolute',
+              top: `${12 + i * 17}%`,
+              left: 8,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 4,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <div style={{ width: 10, height: 1, background: 'var(--text-ghost)', opacity: 0.4 }} />
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 8,
+              fontWeight: 300,
+              fontStyle: 'italic',
+              color: 'var(--text-ghost)',
+              letterSpacing: '0.08em',
+              opacity: 0.5,
+            }}>
+              {word}
+            </span>
+          </div>
+        ))}
+      </div>
 
-        {/* Ink margin line */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 64,
-            top: 0,
-            bottom: 0,
-            width: 1,
-            background: 'var(--ink-faded)',
-            opacity: 0.20,
-          }}
-        >
-          {/* Margin notes */}
-          {MARGIN_WORDS.map((word, i) => (
-            <div
-              key={word}
-              style={{
-                position: 'absolute',
-                top: `${12 + i * 17}%`,
-                left: -36,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <div style={{ width: 10, height: 1, background: 'var(--text-ghost)', opacity: 0.4 }} />
-              <span
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 8,
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  color: 'var(--text-ghost)',
-                  letterSpacing: '0.08em',
-                  opacity: 0.5,
-                }}
-              >
-                {word}
-              </span>
-            </div>
-          ))}
-        </div>
-
-      {/* Opening date — fixed: no redundant year */}
-      <p
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 10,
-          color: 'var(--text-tertiary)',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          marginBottom: 20,
-        }}
-      >
+      {/* Opening date */}
+      <p style={{
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: 10,
+        color: 'var(--text-tertiary)',
+        letterSpacing: '0.18em',
+        textTransform: 'uppercase',
+        marginBottom: 28,
+      }}>
         {BIRTH_YEAR} · June 3rd
       </p>
 
-      {/* Opening lines — word by word */}
-      <div style={{ marginBottom: 32 }}>
+      {/* Opening lines — word by word, large italic */}
+      <div style={{ marginBottom: 40 }}>
         {OPENING_LINES.map((line, li) => {
           const wordsBeforeLine = OPENING_LINES
-            .slice(0, li)
-            .join(' ')
-            .split(' ')
-            .filter(Boolean).length
+            .slice(0, li).join(' ').split(' ').filter(Boolean).length
           return (
             <RevealText
               key={li}
@@ -328,25 +306,24 @@ function FirstPageSection() {
               style={{
                 fontFamily: "'EB Garamond', Georgia, serif",
                 fontStyle: 'italic',
-                fontSize: 28,
-                lineHeight: 1.75,
+                fontSize: 32,
+                lineHeight: 1.7,
                 color: 'var(--text-primary)',
                 letterSpacing: '0.01em',
-                marginBottom: li < OPENING_LINES.length - 1 ? 8 : 0,
+                marginBottom: li < OPENING_LINES.length - 1 ? 4 : 0,
               }}
             />
           )
         })}
       </div>
 
-      {/* Body paragraphs — word by word, staggered after opening lines */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {/* Body paragraphs */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
         {BODY_PARAGRAPHS.map((para, pi) => {
           const wordsBeforePara = [
             ...OPENING_LINES,
             ...BODY_PARAGRAPHS.slice(0, pi),
           ].join(' ').split(' ').filter(Boolean).length
-
           return (
             <RevealText
               key={pi}
@@ -357,7 +334,7 @@ function FirstPageSection() {
               style={{
                 fontFamily: "'Crimson Pro', Georgia, serif",
                 fontSize: 18,
-                lineHeight: 2.1,
+                lineHeight: 2.15,
                 color: 'var(--text-secondary)',
                 letterSpacing: '0.008em',
               }}
@@ -366,20 +343,27 @@ function FirstPageSection() {
         })}
       </div>
 
-      {/* Page curl fade at bottom — inside paper card */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 80,
-            background: 'linear-gradient(to bottom, transparent 40%, rgba(26,21,16,0.6) 100%)',
-            pointerEvents: 'none',
-            borderRadius: '0 0 4px 4px',
-          }}
-        />
-      </div>{/* end paper-card */}
+      {/* Faint bottom edge */}
+      <div style={{
+        position: 'absolute',
+        bottom: 60,
+        left: 24,
+        right: 24,
+        height: 1,
+        background: 'linear-gradient(to right, transparent, rgba(139,109,74,0.08), transparent)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Page fade into next section */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 120,
+        background: 'linear-gradient(to bottom, transparent 50%, var(--bg-base) 100%)',
+        pointerEvents: 'none',
+      }} />
     </section>
   )
 }
