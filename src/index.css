@@ -295,3 +295,106 @@ body::after {
 @media (max-width: 640px) {
   .reels-grid { grid-template-columns: 1fr; }
 }
+
+/* ─────────────────────────────────────────
+   ENDING — BACK BUTTON
+───────────────────────────────────────── */
+.ending-back-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--ink-faded);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.ending-back-btn:hover::after {
+  transform: scaleX(1);
+}
+@keyframes flameWaver {
+  0%   { transform: scale(1.00, 1.00) translateX(0px)    rotate(-1.5deg); }
+  20%  { transform: scale(0.97, 1.03) translateX(-1px)   rotate(1deg);    }
+  40%  { transform: scale(1.02, 0.98) translateX(1.5px)  rotate(-0.5deg); }
+  60%  { transform: scale(0.98, 1.02) translateX(-0.5px) rotate(2deg);    }
+  80%  { transform: scale(1.01, 0.99) translateX(0.5px)  rotate(-1deg);   }
+  100% { transform: scale(1.00, 1.01) translateX(-1px)   rotate(1.5deg);  }
+}
+@keyframes smokeRise {
+  0%   { opacity: 0.5; transform: translateY(0)     scaleX(1); }
+  50%  { opacity: 0.2; transform: translateY(-20px) scaleX(2); }
+  100% { opacity: 0;   transform: translateY(-40px) scaleX(3); }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE — FONT SIZE CORRECTIONS
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Timeline — year above content, not beside */
+  .timeline-entry-year {
+    position: static !important;
+    font-size: 48px !important;
+    opacity: 0.4 !important;
+    margin-bottom: 8px;
+  }
+  .timeline-entry-left {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+  .timeline-entry-right {
+    padding-left: 28px !important;
+  }
+
+  /* Memory card quote smaller on mobile */
+  .memory-quote {
+    font-size: 17px !important;
+  }
+
+  /* Letter modal — near fullscreen */
+  .letter-modal-inner {
+    width: 95vw !important;
+    padding: 28px 20px 32px !important;
+    max-height: 88vh !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   PERFORMANCE — WILL-CHANGE
+───────────────────────────────────────── */
+.memory-card {
+  will-change: transform, opacity;
+}
+.flame-outer {
+  will-change: transform;
+}
+.candle-ambient {
+  will-change: opacity, transform;
+}
+.timeline-dot {
+  will-change: box-shadow;
+}
+
+/* ─────────────────────────────────────────
+   ACCESSIBILITY — REDUCED MOTION
+───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .candle-ambient {
+    animation: none !important;
+  }
+  .flame-outer {
+    animation: none !important;
+  }
+  .timeline-dot--active {
+    animation: none !important;
+  }
+}
