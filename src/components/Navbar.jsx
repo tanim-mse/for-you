@@ -162,13 +162,19 @@ export default function Navbar({ herName = 'Her Name', visible = true }) {
       <motion.nav
         className="desktop-nav"
         initial={{ opacity: 0, y: -20 }}
-        animate={{
-          opacity: visible ? (isSecret ? 0.3 : 1) : 0,
-          y: visible ? 0 : -20,
+        animate={
+          !visible
+            ? { opacity: 0, y: -20 }
+            : isSecret
+            ? { opacity: 0.3, y: 0 }
+            : { opacity: 1, y: 0 }
+        }
+        whileHover={isSecret ? { opacity: 1 } : undefined}
+        transition={{ duration: 1.0, ease: 'easeOut' }}
+        style={{
+          ...navStyle,
+          pointerEvents: visible ? 'auto' : 'none',
         }}
-        whileHover={isSecret ? { opacity: 1 } : {}}
-        transition={{ duration: 1.0, delay: visible ? 0.3 : 0 }}
-        style={navStyle}
       >
         {/* LEFT — Her name with shimmer */}
         <motion.span
