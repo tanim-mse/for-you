@@ -207,8 +207,8 @@ body::after {
 /* ─────────────────────────────────────────
    DESKTOP NAV — hide on mobile
 ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  .desktop-nav { display: none !important; }
+@media (max-width: 640px) {
+  .desktop-nav { display: none; }
 }
 
 /* Nav underline hover */
