@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { playSfx } from '../utils/audio'
 
 // ── Wax Seal ──────────────────────────────────────────────────────────────────
 function WaxSeal({ locked, read }) {
@@ -93,6 +94,7 @@ function LetterModal({ letter, onClose, onRead }) {
   const displayed = useTypewriter(letter.body, true)
   const bottomRef = useRef(null)
   const hasMarkedRead = useRef(false)
+  const touchStart = useRef(0)
 
   // Close on Escape
   useEffect(() => {
@@ -128,6 +130,10 @@ function LetterModal({ letter, onClose, onRead }) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         onClick={onClose}
+        onTouchStart={e => { touchStart.current = e.touches[0].clientY }}
+        onTouchEnd={e => {
+          if (e.changedTouches[0].clientY - touchStart.current > 80) onClose()
+        }}
         style={{
           position: 'fixed',
           inset: 0,
@@ -149,7 +155,7 @@ function LetterModal({ letter, onClose, onRead }) {
           exit={{ opacity: 0, scale: 0.92 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           onClick={e => e.stopPropagation()}
-          className="paper-card"
+          className="paper-card letter-modal-inner"
           style={{
             position: 'relative',
             width: 'min(520px, 92vw)',
@@ -294,6 +300,7 @@ export default function Envelope({ letter, index }) {
 
   const handleClick = () => {
     if (isLocked) return
+    playSfx('paper')
     setFlapOpen(true)
     setTimeout(() => setModalOpen(true), 500)
   }
@@ -414,7 +421,7 @@ export default function Envelope({ letter, index }) {
               color: 'var(--text-tertiary)',
               marginBottom: 6,
             }}>
-              তোমাকে
+              you
             </p>
             <p style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -432,7 +439,7 @@ export default function Envelope({ letter, index }) {
               color: 'var(--text-tertiary)',
               fontStyle: 'italic',
             }}>
-              যে অপেক্ষা করেছিল
+              someone who waited
             </p>
           </div>
 
@@ -496,7 +503,7 @@ export default function Envelope({ letter, index }) {
               whiteSpace: 'nowrap',
             }}
           >
-            আগেরগুলো আগে পড়ো।
+            Read the earlier ones first.
           </div>
         )}
       </div>

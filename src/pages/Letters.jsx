@@ -48,7 +48,7 @@ function LettersHeader() {
           transition: 'opacity 1.0s ease 0.15s, transform 1.0s ease 0.15s',
         }}
       >
-        যা কখনো বলা হয়নি
+        Things I Never Said
       </h1>
 
       <p
@@ -62,7 +62,7 @@ function LettersHeader() {
           transition: 'opacity 1.0s ease 0.3s',
         }}
       >
-        কথার অভাবে না। কথা ছিল অনেক বেশি।
+        Not because I had no words. Because I had too many.
       </p>
 
       {/* Horizontal rule */}
@@ -88,7 +88,7 @@ function LettersHeader() {
           opacity: 0.5,
         }}
       >
-        ♪ শব্দসহ পড়লে ভালো লাগবে
+        ♪ best experienced with sound
       </p>
     </div>
   )

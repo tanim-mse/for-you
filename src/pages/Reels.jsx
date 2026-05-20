@@ -213,7 +213,7 @@ function ExternalInterstitial({ reel, onClose }) {
           color: 'var(--text-primary)',
           marginBottom: 24,
         }}>
-          এটা {platform}-এ আছে।
+          This one lives on {platform}.
         </p>
 
         <motion.button
@@ -236,7 +236,7 @@ function ExternalInterstitial({ reel, onClose }) {
             transition: 'all 0.35s ease',
           }}
         >
-          খুলে দেখো ↗
+          Open it ↗
         </motion.button>
 
         <p style={{
@@ -246,7 +246,7 @@ function ExternalInterstitial({ reel, onClose }) {
           fontSize: 13,
           color: 'var(--text-tertiary)',
         }}>
-          কিছু জিনিস এখানে ধরা যায় না।
+          some things can't be contained here.
         </p>
       </motion.div>
     </motion.div>
@@ -433,7 +433,7 @@ function ReelsHeader() {
         textTransform: 'uppercase',
         display: 'block',
       }}>
-        তোমার জন্য সেভ করা
+        saved for you
       </p>
 
       <h1 style={{
@@ -445,7 +445,7 @@ function ReelsHeader() {
         color: 'var(--text-primary)',
         display: 'block',
       }}>
-        যেগুলো তোমার কথা মনে করিয়ে দিয়েছিল।
+        Things I Saved For You.
       </h1>
 
       <p style={{
@@ -457,7 +457,7 @@ function ReelsHeader() {
         color: 'var(--text-secondary)',
         display: 'block',
       }}>
-        তোমার কথা ভাবতে ভাবতে।
+        Probably while thinking about you.
       </p>
     </div>
   )
