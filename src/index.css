@@ -442,3 +442,17 @@ body::after {
     max-height: 90vh !important;
   }
 }
+
+/* ─────────────────────────────────────────
+   LETTER MODAL — FORCE PARCHMENT IMAGE BG
+   Prevents .paper-card from overriding the
+   backgroundImage set inline in Envelope.jsx
+───────────────────────────────────────── */
+.letter-modal-inner {
+  background-color: transparent !important;
+  background-image: url("/images/letter-paper.jpg") !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  border: none !important;
+}
