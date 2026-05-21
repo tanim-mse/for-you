@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const LINE_ONE = "Some things take years to arrive..."
 const LINE_TWO = "This one took six."
-const CHAR_DELAY = 0.04 // 40ms per character
+const CHAR_DELAY = 0.07 // 70ms per character — slower, more deliberate
 
 export default function Preloader({ onComplete }) {
   const [dotVisible, setDotVisible]       = useState(false)
@@ -32,7 +32,6 @@ export default function Preloader({ onComplete }) {
       setDotVisible(true)
       setDotPulse(true)
 
-      // Howler audio
       try {
         const { Howl } = window.Howler || {}
         if (!Howl) {
@@ -49,7 +48,8 @@ export default function Preloader({ onComplete }) {
       } catch (_) {}
     })
 
-    // 1.60s — start typing line one (36 chars × 40ms = 1440ms → ends ~3.04s)
+    // 1.60s — start typing line one
+    // 36 chars × 70ms = 2520ms → ends ~4.12s
     t(1600, () => {
       let i = 0
       const type = () => {
@@ -63,8 +63,9 @@ export default function Preloader({ onComplete }) {
       type()
     })
 
-    // 3.00s — start typing line two (19 chars → ends ~3.76s)
-    t(3000, () => {
+    // 4.20s — line one is done. a long breath. then line two begins.
+    // 19 chars × 70ms = 1330ms → ends ~5.53s
+    t(4200, () => {
       let i = 0
       const type = () => {
         i++
@@ -77,26 +78,25 @@ export default function Preloader({ onComplete }) {
       type()
     })
 
-    // 4.00s — dot expands, text fades, glow radiates
-    t(4000, () => {
+    // 6.20s — both lines have been read. now the dot expands.
+    t(6200, () => {
       setDotExpand(true)
       setTextFade(true)
       setDotGlow(true)
 
-      // Fade audio out
       if (howlerRef.current) {
         howlerRef.current.fade(0.18, 0, 500)
       }
     })
 
-    // 4.50s — flash
-    t(4500, () => {
+    // 6.70s — flash and contract
+    t(6700, () => {
       setDotContract(true)
       setFlash(true)
     })
 
-    // 5.50s — done
-    t(5500, () => {
+    // 8.50s — done, hand off to AuthGate
+    t(8500, () => {
       onComplete()
     })
 
@@ -109,7 +109,6 @@ export default function Preloader({ onComplete }) {
     }
   }, [onComplete])
 
-  // Dot animation variants
   const dotVariants = {
     hidden:   { opacity: 0, scale: 1 },
     pulse:    {
@@ -161,14 +160,12 @@ export default function Preloader({ onComplete }) {
       {/* Text block */}
       <div
         style={{
-          marginTop: 44,
           textAlign: 'center',
           opacity: textFade ? 0 : 1,
           transition: 'opacity 0.3s ease',
           position: 'absolute',
-          // vertically offset from center by dot height + gap
           top: '50%',
-          transform: 'translateY(calc(-50% + 24px))',
+          transform: 'translateY(calc(-50% + 28px))',
           pointerEvents: 'none',
         }}
       >
@@ -177,27 +174,29 @@ export default function Preloader({ onComplete }) {
           style={{
             fontFamily: "'EB Garamond', Georgia, serif",
             fontStyle: 'italic',
-            fontSize: 17,
+            fontSize: 22,
+            lineHeight: '1.8',
             color: '#C4AA85',
-            letterSpacing: '0.10em',
+            letterSpacing: '0.13em',
             margin: 0,
-            minHeight: '1.4em',
+            minHeight: '1.6em',
           }}
         >
           {LINE_ONE.slice(0, lineOneChars)}
         </p>
 
-        {/* Line two */}
+        {/* Line two — only mounts after line one is done */}
         {lineTwoChars > 0 && (
           <p
             style={{
               fontFamily: "'EB Garamond', Georgia, serif",
               fontStyle: 'italic',
-              fontSize: 17,
+              fontSize: 22,
+              lineHeight: '1.8',
               color: '#C4AA85',
-              letterSpacing: '0.10em',
-              margin: '26px 0 0',
-              minHeight: '1.4em',
+              letterSpacing: '0.13em',
+              margin: '32px 0 0',
+              minHeight: '1.6em',
             }}
           >
             {LINE_TWO.slice(0, lineTwoChars)}
