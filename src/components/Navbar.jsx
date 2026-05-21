@@ -47,7 +47,8 @@ function FlameIcon() {
 // ── NavLink wrapper with animated underline + active dot ─────────────────────
 function NavItem({ to, label, onClick, disabled, title }) {
   const location = useLocation()
-  const isActive = location.hash === `#${to}` || (to === '/journal' && location.hash === '')
+  // With HashRouter, use location.pathname (not location.hash)
+  const isActive = location.pathname === to
 
   return (
     <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
@@ -109,7 +110,8 @@ function NavItem({ to, label, onClick, disabled, title }) {
 // ── Main Navbar ───────────────────────────────────────────────────────────────
 export default function Navbar({ herName = 'Her Name', visible = true }) {
   const location = useLocation()
-  const isSecret  = location.hash === '#/secret'
+  // With HashRouter, use location.pathname (not location.hash)
+  const isSecret  = location.pathname === '/secret'
 
   const [secretUnlocked, setSecretUnlocked] = useState(false)
   const [musicOn, setMusicOn]               = useState(() => {

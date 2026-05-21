@@ -16,9 +16,8 @@ import AudioManager from './components/AudioManager'
 // ── Global chrome — nav + cursor + audio, hidden on auth route ────────────────
 function GlobalChrome({ preloaderDone }) {
   const location = useLocation()
-  const hash    = location.hash
-  const isAuth  = hash === '' || hash === '#/' || hash === '#'
-  // Show navbar on any non-auth route, but only after preloader on auth
+  // With HashRouter, use location.pathname (not location.hash)
+  const isAuth = location.pathname === '/'
   const navVisible = !isAuth
 
   return (
