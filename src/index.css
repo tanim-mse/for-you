@@ -398,3 +398,47 @@ body::after {
     animation: none !important;
   }
 }
+
+/* ─────────────────────────────────────────
+   LETTER MODAL — PARCHMENT OVERRIDES
+───────────────────────────────────────── */
+
+/* Override .paper-card inside the letter modal */
+.letter-modal-inner {
+  /* background and border handled inline — parchment color */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100,72,32,0.25) transparent;
+}
+
+.letter-modal-inner::-webkit-scrollbar {
+  width: 4px;
+}
+.letter-modal-inner::-webkit-scrollbar-track {
+  background: transparent;
+}
+.letter-modal-inner::-webkit-scrollbar-thumb {
+  background: rgba(100,72,32,0.25);
+  border-radius: 2px;
+}
+
+/* Typewriter cursor on parchment — darker to match paper */
+.letter-modal-inner .typewriter-cursor {
+  color: rgba(80,55,25,0.5);
+}
+
+/* Envelope body — parchment hover glow */
+.envelope-unlocked:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 14px 44px rgba(0,0,0,0.6),
+    0 0 32px rgba(180,130,50,0.10) !important;
+}
+
+/* Mobile letter modal */
+@media (max-width: 640px) {
+  .letter-modal-inner {
+    width: 95vw !important;
+    padding: 28px 20px 32px !important;
+    max-height: 90vh !important;
+  }
+}
