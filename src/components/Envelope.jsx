@@ -2,44 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { playSfx } from '../utils/audio'
 
-// ── Wax Seal ──────────────────────────────────────────────────────────────────
-function WaxSeal({ locked, read }) {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: '28%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 28,
-        height: 28,
-        borderRadius: '50%',
-        background: locked
-          ? 'radial-gradient(circle at 35% 35%, rgba(120,100,80,1) 0%, rgba(80,60,40,1) 60%)'
-          : read
-          ? 'radial-gradient(circle at 35% 35%, #E8A020 0%, #C4681A 60%)'
-          : 'radial-gradient(circle at 35% 35%, var(--flame-amber) 0%, var(--flame-deep) 60%)',
-        boxShadow: locked
-          ? '0 2px 8px rgba(0,0,0,0.4)'
-          : read
-          ? '0 2px 8px rgba(0,0,0,0.4), 0 0 18px rgba(220,140,40,0.3)'
-          : '0 2px 8px rgba(0,0,0,0.4), 0 0 12px rgba(200,120,30,0.15)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 3,
-        transition: 'background 0.6s ease, box-shadow 0.6s ease',
-      }}
-    >
-      <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', lineHeight: 1 }}>
-        {locked ? '🔒' : '✦'}
-      </span>
-    </div>
-  )
-}
-
-// ── Typewriter hook ───────────────────────────────────────────────────────────
-// Fills text into pre-sized containers — modal never grows
+// ── Typewriter hook — unchanged ───────────────────────────────────────────────
 function useTypewriter(paragraphs, active) {
   const [displayed, setDisplayed] = useState(() => paragraphs.map(() => ''))
   const [paraIndex, setParaIndex] = useState(0)
@@ -50,7 +13,6 @@ function useTypewriter(paragraphs, active) {
   useEffect(() => {
     if (!active || finished) return
     if (paraIndex >= paragraphs.length) { setFinished(true); return }
-
     const currentPara = paragraphs[paraIndex]
     if (charIndex < currentPara.length) {
       timerRef.current = setTimeout(() => {
@@ -82,21 +44,19 @@ function useTypewriter(paragraphs, active) {
   return { displayed, paraIndex, finished }
 }
 
-// ── Letter Modal ──────────────────────────────────────────────────────────────
+// ── Letter Modal — unchanged ──────────────────────────────────────────────────
 function LetterModal({ letter, onClose, onRead }) {
   const { displayed, paraIndex, finished } = useTypewriter(letter.body, true)
-  const bottomRef      = useRef(null)
-  const hasMarkedRead  = useRef(false)
-  const touchStart     = useRef(0)
+  const bottomRef     = useRef(null)
+  const hasMarkedRead = useRef(false)
+  const touchStart    = useRef(0)
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  // Mark read when bottom sentinel enters view
   useEffect(() => {
     const el = bottomRef.current
     if (!el) return
@@ -115,7 +75,6 @@ function LetterModal({ letter, onClose, onRead }) {
 
   return (
     <AnimatePresence>
-      {/* Dark backdrop */}
       <motion.div
         key="overlay"
         initial={{ opacity: 0 }}
@@ -128,19 +87,15 @@ function LetterModal({ letter, onClose, onRead }) {
           if (e.changedTouches[0].clientY - touchStart.current > 80) onClose()
         }}
         style={{
-          position: 'fixed',
-          inset: 0,
+          position: 'fixed', inset: 0,
           background: 'rgba(6,4,2,0.90)',
           backdropFilter: 'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
           zIndex: 'var(--z-modal)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: '24px',
         }}
       >
-        {/* ── Letter paper ── */}
         <motion.div
           key="letter"
           initial={{ opacity: 0, scale: 0.88, y: 20 }}
@@ -152,7 +107,6 @@ function LetterModal({ letter, onClose, onRead }) {
           style={{
             position: 'relative',
             width: 'min(520px, 92vw)',
-            // Fixed height from the start — text fills inside it, never grows
             height: 'min(680px, 85vh)',
             overflowY: 'auto',
             borderRadius: 3,
@@ -166,84 +120,50 @@ function LetterModal({ letter, onClose, onRead }) {
             padding: 'clamp(28px, 5vw, 52px)',
           }}
         >
-          {/* Subtle top gradient for legibility */}
           <div style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0, height: '35%',
+            position: 'absolute', top: 0, left: 0, right: 0, height: '35%',
             background: 'linear-gradient(to bottom, rgba(195,165,110,0.15) 0%, transparent 100%)',
-            pointerEvents: 'none',
-            borderRadius: '3px 3px 0 0',
-            zIndex: 1,
+            pointerEvents: 'none', borderRadius: '3px 3px 0 0', zIndex: 1,
           }} />
 
-          {/* Close button */}
           <button
             onClick={onClose}
             style={{
-              position: 'absolute',
-              top: 18, right: 20,
-              background: 'none', border: 'none',
-              fontSize: 22,
-              color: 'rgba(80,55,25,0.55)',
-              cursor: 'pointer', lineHeight: 1, padding: 0,
-              zIndex: 10, transition: 'color 0.2s',
+              position: 'absolute', top: 18, right: 20,
+              background: 'none', border: 'none', fontSize: 22,
+              color: 'rgba(80,55,25,0.55)', cursor: 'pointer',
+              lineHeight: 1, padding: 0, zIndex: 10, transition: 'color 0.2s',
             }}
             onMouseEnter={e => e.target.style.color = 'rgba(40,20,5,0.90)'}
             onMouseLeave={e => e.target.style.color = 'rgba(80,55,25,0.55)'}
           >×</button>
 
-          {/* Content */}
           <div style={{ position: 'relative', zIndex: 2 }}>
-
-            {/* Date */}
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 10,
-              color: 'rgba(80,55,25,0.65)',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              textAlign: 'right',
-              marginBottom: 24,
-            }}>
-              {letter.date}
-            </p>
+              fontFamily: "'DM Sans', sans-serif", fontSize: 10,
+              color: 'rgba(80,55,25,0.65)', letterSpacing: '0.15em',
+              textTransform: 'uppercase', textAlign: 'right', marginBottom: 24,
+            }}>{letter.date}</p>
 
-            {/* Salutation */}
             <p style={{
-              fontFamily: "'EB Garamond', Georgia, serif",
-              fontStyle: 'italic',
-              fontSize: 24,
-              color: 'rgba(45,28,8,0.88)',
-              marginBottom: 20,
-              lineHeight: 1.4,
-            }}>
-              {letter.salutation}
-            </p>
+              fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'italic',
+              fontSize: 24, color: 'rgba(45,28,8,0.88)', marginBottom: 20, lineHeight: 1.4,
+            }}>{letter.salutation}</p>
 
-            {/* Body paragraphs — ALL rendered at full size from the start.
-                Text types into them. The modal never grows. */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {letter.body.map((fullText, pi) => (
-                <p
-                  key={pi}
-                  style={{
-                    fontFamily: "'Crimson Pro', Georgia, serif",
-                    fontSize: 'clamp(15px, 2vw, 17px)',
-                    lineHeight: 2.05,
-                    color: 'rgba(40,25,8,0.82)',
-                    letterSpacing: '0.01em',
-                    // Reserve the full height of this paragraph from the start
-                    // so the modal doesn't jump as text fills in
-                    minHeight: `${fullText.length > 80 ? 3 : fullText.length > 40 ? 2 : 1}lh`,
-                    position: 'relative',
-                  }}
-                >
+                <p key={pi} style={{
+                  fontFamily: "'Crimson Pro', Georgia, serif",
+                  fontSize: 'clamp(15px, 2vw, 17px)',
+                  lineHeight: 2.05, color: 'rgba(40,25,8,0.82)',
+                  letterSpacing: '0.01em',
+                  minHeight: `${fullText.length > 80 ? 3 : fullText.length > 40 ? 2 : 1}lh`,
+                  position: 'relative',
+                }}>
                   {displayed[pi]}
-                  {/* Blinking cursor only on the paragraph currently being typed */}
                   {pi === paraIndex && !finished && (
                     <span style={{
-                      display: 'inline-block',
-                      marginLeft: 1,
+                      display: 'inline-block', marginLeft: 1,
                       color: 'rgba(80,55,25,0.45)',
                       animation: 'blink 0.9s ease-in-out infinite',
                     }}>|</span>
@@ -252,19 +172,12 @@ function LetterModal({ letter, onClose, onRead }) {
               ))}
             </div>
 
-            {/* Sign-off */}
             <p style={{
               marginTop: 32,
-              fontFamily: "'EB Garamond', Georgia, serif",
-              fontStyle: 'italic',
-              fontSize: 18,
-              color: 'rgba(60,38,14,0.72)',
-              textAlign: 'right',
-            }}>
-              {letter.signoff}
-            </p>
+              fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'italic',
+              fontSize: 18, color: 'rgba(60,38,14,0.72)', textAlign: 'right',
+            }}>{letter.signoff}</p>
 
-            {/* Bottom sentinel for read detection */}
             <div ref={bottomRef} style={{ height: 1, marginTop: 8 }} />
           </div>
         </motion.div>
@@ -273,7 +186,66 @@ function LetterModal({ letter, onClose, onRead }) {
   )
 }
 
-// ── Envelope ──────────────────────────────────────────────────────────────────
+// ── Wax Seal — redesigned ─────────────────────────────────────────────────────
+function WaxSeal({ locked, read }) {
+  return (
+    <div style={{
+      position: 'absolute',
+      // Sits exactly on the bottom edge of the flap — centered horizontally
+      top: '24%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10,
+    }}>
+      {/* Outer wax drip ring — slightly larger, rougher edge */}
+      <div style={{
+        width: 38,
+        height: 38,
+        borderRadius: '50%',
+        background: locked
+          ? 'radial-gradient(circle at 38% 32%, #6B5540 0%, #3D2610 55%, #2A1A08 100%)'
+          : read
+          ? 'radial-gradient(circle at 38% 32%, #FFB830 0%, #E8820A 45%, #B85A08 100%)'
+          : 'radial-gradient(circle at 38% 32%, #F5C040 0%, #E8A020 45%, #C4681A 100%)',
+        boxShadow: locked
+          ? '0 3px 10px rgba(0,0,0,0.55)'
+          : read
+          ? '0 3px 10px rgba(0,0,0,0.45), 0 0 22px rgba(232,130,10,0.45)'
+          : '0 3px 10px rgba(0,0,0,0.45), 0 0 16px rgba(232,160,32,0.30)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'background 0.6s ease, box-shadow 0.6s ease',
+        // Slightly imperfect shape — real wax isn't a perfect circle
+        clipPath: 'polygon(50% 0%, 95% 18%, 100% 60%, 85% 95%, 50% 100%, 15% 95%, 0% 60%, 5% 18%)',
+      }}>
+        {/* Inner seal face */}
+        <div style={{
+          width: 24,
+          height: 24,
+          borderRadius: '50%',
+          background: locked
+            ? 'radial-gradient(circle at 40% 35%, rgba(120,90,60,0.6) 0%, transparent 70%)'
+            : 'radial-gradient(circle at 40% 35%, rgba(255,230,150,0.25) 0%, transparent 65%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <span style={{
+            fontSize: locked ? 10 : 11,
+            color: locked ? 'rgba(200,170,130,0.55)' : 'rgba(255,245,210,0.80)',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            {locked ? '🔒' : '✦'}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Envelope — redesigned ─────────────────────────────────────────────────────
 export default function Envelope({ letter, index }) {
   const [flapOpen, setFlapOpen]   = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -318,122 +290,176 @@ export default function Envelope({ letter, index }) {
     <>
       <div
         onClick={handleClick}
+        className={isLocked ? '' : 'envelope-unlocked'}
         style={{
           position: 'relative',
           width: '100%',
           cursor: isLocked ? 'not-allowed' : 'pointer',
           transition: 'transform 0.35s ease, box-shadow 0.35s ease',
         }}
-        className={isLocked ? '' : 'envelope-unlocked'}
       >
-        {/* ── Envelope body — same parchment image as the letter ── */}
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            paddingTop: '60%',
-            // Same image as the letter — darker overlay makes it feel
-            // like the outside of the same paper
-            backgroundImage: 'url("/images/letter-paper.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-            borderRadius: 2,
-            border: '1px solid rgba(120,88,44,0.40)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,220,150,0.08)',
-            overflow: 'visible',
-          }}
-        >
-          {/* Dark tint overlay — makes envelope feel like the back of the letter,
-              slightly more shadowed than the open reading surface */}
+        {/* ── Envelope body ── */}
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          paddingTop: '60%',         // 5:3 aspect ratio
+          borderRadius: 2,
+          border: '1px solid rgba(140,100,50,0.35)',
+          boxShadow: `
+            0 6px 28px rgba(0,0,0,0.60),
+            0 2px 8px rgba(0,0,0,0.40),
+            inset 0 1px 0 rgba(255,225,160,0.07)
+          `,
+          overflow: 'hidden',
+          // Parchment image — same paper as the letter
+          backgroundImage: 'url("/images/letter-paper.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+        }}>
+
+          {/* ── Dark warm overlay — this is the exterior of the paper,
+                 in shadow compared to the open letter inside ── */}
           <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(30,18,6,0.45)',
-            borderRadius: 2,
-            zIndex: 0,
+            position: 'absolute', inset: 0, zIndex: 1,
+            background: 'rgba(25,15,5,0.50)',
           }} />
 
-          {/* Inner fold lines */}
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: 2, zIndex: 1 }}>
+          {/* ── Bottom fold lines — left and right triangles meeting at center ── */}
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+          }}>
+            {/* Left triangle fold */}
             <div style={{
               position: 'absolute', bottom: 0, left: 0,
               width: 0, height: 0, borderStyle: 'solid',
-              borderWidth: '0 0 60px 80px',
-              borderColor: 'transparent transparent rgba(0,0,0,0.12) transparent',
+              borderWidth: '0 0 55px 75px',
+              borderColor: 'transparent transparent rgba(0,0,0,0.10) transparent',
             }} />
+            {/* Right triangle fold */}
             <div style={{
               position: 'absolute', bottom: 0, right: 0,
               width: 0, height: 0, borderStyle: 'solid',
-              borderWidth: '0 80px 60px 0',
-              borderColor: 'transparent rgba(0,0,0,0.12) transparent transparent',
+              borderWidth: '0 75px 55px 0',
+              borderColor: 'transparent rgba(0,0,0,0.10) transparent transparent',
+            }} />
+            {/* Subtle center vertical crease */}
+            <div style={{
+              position: 'absolute', bottom: 0,
+              left: '50%', transform: 'translateX(-50%)',
+              width: 1, height: '30%',
+              background: 'rgba(0,0,0,0.06)',
             }} />
           </div>
 
-          {/* Flap — same parchment with slightly darker tint */}
+          {/* ── Address area — bottom left ── */}
+          <div style={{
+            position: 'absolute', bottom: 22, left: 22, zIndex: 4,
+          }}>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 9,
+              color: 'rgba(230,205,160,0.55)',
+              letterSpacing: '0.10em',
+              textTransform: 'uppercase',
+              margin: '0 0 3px',
+            }}>To:</p>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 12,
+              color: 'rgba(230,205,160,0.85)',
+              margin: '0 0 8px',
+            }}>you</p>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 9,
+              color: 'rgba(230,205,160,0.55)',
+              letterSpacing: '0.10em',
+              textTransform: 'uppercase',
+              margin: '0 0 3px',
+            }}>From:</p>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 12,
+              color: 'rgba(230,205,160,0.85)',
+              fontStyle: 'italic',
+              margin: 0,
+            }}>someone who waited</p>
+          </div>
+
+          {/* ── Stamp — bottom right ── */}
+          <div style={{
+            position: 'absolute', bottom: 18, right: 18, zIndex: 4,
+            width: 36, height: 44,
+            border: '1.5px solid rgba(210,180,120,0.30)',
+            borderRadius: 2,
+            background: 'rgba(15,8,2,0.35)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            // Perforated edge effect
+            boxShadow: `
+              inset 0 0 0 2px rgba(210,180,120,0.06),
+              0 0 0 1px rgba(140,100,50,0.15)
+            `,
+          }}>
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 8,
+              color: 'rgba(210,180,120,0.55)',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+            }}>no. {index + 1}</span>
+          </div>
+
+          {/* ── Flap — triangle pointing down ── */}
           <div style={{
             position: 'absolute',
             top: 0, left: 0, right: 0,
             height: '48%',
-            backgroundImage: 'url("/images/letter-paper.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center bottom',
-            clipPath: 'polygon(0% 0%, 100% 0%, 50% 70%)',
-            zIndex: 2,
+            zIndex: 5,
             transformOrigin: 'top center',
             transform: flapOpen
-              ? 'perspective(600px) rotateX(-175deg)'
-              : 'perspective(600px) rotateX(0deg)',
+              ? 'perspective(700px) rotateX(-175deg)'
+              : 'perspective(700px) rotateX(0deg)',
             transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            // Clip to triangle shape
+            clipPath: 'polygon(0% 0%, 100% 0%, 50% 68%)',
+            // Same parchment — but shifted so the flap shows a different
+            // part of the texture, like a real folded piece of paper
+            backgroundImage: 'url("/images/letter-paper.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            // Slightly darker than the body — the flap casts a shadow
+            filter: 'brightness(0.82)',
           }}>
-            {/* Flap tint */}
+            {/* Flap shadow gradient — makes it look folded/3D */}
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'rgba(20,12,4,0.38)',
+              background: 'linear-gradient(170deg, rgba(15,8,2,0.40) 0%, rgba(30,18,6,0.20) 60%, rgba(10,5,1,0.50) 100%)',
               clipPath: 'inherit',
             }} />
           </div>
 
-          {/* Wax seal */}
+          {/* ── Wax seal — sits on the flap, centered ── */}
           <WaxSeal locked={isLocked} read={read} />
 
-          {/* Address label */}
-          <div style={{ position: 'absolute', bottom: 24, left: 24, zIndex: 3 }}>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: 'rgba(220,190,140,0.55)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>To:</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: 'rgba(220,190,140,0.80)', marginBottom: 6 }}>you</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: 'rgba(220,190,140,0.55)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>From:</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: 'rgba(220,190,140,0.80)', fontStyle: 'italic' }}>someone who waited</p>
-          </div>
-
-          {/* Stamp */}
-          <div style={{
-            position: 'absolute', bottom: 20, right: 20,
-            width: 36, height: 44,
-            border: '1.5px solid rgba(200,165,100,0.30)',
-            borderRadius: 2,
-            background: 'rgba(30,18,6,0.35)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            zIndex: 3,
-          }}>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 8, color: 'rgba(200,170,120,0.55)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-              no. {index + 1}
-            </span>
-          </div>
-
-          {/* Locked dim */}
+          {/* ── Locked dim overlay ── */}
           {isLocked && (
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)', borderRadius: 2, zIndex: 4 }} />
+            <div style={{
+              position: 'absolute', inset: 0, zIndex: 6,
+              background: 'rgba(0,0,0,0.18)',
+            }} />
           )}
         </div>
 
-        {/* Locked tooltip */}
+        {/* ── Locked tooltip ── */}
         {isLocked && (
           <div style={{
             position: 'absolute', top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)',
             fontFamily: "'Crimson Pro', Georgia, serif",
             fontStyle: 'italic', fontSize: 13,
-            color: 'rgba(200,175,130,0.75)',
-            pointerEvents: 'none', zIndex: 5, whiteSpace: 'nowrap',
+            color: 'rgba(210,185,140,0.70)',
+            pointerEvents: 'none', zIndex: 7, whiteSpace: 'nowrap',
+            textShadow: '0 1px 4px rgba(0,0,0,0.5)',
           }}>
             Read the earlier ones first.
           </div>
