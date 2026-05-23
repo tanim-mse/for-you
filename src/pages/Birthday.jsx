@@ -89,17 +89,13 @@ function BirthdayLetter({ onReadEnd }) {
 
   return (
     <div
+      className="birthday-letter"
       style={{
         marginTop: 72,
         borderRadius: 3,
         padding: 'clamp(28px, 5vw, 48px) clamp(24px, 6vw, 44px)',
         textAlign: 'left',
         position: 'relative',
-        // Parchment image — same as Letters page modal
-        backgroundImage: 'url("/images/letter-paper.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
-        backgroundRepeat: 'no-repeat',
         boxShadow: `
           0 0 0 1px rgba(100,75,40,0.45),
           0 20px 60px rgba(0,0,0,0.65),
