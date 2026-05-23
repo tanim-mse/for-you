@@ -315,12 +315,19 @@ function ReelCard({ reel, onOpen, index }) {
                 display: 'block',
               }}
             />
-            {/* Warm tint overlay */}
+            {/* Warm tint overlay — pushes thumbnail into amber palette */}
             <div style={{
               position: 'absolute',
               inset: 0,
-              background: 'rgba(12,8,4,0.28)',
+              background: 'rgba(30,15,5,0.38)',
               mixBlendMode: 'multiply',
+            }} />
+            {/* Second layer — adds warmth on top of the multiply blend */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(180,100,20,0.12)',
+              mixBlendMode: 'overlay',
             }} />
             {/* Play button */}
             <div style={{
