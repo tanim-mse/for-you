@@ -186,66 +186,349 @@ function LetterModal({ letter, onClose, onRead }) {
   )
 }
 
-// ── Wax Seal — redesigned ─────────────────────────────────────────────────────
-function WaxSeal({ locked, read }) {
+// ── Envelope SVG — fully geometric, real envelope shape ──────────────────────
+// Built as a single SVG so every fold, shadow, and panel is pixel-perfect.
+// No image overlays, no overflow:hidden fighting us.
+function EnvelopeSVG({ flapOpen, isLocked, read, index, onClick }) {
+
+  // All colors as constants — easy to tune
+  const C = {
+    // Body center — the main visible face of the envelope
+    bodyLight:   '#C8A87A',
+    bodyMid:     '#B8946A',
+    bodyDark:    '#A07850',
+
+    // Flap — slightly cooler/darker than body, clearly a separate panel
+    flapLight:   '#A07050',
+    flapMid:     '#8A5E3C',
+    flapDark:    '#6E4828',
+
+    // Side triangles — folded sides, midtone
+    sideLight:   '#B89060',
+    sideDark:    '#9A7448',
+
+    // Bottom triangle — the back fold
+    bottomLight: '#9A7448',
+    bottomDark:  '#7A5830',
+
+    // Shadow lines between panels
+    fold:        'rgba(40,20,5,0.25)',
+    foldLight:   'rgba(255,220,160,0.12)',
+
+    // Grain noise filter id
+    noiseId:     'envelope-noise',
+  }
+
+  // SVG viewBox — 500 wide × 300 tall (5:3 ratio)
+  const W = 500
+  const H = 300
+
+  // Key geometry points
+  const midX  = W / 2       // 250
+  const midY  = H / 2       // 150
+  const flapH = H * 0.48    // 144 — how deep the flap goes
+
   return (
-    <div style={{
-      position: 'absolute',
-      // Sits exactly on the bottom edge of the flap — centered horizontally
-      top: '24%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 10,
-    }}>
-      {/* Outer wax drip ring — slightly larger, rougher edge */}
-      <div style={{
-        width: 38,
-        height: 38,
-        borderRadius: '50%',
-        background: locked
-          ? 'radial-gradient(circle at 38% 32%, #6B5540 0%, #3D2610 55%, #2A1A08 100%)'
-          : read
-          ? 'radial-gradient(circle at 38% 32%, #FFB830 0%, #E8820A 45%, #B85A08 100%)'
-          : 'radial-gradient(circle at 38% 32%, #F5C040 0%, #E8A020 45%, #C4681A 100%)',
-        boxShadow: locked
-          ? '0 3px 10px rgba(0,0,0,0.55)'
-          : read
-          ? '0 3px 10px rgba(0,0,0,0.45), 0 0 22px rgba(232,130,10,0.45)'
-          : '0 3px 10px rgba(0,0,0,0.45), 0 0 16px rgba(232,160,32,0.30)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'background 0.6s ease, box-shadow 0.6s ease',
-        // Slightly imperfect shape — real wax isn't a perfect circle
-        clipPath: 'polygon(50% 0%, 95% 18%, 100% 60%, 85% 95%, 50% 100%, 15% 95%, 0% 60%, 5% 18%)',
-      }}>
-        {/* Inner seal face */}
-        <div style={{
-          width: 24,
-          height: 24,
-          borderRadius: '50%',
-          background: locked
-            ? 'radial-gradient(circle at 40% 35%, rgba(120,90,60,0.6) 0%, transparent 70%)'
-            : 'radial-gradient(circle at 40% 35%, rgba(255,230,150,0.25) 0%, transparent 65%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          <span style={{
-            fontSize: locked ? 10 : 11,
-            color: locked ? 'rgba(200,170,130,0.55)' : 'rgba(255,245,210,0.80)',
-            lineHeight: 1,
-            userSelect: 'none',
-          }}>
-            {locked ? '🔒' : '✦'}
-          </span>
-        </div>
-      </div>
-    </div>
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', display: 'block', cursor: isLocked ? 'not-allowed' : 'pointer' }}
+      onClick={onClick}
+    >
+      <defs>
+        {/* Paper grain filter */}
+        <filter id={C.noiseId} x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.72"
+            numOctaves="4"
+            stitchTiles="stitch"
+            result="noise"
+          />
+          <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
+          <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blended" />
+          <feComponentTransfer in="blended">
+            <feFuncA type="linear" slope="1" />
+          </feComponentTransfer>
+        </filter>
+
+        {/* Drop shadow for the whole envelope */}
+        <filter id="env-shadow" x="-5%" y="-5%" width="110%" height="120%">
+          <feDropShadow dx="0" dy="6" stdDeviation="12" floodColor="rgba(0,0,0,0.55)" />
+        </filter>
+
+        {/* Clip to envelope rectangle */}
+        <clipPath id="env-clip">
+          <rect x="0" y="0" width={W} height={H} rx="3" />
+        </clipPath>
+      </defs>
+
+      {/* ── Outer shadow ── */}
+      <rect
+        x="0" y="0" width={W} height={H} rx="3"
+        fill="transparent"
+        filter="url(#env-shadow)"
+      />
+
+      <g clipPath="url(#env-clip)" filter={`url(#${C.noiseId})`}>
+
+        {/* ── 1. BODY CENTER — the main envelope face ── */}
+        <defs>
+          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stopColor={C.bodyLight} />
+            <stop offset="50%"  stopColor={C.bodyMid} />
+            <stop offset="100%" stopColor={C.bodyDark} />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width={W} height={H} rx="3" fill="url(#bodyGrad)" />
+
+        {/* ── 2. LEFT SIDE TRIANGLE — folded left panel ── */}
+        <defs>
+          <linearGradient id="leftGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%"   stopColor={C.sideDark} />
+            <stop offset="100%" stopColor={C.sideLight} />
+          </linearGradient>
+        </defs>
+        <polygon
+          points={`0,0  ${midX},${midY}  0,${H}`}
+          fill="url(#leftGrad)"
+          opacity="0.85"
+        />
+        {/* Left fold shadow line */}
+        <line
+          x1="0" y1="0" x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1.5"
+        />
+        <line
+          x1="0" y1={H} x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1.5"
+        />
+
+        {/* ── 3. RIGHT SIDE TRIANGLE — folded right panel ── */}
+        <defs>
+          <linearGradient id="rightGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%"   stopColor={C.sideLight} />
+            <stop offset="100%" stopColor={C.sideDark} />
+          </linearGradient>
+        </defs>
+        <polygon
+          points={`${W},0  ${midX},${midY}  ${W},${H}`}
+          fill="url(#rightGrad)"
+          opacity="0.85"
+        />
+        {/* Right fold shadow line */}
+        <line
+          x1={W} y1="0" x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1.5"
+        />
+        <line
+          x1={W} y1={H} x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1.5"
+        />
+
+        {/* ── 4. BOTTOM TRIANGLE — back bottom fold ── */}
+        <defs>
+          <linearGradient id="bottomGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%"   stopColor={C.bottomLight} />
+            <stop offset="100%" stopColor={C.bottomDark} />
+          </linearGradient>
+        </defs>
+        <polygon
+          points={`0,${H}  ${midX},${midY}  ${W},${H}`}
+          fill="url(#bottomGrad)"
+          opacity="0.90"
+        />
+        {/* Bottom fold shadow line */}
+        <line
+          x1="0" y1={H} x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1"
+        />
+        <line
+          x1={W} y1={H} x2={midX} y2={midY}
+          stroke={C.fold} strokeWidth="1"
+        />
+
+        {/* ── 5. ADDRESS — bottom left ── */}
+        <text
+          x="28" y={H - 62}
+          fontFamily="'DM Sans', sans-serif"
+          fontSize="9"
+          fill="rgba(60,35,10,0.55)"
+          letterSpacing="1.2"
+        >TO:</text>
+        <text
+          x="28" y={H - 46}
+          fontFamily="'DM Sans', sans-serif"
+          fontSize="13"
+          fill="rgba(50,28,8,0.80)"
+        >you</text>
+        <text
+          x="28" y={H - 28}
+          fontFamily="'DM Sans', sans-serif"
+          fontSize="9"
+          fill="rgba(60,35,10,0.55)"
+          letterSpacing="1.2"
+        >FROM:</text>
+        <text
+          x="28" y={H - 12}
+          fontFamily="'EB Garamond', Georgia, serif"
+          fontSize="13"
+          fontStyle="italic"
+          fill="rgba(50,28,8,0.78)"
+        >someone who waited</text>
+
+        {/* ── 6. STAMP — bottom right ── */}
+        <rect
+          x={W - 58} y={H - 58}
+          width="40" height="48"
+          rx="2"
+          fill="rgba(80,50,20,0.18)"
+          stroke="rgba(100,70,30,0.35)"
+          strokeWidth="1.5"
+        />
+        {/* Perforated dots — top edge of stamp */}
+        {[0,1,2,3,4].map(i => (
+          <circle key={i}
+            cx={W - 57 + i * 8} cy={H - 58}
+            r="1.5"
+            fill="rgba(80,50,20,0.25)"
+          />
+        ))}
+        {/* Perforated dots — bottom edge */}
+        {[0,1,2,3,4].map(i => (
+          <circle key={i}
+            cx={W - 57 + i * 8} cy={H - 10}
+            r="1.5"
+            fill="rgba(80,50,20,0.25)"
+          />
+        ))}
+        <text
+          x={W - 38} y={H - 30}
+          fontFamily="'DM Sans', sans-serif"
+          fontSize="8"
+          fill="rgba(70,45,15,0.60)"
+          textAnchor="middle"
+          letterSpacing="0.8"
+        >{`NO. ${index + 1}`}</text>
+
+        {/* ── 7. FLAP — top triangle, rotates open on click ── */}
+        {/* We render the flap last so it sits on top of side triangles */}
+        <g
+          style={{
+            transformOrigin: `${midX}px 0px`,
+            transform: flapOpen
+              ? 'perspective(700px) rotateX(-175deg)'
+              : 'perspective(700px) rotateX(0deg)',
+            transition: 'transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          }}
+        >
+          <defs>
+            <linearGradient id="flapGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%"   stopColor={C.flapLight} />
+              <stop offset="60%"  stopColor={C.flapMid} />
+              <stop offset="100%" stopColor={C.flapDark} />
+            </linearGradient>
+          </defs>
+          {/* Main flap triangle */}
+          <polygon
+            points={`0,0  ${W},0  ${midX},${flapH}`}
+            fill="url(#flapGrad)"
+          />
+          {/* Flap inner highlight — top edge catches light */}
+          <line
+            x1="2" y1="1" x2={W - 2} y2="1"
+            stroke={C.foldLight} strokeWidth="1"
+          />
+          {/* Flap fold line — the crease at the bottom of the flap */}
+          <line
+            x1="0" y1="0" x2={midX} y2={flapH}
+            stroke={C.fold} strokeWidth="1.2"
+          />
+          <line
+            x1={W} y1="0" x2={midX} y2={flapH}
+            stroke={C.fold} strokeWidth="1.2"
+          />
+          {/* Shadow gradient at flap bottom — makes it look 3D/folded */}
+          <defs>
+            <linearGradient id="flapShadow" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%"   stopColor="rgba(0,0,0,0)" />
+              <stop offset="100%" stopColor="rgba(0,0,0,0.22)" />
+            </linearGradient>
+          </defs>
+          <polygon
+            points={`0,0  ${W},0  ${midX},${flapH}`}
+            fill="url(#flapShadow)"
+          />
+        </g>
+
+        {/* ── 8. WAX SEAL — centered at flap tip, drawn last so it's always on top ── */}
+        <g transform={`translate(${midX}, ${flapH * 0.72})`}>
+          {/* Outer wax blob — slightly irregular polygon */}
+          <polygon
+            points="0,-18  10,-14  17,-5  15,8  5,16  -5,16  -15,8  -17,-5  -10,-14"
+            fill={
+              isLocked
+                ? '#6B5030'
+                : read
+                ? '#E8920A'
+                : '#E8A020'
+            }
+          />
+          {/* Wax highlight — top left catch */}
+          <ellipse
+            cx="-4" cy="-7"
+            rx="5" ry="4"
+            fill="rgba(255,230,150,0.28)"
+            transform="rotate(-25)"
+          />
+          {/* Wax shadow — bottom right */}
+          <ellipse
+            cx="5" cy="8"
+            rx="6" ry="4"
+            fill="rgba(0,0,0,0.18)"
+          />
+          {/* Inner stamp mark */}
+          <text
+            x="0" y="5"
+            fontFamily="'DM Sans', sans-serif"
+            fontSize="11"
+            fill="rgba(255,245,210,0.75)"
+            textAnchor="middle"
+          >{isLocked ? '🔒' : '✦'}</text>
+
+          {/* Glow behind seal when unlocked */}
+          {!isLocked && (
+            <ellipse
+              cx="0" cy="0" rx="22" ry="22"
+              fill={read ? 'rgba(232,146,10,0.20)' : 'rgba(232,160,32,0.14)'}
+              style={{ filter: 'blur(4px)' }}
+            />
+          )}
+        </g>
+
+        {/* ── 9. LOCKED DIM overlay ── */}
+        {isLocked && (
+          <rect
+            x="0" y="0" width={W} height={H} rx="3"
+            fill="rgba(0,0,0,0.20)"
+          />
+        )}
+
+        {/* ── 10. Outer border ── */}
+        <rect
+          x="0.5" y="0.5"
+          width={W - 1} height={H - 1}
+          rx="3"
+          fill="none"
+          stroke="rgba(100,68,28,0.40)"
+          strokeWidth="1"
+        />
+      </g>
+    </svg>
   )
 }
 
-// ── Envelope — redesigned ─────────────────────────────────────────────────────
+// ── Envelope ──────────────────────────────────────────────────────────────────
 export default function Envelope({ letter, index }) {
   const [flapOpen, setFlapOpen]   = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -289,177 +572,33 @@ export default function Envelope({ letter, index }) {
   return (
     <>
       <div
-        onClick={handleClick}
         className={isLocked ? '' : 'envelope-unlocked'}
         style={{
           position: 'relative',
           width: '100%',
-          cursor: isLocked ? 'not-allowed' : 'pointer',
           transition: 'transform 0.35s ease, box-shadow 0.35s ease',
         }}
       >
-        {/* ── Envelope body ── */}
-        <div style={{
-          position: 'relative',
-          width: '100%',
-          paddingTop: '60%',         // 5:3 aspect ratio
-          borderRadius: 2,
-          border: '1px solid rgba(140,100,50,0.35)',
-          boxShadow: `
-            0 6px 28px rgba(0,0,0,0.60),
-            0 2px 8px rgba(0,0,0,0.40),
-            inset 0 1px 0 rgba(255,225,160,0.07)
-          `,
-          overflow: 'hidden',
-          // Parchment image — same paper as the letter
-          backgroundImage: 'url("/images/letter-paper.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-        }}>
+        <EnvelopeSVG
+          flapOpen={flapOpen}
+          isLocked={isLocked}
+          read={read}
+          index={index}
+          onClick={handleClick}
+        />
 
-          {/* ── Dark warm overlay — this is the exterior of the paper,
-                 in shadow compared to the open letter inside ── */}
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 1,
-            background: 'rgba(25,15,5,0.50)',
-          }} />
-
-          {/* ── Bottom fold lines — left and right triangles meeting at center ── */}
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
-          }}>
-            {/* Left triangle fold */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0,
-              width: 0, height: 0, borderStyle: 'solid',
-              borderWidth: '0 0 55px 75px',
-              borderColor: 'transparent transparent rgba(0,0,0,0.10) transparent',
-            }} />
-            {/* Right triangle fold */}
-            <div style={{
-              position: 'absolute', bottom: 0, right: 0,
-              width: 0, height: 0, borderStyle: 'solid',
-              borderWidth: '0 75px 55px 0',
-              borderColor: 'transparent rgba(0,0,0,0.10) transparent transparent',
-            }} />
-            {/* Subtle center vertical crease */}
-            <div style={{
-              position: 'absolute', bottom: 0,
-              left: '50%', transform: 'translateX(-50%)',
-              width: 1, height: '30%',
-              background: 'rgba(0,0,0,0.06)',
-            }} />
-          </div>
-
-          {/* ── Address area — bottom left ── */}
-          <div style={{
-            position: 'absolute', bottom: 22, left: 22, zIndex: 4,
-          }}>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 9,
-              color: 'rgba(230,205,160,0.55)',
-              letterSpacing: '0.10em',
-              textTransform: 'uppercase',
-              margin: '0 0 3px',
-            }}>To:</p>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 12,
-              color: 'rgba(230,205,160,0.85)',
-              margin: '0 0 8px',
-            }}>you</p>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 9,
-              color: 'rgba(230,205,160,0.55)',
-              letterSpacing: '0.10em',
-              textTransform: 'uppercase',
-              margin: '0 0 3px',
-            }}>From:</p>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 12,
-              color: 'rgba(230,205,160,0.85)',
-              fontStyle: 'italic',
-              margin: 0,
-            }}>someone who waited</p>
-          </div>
-
-          {/* ── Stamp — bottom right ── */}
-          <div style={{
-            position: 'absolute', bottom: 18, right: 18, zIndex: 4,
-            width: 36, height: 44,
-            border: '1.5px solid rgba(210,180,120,0.30)',
-            borderRadius: 2,
-            background: 'rgba(15,8,2,0.35)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            // Perforated edge effect
-            boxShadow: `
-              inset 0 0 0 2px rgba(210,180,120,0.06),
-              0 0 0 1px rgba(140,100,50,0.15)
-            `,
-          }}>
-            <span style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 8,
-              color: 'rgba(210,180,120,0.55)',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-            }}>no. {index + 1}</span>
-          </div>
-
-          {/* ── Flap — triangle pointing down ── */}
-          <div style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0,
-            height: '48%',
-            zIndex: 5,
-            transformOrigin: 'top center',
-            transform: flapOpen
-              ? 'perspective(700px) rotateX(-175deg)'
-              : 'perspective(700px) rotateX(0deg)',
-            transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            // Clip to triangle shape
-            clipPath: 'polygon(0% 0%, 100% 0%, 50% 68%)',
-            // Same parchment — but shifted so the flap shows a different
-            // part of the texture, like a real folded piece of paper
-            backgroundImage: 'url("/images/letter-paper.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            // Slightly darker than the body — the flap casts a shadow
-            filter: 'brightness(0.82)',
-          }}>
-            {/* Flap shadow gradient — makes it look folded/3D */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(170deg, rgba(15,8,2,0.40) 0%, rgba(30,18,6,0.20) 60%, rgba(10,5,1,0.50) 100%)',
-              clipPath: 'inherit',
-            }} />
-          </div>
-
-          {/* ── Wax seal — sits on the flap, centered ── */}
-          <WaxSeal locked={isLocked} read={read} />
-
-          {/* ── Locked dim overlay ── */}
-          {isLocked && (
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 6,
-              background: 'rgba(0,0,0,0.18)',
-            }} />
-          )}
-        </div>
-
-        {/* ── Locked tooltip ── */}
+        {/* Locked tooltip */}
         {isLocked && (
           <div style={{
-            position: 'absolute', top: '50%', left: '50%',
+            position: 'absolute',
+            top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)',
             fontFamily: "'Crimson Pro', Georgia, serif",
             fontStyle: 'italic', fontSize: 13,
-            color: 'rgba(210,185,140,0.70)',
-            pointerEvents: 'none', zIndex: 7, whiteSpace: 'nowrap',
-            textShadow: '0 1px 4px rgba(0,0,0,0.5)',
+            color: 'rgba(210,185,140,0.80)',
+            pointerEvents: 'none',
+            whiteSpace: 'nowrap',
+            textShadow: '0 1px 6px rgba(0,0,0,0.6)',
           }}>
             Read the earlier ones first.
           </div>

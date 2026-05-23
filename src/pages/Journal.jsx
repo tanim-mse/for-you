@@ -312,8 +312,8 @@ function FirstPageSection() {
               style={{
                 fontFamily: "'EB Garamond', Georgia, serif",
                 fontStyle: 'italic',
-                fontSize: 32,
-                lineHeight: 1.7,
+                fontSize: 28,
+                lineHeight: 1.65,
                 color: 'var(--text-primary)',
                 letterSpacing: '0.01em',
                 marginBottom: li < OPENING_LINES.length - 1 ? 4 : 0,
@@ -339,8 +339,8 @@ function FirstPageSection() {
               className={pi === 0 ? 'journal-first-para' : ''}
               style={{
                 fontFamily: "'Crimson Pro', Georgia, serif",
-                fontSize: 18,
-                lineHeight: 2.15,
+                fontSize: 17,
+                lineHeight: 1.75,
                 color: 'var(--text-secondary)',
                 letterSpacing: '0.008em',
               }}

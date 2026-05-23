@@ -82,10 +82,9 @@ function LettersHeader() {
         style={{
           marginTop: 28,
           fontFamily: "'DM Sans', sans-serif",
-          fontSize: 9,
-          color: 'var(--text-ghost)',
-          letterSpacing: '0.1em',
-          opacity: 0.5,
+          fontSize: 10,
+          color: 'var(--text-tertiary)',
+          letterSpacing: '0.12em',
         }}
       >
         ♪ best experienced with sound
