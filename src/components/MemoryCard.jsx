@@ -4,6 +4,10 @@ export default function MemoryCard({ memory, index }) {
   const ref      = useRef(null)
   const [visible, setVisible] = useState(false)
 
+  // Seeded rotation — each card tilts slightly, feels placed not arranged
+  const rotations = [-1.2, 0.8, -0.6, 1.1, -0.9, 0.5, -1.0, 0.7, -0.4, 1.2, -0.7, 0.6]
+  const rotation  = rotations[index % rotations.length]
+
   // IntersectionObserver — triggers once when card enters viewport
   useEffect(() => {
     const el = ref.current
@@ -26,6 +30,12 @@ export default function MemoryCard({ memory, index }) {
     <div
       ref={ref}
       className="paper-card memory-card"
+      onMouseEnter={e => {
+        e.currentTarget.style.transform = `translateY(-3px) rotate(${rotation}deg)`
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.transform = `translateY(0px) rotate(${rotation}deg)`
+      }}
       style={{
         borderRadius: 3,
         padding: '26px 26px 22px',
@@ -35,7 +45,9 @@ export default function MemoryCard({ memory, index }) {
         cursor: 'default',
         // Entrance animation via CSS transition
         opacity:   visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(18px)',
+        transform: visible
+          ? `translateY(0) rotate(${rotation}deg)`
+          : 'translateY(18px) rotate(0deg)',
         transition: 'opacity 0.75s ease, transform 0.75s ease',
       }}
     >

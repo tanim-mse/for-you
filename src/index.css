@@ -177,7 +177,7 @@ body::after {
 }
 .memory-card:hover {
   border-color: rgba(212, 149, 106, 0.28) !important;
-  transform: translateY(-3px) !important;
+  /* rotation is handled inline per-card — only override y-translate via filter */
   box-shadow:
     0 12px 48px rgba(0,0,0,0.55),
     0 0 32px rgba(180,100,30,0.05) !important;
@@ -441,18 +441,4 @@ body::after {
     padding: 28px 20px 32px !important;
     max-height: 90vh !important;
   }
-}
-
-/* ─────────────────────────────────────────
-   LETTER MODAL — FORCE PARCHMENT IMAGE BG
-   Prevents .paper-card from overriding the
-   backgroundImage set inline in Envelope.jsx
-───────────────────────────────────────── */
-.letter-modal-inner {
-  background-color: transparent !important;
-  background-image: url("/images/letter-paper.jpg") !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  border: none !important;
 }

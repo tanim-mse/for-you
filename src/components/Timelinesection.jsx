@@ -120,42 +120,13 @@ function TimelineEntry({ entry, index }) {
           style={{
             fontFamily: "'Crimson Pro', Georgia, serif",
             fontSize: 15,
-            lineHeight: 1.95,
+            lineHeight: 1.75,
             color: 'var(--text-secondary)',
             whiteSpace: 'pre-line',
           }}
         >
           {entry.body}
         </p>
-
-        {/* Image placeholder */}
-        <div
-          style={{
-            marginTop: 20,
-            width: 180,
-            aspectRatio: '3/2',
-            background: 'var(--bg-elevated)',
-            border: '1px dashed rgba(139,109,74,0.12)',
-            borderRadius: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Crimson Pro', Georgia, serif",
-              fontStyle: 'italic',
-              fontSize: 11,
-              color: 'var(--text-ghost)',
-              opacity: 0.5,
-              textAlign: 'center',
-              padding: '0 12px',
-            }}
-          >
-            [ a moment from this year ]
-          </span>
-        </div>
 
         {/* Divider — between entries, not after last */}
         {!isLast && (
