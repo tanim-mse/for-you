@@ -89,23 +89,43 @@ function BirthdayLetter({ onReadEnd }) {
 
   return (
     <div
-      className="paper-card"
       style={{
         marginTop: 72,
         borderRadius: 3,
         padding: 'clamp(28px, 5vw, 48px) clamp(24px, 6vw, 44px)',
         textAlign: 'left',
+        position: 'relative',
+        // Parchment image — same as Letters page modal
+        backgroundImage: 'url("/images/letter-paper.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        backgroundRepeat: 'no-repeat',
+        boxShadow: `
+          0 0 0 1px rgba(100,75,40,0.45),
+          0 20px 60px rgba(0,0,0,0.65),
+          0 0 40px rgba(180,130,50,0.08)
+        `,
       }}
     >
+      {/* Subtle top gradient for text legibility */}
+      <div style={{
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        height: '35%',
+        background: 'linear-gradient(to bottom, rgba(195,165,110,0.15) 0%, transparent 100%)',
+        pointerEvents: 'none',
+        borderRadius: '3px 3px 0 0',
+      }} />
       {/* Date */}
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: 10,
-        color: 'var(--text-tertiary)',
+        color: 'rgba(80,55,25,0.65)',
         letterSpacing: '0.15em',
         textTransform: 'uppercase',
         textAlign: 'right',
         marginBottom: 24,
+        position: 'relative', zIndex: 1,
       }}>
         {BIRTHDAY_LETTER.date}
       </p>
@@ -115,21 +135,22 @@ function BirthdayLetter({ onReadEnd }) {
         fontFamily: "'EB Garamond', Georgia, serif",
         fontStyle: 'italic',
         fontSize: 22,
-        color: 'var(--text-primary)',
+        color: 'rgba(45,28,8,0.88)',
         marginBottom: 20,
         lineHeight: 1.4,
+        position: 'relative', zIndex: 1,
       }}>
         {BIRTHDAY_LETTER.salutation}
       </p>
 
       {/* Body */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, position: 'relative', zIndex: 1 }}>
         {BIRTHDAY_LETTER.body.map((para, i) => (
           <p key={i} style={{
             fontFamily: "'Crimson Pro', Georgia, serif",
             fontSize: 'clamp(15px, 2vw, 17px)',
-            lineHeight: 2.05,
-            color: 'var(--text-primary)',
+            lineHeight: 1.75,
+            color: 'rgba(40,25,8,0.82)',
             letterSpacing: '0.01em',
           }}>
             {para}
@@ -143,8 +164,9 @@ function BirthdayLetter({ onReadEnd }) {
         fontFamily: "'EB Garamond', Georgia, serif",
         fontStyle: 'italic',
         fontSize: 17,
-        color: 'var(--text-secondary)',
+        color: 'rgba(60,38,14,0.72)',
         textAlign: 'right',
+        position: 'relative', zIndex: 1,
       }}>
         {BIRTHDAY_LETTER.signoff}
       </p>
@@ -509,8 +531,18 @@ export default function Birthday() {
           )}
         </AnimatePresence>
 
-        {/* Birthday letter */}
-        <BirthdayLetter onReadEnd={() => setLetterRead(true)} />
+        {/* Birthday letter — only reveals after candle is blown */}
+        <AnimatePresence>
+          {blown && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <BirthdayLetter onReadEnd={() => setLetterRead(true)} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Secret nudge — only after both conditions met */}
         <AnimatePresence>
