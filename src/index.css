@@ -400,12 +400,18 @@ body::after {
 }
 
 /* ─────────────────────────────────────────
-   LETTER MODAL — PARCHMENT OVERRIDES
+   LETTER MODAL — PARCHMENT IMAGE
 ───────────────────────────────────────── */
 
-/* Override .paper-card inside the letter modal */
+/* Force parchment image — overrides paper-card dark background */
 .letter-modal-inner {
-  /* background and border handled inline — parchment color */
+  background-color: #C8A87A !important;
+  background-image: url("/images/letter-paper.jpg") !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  border: none !important;
+  /* Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: rgba(100,72,32,0.25) transparent;
 }
@@ -421,12 +427,12 @@ body::after {
   border-radius: 2px;
 }
 
-/* Typewriter cursor on parchment — darker to match paper */
+/* Typewriter cursor — dark brown to read on parchment */
 .letter-modal-inner .typewriter-cursor {
   color: rgba(80,55,25,0.5);
 }
 
-/* Envelope body — parchment hover glow */
+/* Envelope hover glow */
 .envelope-unlocked:hover {
   transform: translateY(-4px) !important;
   box-shadow:
