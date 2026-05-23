@@ -7,7 +7,7 @@ import TimelineSection from '../components/TimelineSection'
 import { memories } from '../data/memories'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const HER_NAME    = 'Her Name'       // ← replace with her name
+const HER_NAME    = 'Nurin'       // ← replace with her name
 const BIRTH_YEAR  = 2004
 const BIRTH_DATE  = 'June 3rd, 2004' // ← displayed on cover
 
