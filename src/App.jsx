@@ -23,7 +23,7 @@ function GlobalChrome({ preloaderDone }) {
   return (
     <>
       <Cursor />
-      <Navbar visible={navVisible} herName="Nurin" />
+      <Navbar visible={navVisible} herName="her name" />
       <MobileNav visible={navVisible} />
       <AudioManager />
     </>

@@ -48,14 +48,80 @@ I don\'t fully understand any of this yet. But I\'m glad...
   {
     year: 2021,
     chapter: 2,
-    title: "The year I learned what absence feels like.",
-    body: `You're not gone. That's the strange part. You're right there, and still I feel the distance like something physical. I notice the gap between what I want to say and what I actually say. It's large. I keep adding to it without meaning to.`,
+    title: "The year I learned what love feels like.",
+    body: `We\'re talking more now. More than before. It\'s become a thing: texting you. I don\'t think about it as a thing, it just is one. 
+
+Then one day I see something on your profile. A guy... And something happens in my chest that I don\'t have a word for. Something uncomfortable. Something I don\'t like. I don\'t want to look at it but I can\'t stop looking at it either. 
+
+So, I stop texting you.
+
+Just like that. I don\'t explain it to you. I don\'t explain it to myself either, not properly. I just stop. Because I don\'t know what\'s happening inside me and I don\'t want to find out. A couple of weeks pass. Then we start texting again. Like nothing happened. You probably didn\'t even notice I was gone. 
+
+However, I noticed...
+
+May 22, I don\'t know what makes me sit down and actually think about it that day. But I do. I think about why I stopped texting you. I think about that feeling in my chest when I saw that guy on your profile. I think about why it hurt, because it did hurt. I can say that now, why it actually hurt to see that.
+
+And then it hits me.
+
+I\'m in love!!!!
+
+I put the phone down. I just sit there for a moment.
+
+How!! How on earth does a cold-hearted person fall in love. I\'m not supposed to feel this. I was never supposed to feel this. I\'ve gone my whole life not feeling this and I was fine with that. More than fine. I thought love was a transaction. Someone does things for you, you do things for them, and people call that love because it sounds better than what it actually is. Expectations... That's all it ever looked like to me from the outside. 
+
+No one ever loved me the way people talk about love. The ones who did, they died when I was a child. After that I learned how to feel nothing. I got good at it. I thought that was just who I am now. A void. You can\'t put feelings in a void. There\'s nowhere for them to go. 
+
+So then what is this!!!
+What is this thing in my chest when I see her with someone else. What was that pain. Is that what love feels like? That specific kind of pain? Because if it is then I understand why people are afraid of it. I\'m afraid of it right now. I\'m sitting here afraid of something I didn\'t even believe in.
+
+I don\'t want to tell you. I want to keep this inside me where it can\'t bother you. My feelings, my possessiveness, this over-protective thing I feel that I don\'t even fully understand yet. None of this is your problem. You didn\'t ask for any of it. So, I\'ll carry it. I\'m used to carrying things alone. 
+
+Who is Toukir!! Should I ask her?
+
+I see it\'s your male best friend! Here we go again, the possessiveness hits again, but much harder this time. I don\'t know how to handle this. I don\'t have practice with this kind of feeling. I\'ve never needed practice before. I was supposed to be a heartless guy, and here I\'m... What the hell!
+
+After this situation, I think I should stop. Just stop. I shouldn\'t text her again. Put it down and walk away from it. You\'re a void. Voids don\'t love people. This isn\'t real, it\'s just some confusion in your chest that will pass if you give it enough time and enough silence.
+
+But I know, even as I'm telling myself that. I know it won\'t pass. Because you changed something. Not by doing anything specific. Just by existing the way you exist. The way you speak. They way you behave, that moody nature of yours that I somehow started loving before I even realized I was capable of loving anything.
+
+Well... what is it with this one? You said Toukir is your best friend. And now you\'re telling me you don\'t have a male friend! I\'m confused, should I smile or get mad at myself? I think I should smile for that, at least there\'s no one else. Then again, if there\'s no one, how did she come up to talk to me? Why is she talking to me? She doesn\'t even reply fast, so she doesn\'t even like me. So, what could be the reason?? Anyway... I shouldn\'t think about these things now. Time and her actions will tell me.
+
+Oh!! I forgot to write for so many days... Let\'s see what I should write today.
+I didn\'t know I was capable of feeling for anyone. You did that. Your whole existence alone did that. I don\'t know what to do with that information yet. So, I\'ll keep everything here, in this journal, in this place where only I can read it. And I\'ll learn you, the way I learn everything, quietly, in detail, without telling anyone. Every small thing about you. Nothing that could hurt you, nothing that could make things worse, I won\'t miss anything. I\'ll just learn. And I\'ll keep it to myself.
+
+That\'s all I can do right now. That\'s all I know how to do. I\'ll try my best to keep your smile on your face. I won\'t let you feel hurt ever...
+
+You did that. Your whole existence alone did that.
+I don\'t know what to do with that information yet. So, I\'ll keep it here, in this place where only I can read it. And I\'ll learn you, the was I learn everything, quietly, in detail, without telling anyone. Every small thing about you. Nothing that could hurt you, nothing that could make things worse. I\'ll just learn. And I\'ll keep it to myself.
+
+That\'s all I can do right now. That\'s all I know how to do...
+`,
   },
   {
     year: 2022,
     chapter: 3,
-    title: "The year I almost said something.",
-    body: `There are moments this year where I come close. A conversation that goes long enough, a silence comfortable enough that words almost form on their own. They don't make it out. I tell myself there will be a better time. I'm not sure I believe that.`,
+    title: "The year I almost passed in silence.",
+    body: `This year is not going well. Academically I\'m falling apart. Things that were supposed to be going forward are going backward and I don't have the energy to write about all of it. I don't even have the energy to think about all of it most days.
+
+But then you come back.
+
+And this time you approached. You texted me first. I don\'t know what to do with that for a moment. It was completely out of nowhere. I wasn\'t expecting it. I don\'t think I was even hoping for it consciously. But there it was. Your name. A text. From you... 
+
+I text back normally. Like it\'s normal. Like my chest didn\'t just do something when I saw your name appear. Maaaaan!!!! can\'t express how much I\'m happy now... 
+
+And somehow, just that, seeing your texts, hearing about how your days are going, it makes things feel a little lighter. Not fixed. Nothing is fixed. My academics are still falling apart, life is still heavy. But there\'s something about knowing your day is going well that makes mine feel more bearable. When you tell me things are good for you, something in me settles. I can\'t fully explain that. I don\'t think I need to.
+
+You share your moments with me. Even when you\'re busy,  and you are busy, I know that, you have so much going on, yet you find time. You put in the effort. I notice that. I notice it every time and I don\'t say anything about it but I notice it. It means more than I\'ll probably ever tell you.
+
+Then HSC exams come. Then admissions time. Everything gets busy at once and there\'s no room left for anything else. I don\'t text you because I don\'t want to bother you during your studies. I keep that urge, the one that says check on her, say something, just say something. I keep it inside. I\'ve gotten good at keeping things inside.
+
+The year passes like this. In pieces. Busy and then quiet and then busy again.
+
+I didn\'t get much time to write this year. And honestly there isn\'t much to write, not because nothing mattered, but because most of it I carried quietly and kept moving. That\'s just how this year was.
+
+But you came back. That\'s the part that stays.
+
+You came back and you came back first... `,
   },
   {
     year: 2023,
