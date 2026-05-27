@@ -12,6 +12,7 @@ import { PageFlip } from 'page-flip'
 import { buildPageList } from '../utils/paginate'
 import BookPage from './BookPage'
 import Ornament from './Ornament'
+import { setTrack } from '../utils/audio'
 
 const HER_NAME   = 'Her Name'
 const BIRTH_YEAR = 2004
@@ -401,6 +402,28 @@ export default function BookJournal({ onClose }) {
 
   const pages      = useRef(buildPageList()).current
   const totalPages = pages.length
+
+  // ── Track switching based on which section the reader is in ───────────────
+  // Precompute the first page index of each section once
+  const sectionBoundaries = useRef(() => {
+    const timelineStart  = pages.findIndex(p => p.type === 'timeline-header')
+    const memoriesStart  = pages.findIndex(p => p.type === 'memories-header')
+    return { timelineStart, memoriesStart }
+  }).current()
+
+  useEffect(() => {
+    const { timelineStart, memoriesStart } = sectionBoundaries
+    if (currentPage < timelineStart) {
+      // Opening / title pages → soft journal ambient
+      setTrack('journal')
+    } else if (currentPage >= timelineStart && currentPage < memoriesStart) {
+      // Timeline years → solo piano, more intimate
+      setTrack('piano')
+    } else {
+      // Memory cards → back to journal (softer return)
+      setTrack('journal')
+    }
+  }, [currentPage, sectionBoundaries])
 
   useEffect(() => {
     const t = setTimeout(() => setShowClose(true), 1200)

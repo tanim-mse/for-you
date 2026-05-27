@@ -10,7 +10,7 @@ import Ornament from '../components/Ornament'
 import BookJournal from '../components/BookJournal'
 
 // ── Constants (keep in sync with BookJournal.jsx) ─────────────────────────────
-const HER_NAME   = 'Her Name'
+const HER_NAME   = 'Nurin'
 const BIRTH_YEAR = 2004
 
 // ── Scroll chevron ─────────────────────────────────────────────────────────────

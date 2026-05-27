@@ -27,8 +27,7 @@ Things are going well, life feels okay, and then the best thing happens. I see y
 And immediately my mind does the same thing, even though I see you in the online. Goes blank... Like it just shuts off when you're nearby. I want to say something, do something, but there\'s just nothing there. No thoughts, no words... Just that same feeling from before, the one I still don\'t have a name for.
     
 I want to text you, I think about it. Then I stop. Then I think about it again. This goes on... Every time I get close to doing it my mind just goes quiet. I don\'t know what I\'m afraid of exactly. Maybe that you\'ll ignore me, or maybe that you won\'t and then I\'ll have to figure out what to say next. I don\'t know...
-
-    May 20, I do it.
+May 20, I do it.
 Just "Hi". That\'s all I manage. I think about that one word more times than I\'d like to admit. There\'s a solid chance you ignore me. I know that going in. I\'ve accepted that possibility. But I send it anyway because I think, what if I don\'t and then I spend a long time wondering.
 
 You don\'t ignore me. We talk. It\'s easy, actually. Easier than I expected. We\'re from the same school, so it\'s not a stranger conversation completely, not weird, just two people talking who somehow never talked before even though they were in the same place for years. We talk about general things, nothing big. Nothing that would mean anything to someone looking in from outside. But to me, it means something, even if I can\'t explain what yet. 

@@ -1,8 +1,6 @@
 import { useLocation, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-// ── Minimal inline SVG icons for mobile nav ───────────────────────────────────
-
 function IconJournal({ active }) {
   const c = active ? 'var(--flame-warm)' : 'var(--text-tertiary)'
   return (
@@ -11,16 +9,6 @@ function IconJournal({ active }) {
       <line x1="6" y1="6" x2="10" y2="6" stroke={c} strokeWidth="1.2" strokeLinecap="round" />
       <line x1="6" y1="9" x2="10" y2="9" stroke={c} strokeWidth="1.2" strokeLinecap="round" />
       <line x1="6" y1="12" x2="8"  y2="12" stroke={c} strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  )
-}
-
-function IconLetters({ active }) {
-  const c = active ? 'var(--flame-warm)' : 'var(--text-tertiary)'
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <rect x="2" y="4" width="14" height="10" rx="1" stroke={c} strokeWidth="1.2" />
-      <path d="M2 5l7 5 7-5" stroke={c} strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   )
 }
@@ -50,21 +38,16 @@ function IconSecret({ active }) {
   const c = active ? 'var(--flame-warm)' : 'var(--text-tertiary)'
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path
-        d="M9 2a5 5 0 100 10A5 5 0 009 2zM9 15v1M6 15.5l.5-.87M12 15.5l-.5-.87"
-        stroke={c} strokeWidth="1.2" strokeLinecap="round"
-      />
+      <path d="M9 2a5 5 0 100 10A5 5 0 009 2zM9 15v1M6 15.5l.5-.87M12 15.5l-.5-.87"
+        stroke={c} strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   )
 }
 
-// ── Active glow dot ───────────────────────────────────────────────────────────
 function ActiveDot() {
   return (
     <div style={{
-      width: 3,
-      height: 3,
-      borderRadius: '50%',
+      width: 3, height: 3, borderRadius: '50%',
       background: 'var(--flame-warm)',
       boxShadow: '0 0 6px rgba(255,180,60,0.5)',
       marginTop: 3,
@@ -72,11 +55,9 @@ function ActiveDot() {
   )
 }
 
-// ── MobileNav ─────────────────────────────────────────────────────────────────
 export default function MobileNav({ visible = true }) {
   const location = useLocation()
   const hash     = location.hash
-
   const [secretUnlocked, setSecretUnlocked] = useState(false)
 
   useEffect(() => {
@@ -95,14 +76,12 @@ export default function MobileNav({ visible = true }) {
 
   const isActive = (path) => hash === `#${path}`
 
+  // Letters removed from items
   const items = [
     { to: '/journal',  Icon: IconJournal,  label: 'Journal'  },
-    { to: '/letters',  Icon: IconLetters,  label: 'Letters'  },
     { to: '/reels',    Icon: IconReels,    label: 'Reels'    },
     { to: '/birthday', Icon: IconBirthday, label: 'Birthday' },
-    ...(secretUnlocked
-      ? [{ to: '/secret', Icon: IconSecret, label: 'Secret' }]
-      : []),
+    ...(secretUnlocked ? [{ to: '/secret', Icon: IconSecret, label: 'Secret' }] : []),
   ]
 
   return (
@@ -110,40 +89,22 @@ export default function MobileNav({ visible = true }) {
       <style>{`
         @media (min-width: 769px) { .mobile-pill-nav { display: none !important; } }
       `}</style>
-
-      <nav
-        className="mobile-pill-nav"
-        style={{
-          position: 'fixed',
-          bottom: 28,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 'var(--z-nav)',
-          background: 'rgba(17,16,8,0.88)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(139,109,74,0.15)',
-          borderRadius: 40,
-          padding: '10px 22px',
-          display: 'flex',
-          gap: 28,
-          alignItems: 'center',
-        }}
-      >
+      <nav className="mobile-pill-nav" style={{
+        position: 'fixed', bottom: 28, left: '50%',
+        transform: 'translateX(-50%)', zIndex: 'var(--z-nav)',
+        background: 'rgba(17,16,8,0.88)',
+        backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+        border: '1px solid rgba(139,109,74,0.15)',
+        borderRadius: 40, padding: '10px 22px',
+        display: 'flex', gap: 28, alignItems: 'center',
+      }}>
         {items.map(({ to, Icon, label }) => {
           const active = isActive(to)
           return (
-            <NavLink
-              key={to}
-              to={to}
-              title={label}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textDecoration: 'none',
-              }}
-            >
+            <NavLink key={to} to={to} title={label} style={{
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', textDecoration: 'none',
+            }}>
               <Icon active={active} />
               {active && <ActiveDot />}
             </NavLink>
