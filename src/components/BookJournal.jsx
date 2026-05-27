@@ -14,7 +14,7 @@ import BookPage from './BookPage'
 import Ornament from './Ornament'
 import { setTrack } from '../utils/audio'
 
-const HER_NAME   = 'Her Name'
+const HER_NAME   = 'Tortoise'
 const BIRTH_YEAR = 2004
 
 const OPENING_LINES = [
@@ -382,9 +382,9 @@ function PageContent({ page }) {
     case 'title':           return <TitlePageContent />
     case 'opening':         return <OpeningPageContent />
     case 'opening-body':    return <OpeningBodyContent paragraphs={page.paragraphs} />
-    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I remember them." />
+    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I live them." />
     case 'timeline-year':   return <TimelineYearContent page={page} />
-    case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry." />
+    case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry. And I will always..." />
     case 'memory':          return <MemoryCardContent card={page.card} rotation={page.rotation} tabColor={page.tabColor} />
     case 'back-cover':      return <BackCoverContent />
     default:                return null
@@ -403,27 +403,59 @@ export default function BookJournal({ onClose }) {
   const pages      = useRef(buildPageList()).current
   const totalPages = pages.length
 
-  // ── Track switching based on which section the reader is in ───────────────
-  // Precompute the first page index of each section once
-  const sectionBoundaries = useRef(() => {
-    const timelineStart  = pages.findIndex(p => p.type === 'timeline-header')
-    const memoriesStart  = pages.findIndex(p => p.type === 'memories-header')
-    return { timelineStart, memoriesStart }
+  // ── Per-chapter track map — built once from the page list ─────────────────
+  // Each timeline year alternates between journal and piano.
+  // Memories get reels (distinct enough to signal a new section).
+  // Available tracks (04-letters is missing from this project):
+  //   journal, piano, reels, birthday, ending
+  const trackMap = useRef(() => {
+    const map = []   // index → track name
+
+    // Collect unique years in order
+    const years = []
+    pages.forEach(p => {
+      if (p.type === 'timeline-year' && !years.includes(p.year)) {
+        years.push(p.year)
+      }
+    })
+
+    // Tracks to cycle through per year — alternates so each chapter feels fresh
+    const yearTracks = ['piano', 'journal', 'piano', 'journal', 'piano', 'journal', 'piano']
+
+    pages.forEach((p, i) => {
+      if (p.type === 'blank' || p.type === 'title' ||
+          p.type === 'opening' || p.type === 'opening-body') {
+        map[i] = 'journal'
+
+      } else if (p.type === 'timeline-header') {
+        map[i] = 'piano'   // piano intro as she enters the years section
+
+      } else if (p.type === 'timeline-year') {
+        const yearIndex = years.indexOf(p.year)
+        map[i] = yearTracks[yearIndex % yearTracks.length]
+
+      } else if (p.type === 'memories-header' || p.type === 'memory') {
+        map[i] = 'reels'   // different feel for the memory fragments
+
+      } else if (p.type === 'blank-end' || p.type === 'back-cover') {
+        map[i] = null       // fade to silence at the end
+
+      } else {
+        map[i] = 'journal'
+      }
+    })
+
+    return map
   }).current()
 
   useEffect(() => {
-    const { timelineStart, memoriesStart } = sectionBoundaries
-    if (currentPage < timelineStart) {
-      // Opening / title pages → soft journal ambient
-      setTrack('journal')
-    } else if (currentPage >= timelineStart && currentPage < memoriesStart) {
-      // Timeline years → solo piano, more intimate
-      setTrack('piano')
-    } else {
-      // Memory cards → back to journal (softer return)
-      setTrack('journal')
+    const track = trackMap[currentPage]
+    // track === null means silence (back cover / end)
+    // track === undefined means not mapped — do nothing
+    if (track !== undefined) {
+      setTrack(track)
     }
-  }, [currentPage, sectionBoundaries])
+  }, [currentPage, trackMap])
 
   useEffect(() => {
     const t = setTimeout(() => setShowClose(true), 1200)
