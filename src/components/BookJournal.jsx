@@ -14,7 +14,7 @@ import BookPage from './BookPage'
 import Ornament from './Ornament'
 import { setTrack } from '../utils/audio'
 
-const HER_NAME   = 'Her Name'
+const HER_NAME   = 'Tortoise'
 const BIRTH_YEAR = 2004
 
 const OPENING_LINES = [
