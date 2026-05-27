@@ -21,15 +21,8 @@ const OPENING_LINES = [
   "But some feelings don't ask permission.",
 ]
 
-const BODY_PARAGRAPHS = [
-  "Maybe you're reading this on the same day I shared it with you. Or maybe years have already passed, I'm not alive, and the world looks completely different now. Either way, I hope you still have that smile. The one that somehow made everything feel a little lighter just by existing.",
-  "By the way... Happy Birthday, Ma'am.",
-  "I know you don't want to see me or talk to me. This isn't meant to change anything. I know that. I just realized somewhere along the way that some things deserve to be said, even when the right moment has already passed. And somehow, saying them out loud isn't something I can do anymore.",
-  "I never needed anything from you. I never really did. I just always wanted to see you happy. I still do. That part never changed, no matter how much everything else did.",
-  "I always wished you could truly see how much you meant to me. Because even in what I thought could've been my last moment, during that accident... you were there too.",
-  "Maybe that says more than I ever could.",
-  "I hope you'll have a great time here.",
-]
+
+
 
 // Dark ink on parchment
 const ink = {
@@ -57,7 +50,7 @@ function BookCoverContent() {
         alt="Cover"
         style={{
           width: '100%', height: '100%',
-          objectFit: 'cover', objectPosition: 'center center',
+          objectFit: 'cover', objectPosition: 'center top',
           display: 'block',
         }}
       />
@@ -175,22 +168,22 @@ function OpeningPageContent() {
   )
 }
 
-// ── Body paragraphs — with clear paragraph spacing ────────────────────────────
-function OpeningBodyContent() {
+// ── Body paragraphs — receives paragraphs array from paginate.js ──────────────
+// Max 3 paragraphs per page; overflow goes to the next opening-body page.
+function OpeningBodyContent({ paragraphs = [] }) {
   return (
     <div style={{
       height: '100%', overflow: 'hidden',
       display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
     }}>
-      {BODY_PARAGRAPHS.map((para, i) => (
+      {paragraphs.map((para, i) => (
         <p key={i} style={{
           fontFamily: fonts.crimson,
           fontSize: 'clamp(12px, 1.5vw, 14px)',
-          lineHeight: 1.85,
+          lineHeight: 1.88,
           color: ink.secondary,
           letterSpacing: '0.010em',
-          // Paragraph spacing — clear visual break between each
-          marginBottom: i < BODY_PARAGRAPHS.length - 1 ? 14 : 0,
+          marginBottom: i < paragraphs.length - 1 ? 16 : 0,
           flexShrink: 0,
         }}>
           {para}
@@ -387,7 +380,7 @@ function PageContent({ page }) {
     case 'blank': case 'blank-end': return <BlankPageContent />
     case 'title':           return <TitlePageContent />
     case 'opening':         return <OpeningPageContent />
-    case 'opening-body':    return <OpeningBodyContent />
+    case 'opening-body':    return <OpeningBodyContent paragraphs={page.paragraphs} />
     case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I remember them." />
     case 'timeline-year':   return <TimelineYearContent page={page} />
     case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry." />

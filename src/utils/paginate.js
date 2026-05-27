@@ -1,52 +1,79 @@
 // src/utils/paginate.js
-// Builds the ordered array of page objects for the book.
-// Timeline comes before memories (makes more narrative sense).
-// Memory cards are displayed 2 per spread, with rotation/sticky styling.
+// Opening body paragraphs are split across pages (max 3 per page).
+// Timeline entries auto-paginate by character count.
+// Memory cards: 1 per page, paired naturally as spreads by StPageFlip.
 
 import { memories } from '../data/memories'
 import { timeline } from '../data/timeline'
 
-const MAX_CHARS_PER_PAGE = 800
+const MAX_CHARS_PER_TIMELINE_PAGE = 750
 
-// Split a long body string into page-sized chunks
-function chunkBody(body, maxChars = MAX_CHARS_PER_PAGE) {
-  const sentences = body
-    .split(/(?<=[.!?…])\s+/)
-    .filter(s => s.trim().length > 0)
-
+// Split timeline body text into page-sized chunks
+function chunkBody(body, maxChars = MAX_CHARS_PER_TIMELINE_PAGE) {
+  // Respect existing double-newline paragraph breaks first
+  const paragraphs = body.split(/\n\n+/).map(p => p.trim()).filter(Boolean)
   const chunks = []
   let current = ''
 
-  for (const sentence of sentences) {
-    if ((current + ' ' + sentence).trim().length > maxChars && current.length > 0) {
+  for (const para of paragraphs) {
+    const candidate = current ? current + '\n\n' + para : para
+    if (candidate.length > maxChars && current.length > 0) {
       chunks.push(current.trim())
-      current = sentence
+      current = para
     } else {
-      current = current ? current + ' ' + sentence : sentence
+      current = candidate
     }
   }
   if (current.trim()) chunks.push(current.trim())
-
   return chunks.length > 0 ? chunks : [body.trim()]
+}
+
+// Split body paragraphs array into groups of max N paragraphs per page
+function chunkParagraphs(paragraphs, perPage = 3) {
+  const groups = []
+  for (let i = 0; i < paragraphs.length; i += perPage) {
+    groups.push(paragraphs.slice(i, i + perPage))
+  }
+  return groups
 }
 
 export function buildPageList() {
   const pages = []
 
-  // ── Blank endpaper ─────────────────────────────────────────────────────────
+  // ── Blank endpaper (this becomes the cover via BookJournal's isCover logic)
   pages.push({ type: 'blank' })
 
-  // ── Title page ─────────────────────────────────────────────────────────────
+  // ── Title page
   pages.push({ type: 'title' })
 
-  // ── Opening text ───────────────────────────────────────────────────────────
+  // ── Opening two lines — always one page
   pages.push({ type: 'opening' })
-  pages.push({ type: 'opening-body' })
 
-  // ── Timeline header + entries ──────────────────────────────────────────────
-  // Header gets its own page (left side of a spread)
+  // ── Opening body paragraphs — split across pages, max 3 per page
+  const BODY_PARAGRAPHS = [
+    "Maybe you're reading this on the same day I shared it with you. Or maybe years have already passed, I'm not alive, and the world looks completely different now. Either way, I hope you still have that smile. The one that somehow made everything feel a little lighter just by existing.",
+    "By the way... Happy Birthday, Ma'am.",
+    "I know you don't want to see me or talk to me. This isn't meant to change anything. I know that. I just realized somewhere along the way that some things deserve to be said, even when the right moment has already passed. And somehow, saying them out loud isn't something I can do anymore.",
+    "I never needed anything from you. I never really did. I just always wanted to see you happy. I still do. That part never changed, no matter how much everything else did.",
+    "I always wished you could truly see how much you meant to me. Because even in what I thought could've been my last moment, during that accident... you were there too.",
+    "Maybe that says more than I ever could.",
+    "I hope you'll have a great time here.",
+  ]
+
+  const bodyGroups = chunkParagraphs(BODY_PARAGRAPHS, 3)
+  bodyGroups.forEach((group, i) => {
+    pages.push({
+      type: 'opening-body',
+      paragraphs: group,
+      isFirst: i === 0,
+      isLast: i === bodyGroups.length - 1,
+    })
+  })
+
+  // ── Timeline header
   pages.push({ type: 'timeline-header' })
 
+  // ── Timeline entries — auto-paginated by character count
   for (const entry of timeline) {
     const chunks = chunkBody(entry.body)
     chunks.forEach((chunk, idx) => {
@@ -60,36 +87,30 @@ export function buildPageList() {
         totalChunks: chunks.length,
         isFirst: idx === 0,
         isLast: idx === chunks.length - 1,
-        hasImage: !!entry.image,
-        image: entry.image || null,
       })
     })
   }
 
-  // ── Memories header ────────────────────────────────────────────────────────
+  // ── Memories header
   pages.push({ type: 'memories-header' })
 
-  // ── Memory cards: 2 per page (left card + right card) ─────────────────────
-  // Each "page" in the book shows one card (left or right position)
-  // StPageFlip pairs them automatically as spreads
+  // ── Memory cards — 1 per page, StPageFlip pairs them as spreads
   for (let i = 0; i < memories.length; i++) {
     pages.push({
       type: 'memory',
       card: memories[i],
       cardIndex: i,
-      // Rotation: alternates sign, varies by card index for natural scatter
-      rotation: ((i % 3 === 0) ? -2.5 : (i % 3 === 1) ? 1.8 : -1.2) + (i % 2 === 0 ? 0.5 : -0.5),
-      // Sticky tab color from a warm palette
+      rotation: ((i % 3 === 0) ? -2.5 : (i % 3 === 1) ? 1.8 : -1.2) + (i % 2 === 0 ? 0.4 : -0.4),
       tabColor: ['#D4956A', '#C4837A', '#8B6D4A', '#B8860B', '#C4681A'][i % 5],
     })
   }
 
-  // ── Blank before back cover (keeps back cover on a right page) ─────────────
+  // ── Pad so back cover lands on a right-hand page
   if (pages.length % 2 === 0) {
     pages.push({ type: 'blank-end' })
   }
 
-  // ── Back cover ─────────────────────────────────────────────────────────────
+  // ── Back cover
   pages.push({ type: 'back-cover' })
 
   return pages
