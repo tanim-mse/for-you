@@ -7,10 +7,12 @@ import { memories } from '../data/memories'
 import { timeline } from '../data/timeline'
 
 // No auto-chunking. You control pages with ---PAGEBREAK--- in timeline.js.
-// Every ---PAGEBREAK--- = a new page. What's between markers stays together.
+// Works regardless of blank lines around the marker.
 function chunkBody(body) {
+  // Normalise line endings, then split on the marker (with optional surrounding whitespace/newlines)
   return body
-    .split(/^[\t ]*---PAGEBREAK---[\t ]*$/m)
+    .replace(/\r\n/g, '\n')
+    .split(/\n*[\t ]*---PAGEBREAK---[\t ]*\n*/g)
     .map(s => s.trim())
     .filter(Boolean)
 }

@@ -12,12 +12,15 @@ export const timeline = [
     I never noticed anyone like that, not once. I don\'t know why. 
     Maybe I just wasn\'t looking, or there was nothing to look at that made me stop. 
     I don\'t know, but I never did.
+
 Then one day after the SSC exam... I\'m walking, just walking, like everyone else. 
 There\'s a big crowd, people everywhere, noise everywhere. 
 I don\'t know what made me look to the behind. I wasn\'t thinking about looking anywhere. 
 Something just made me... Three-quarters to the behind, and you were right there. 
 Right at the exact moment I looked, you were there.
+
 ---PAGEBREAK---
+
 I don\'t know how to explain what happened after that.
 
 The sun was hitting your face. That glow... I don\'t have a better word for it, 
@@ -31,6 +34,8 @@ However, I\'m standing there. Not moving, not even thinking anything clear.
 Just blank... Like someone pressed pause on me and forgot to press play again. 
 I forgot what I was doing before. For a moment it was just nothing. 
 A good nothing I think, or a confusing nothing. I don\'t know what it was. I still don\'t.
+
+---PAGEBREAK---
 
 It maybe sounds cringy to someone reading this. I know that, but you only understand it when you\'re actually in it. 
 When it\'s actually happening to you, then it doesn\'t feel cringy at all. 
