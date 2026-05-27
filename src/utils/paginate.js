@@ -6,65 +6,13 @@
 import { memories } from '../data/memories'
 import { timeline } from '../data/timeline'
 
-const MAX_CHARS_PER_TIMELINE_PAGE = 700
-
-// Split timeline body text into page-sized chunks.
-// Handles both \n\n and \n paragraph breaks.
-// NEVER cuts mid-sentence — always ends on a complete sentence.
-function chunkBody(body, maxChars = MAX_CHARS_PER_TIMELINE_PAGE) {
-  // Normalise: treat single newlines as paragraph breaks too
-  const normalised = body
-    .replace(/\r\n/g, '\n')
-    .replace(/\n{2,}/g, '\n')   // collapse multiple newlines to one
-    .trim()
-
-  // Split into paragraphs
-  const paragraphs = normalised
-    .split('\n')
-    .map(p => p.trim())
+// No auto-chunking. You control pages with ---PAGEBREAK--- in timeline.js.
+// Every ---PAGEBREAK--- = a new page. What's between markers stays together.
+function chunkBody(body) {
+  return body
+    .split(/^[\t ]*---PAGEBREAK---[\t ]*$/m)
+    .map(s => s.trim())
     .filter(Boolean)
-
-  const chunks = []
-  let current = ''
-
-  for (const para of paragraphs) {
-    const candidate = current ? current + '\n\n' + para : para
-
-    if (candidate.length > maxChars && current.length > 0) {
-      // Current chunk is full — save it and start a new one
-      chunks.push(current.trim())
-      current = para
-    } else {
-      current = candidate
-    }
-  }
-
-  if (current.trim()) chunks.push(current.trim())
-
-  // Safety: if a single paragraph is longer than maxChars,
-  // split it by sentence so we never overflow a page
-  const result = []
-  for (const chunk of chunks) {
-    if (chunk.length <= maxChars) {
-      result.push(chunk)
-      continue
-    }
-    // Split by sentence boundary
-    const sentences = chunk.match(/[^.!?…]+[.!?…]+[\s]*/g) || [chunk]
-    let sentenceChunk = ''
-    for (const sentence of sentences) {
-      const candidate = sentenceChunk + sentence
-      if (candidate.length > maxChars && sentenceChunk.length > 0) {
-        result.push(sentenceChunk.trim())
-        sentenceChunk = sentence
-      } else {
-        sentenceChunk = candidate
-      }
-    }
-    if (sentenceChunk.trim()) result.push(sentenceChunk.trim())
-  }
-
-  return result.length > 0 ? result : [body.trim()]
 }
 
 // Split body paragraphs array into groups of max N paragraphs per page
@@ -91,13 +39,12 @@ export function buildPageList() {
   // ── Opening body paragraphs — split across pages, max 3 per page
   const BODY_PARAGRAPHS = [
     "Maybe you're reading this on the same day I shared it with you. Or maybe years have already passed, I'm not alive, and the world looks completely different now. Either way, I hope you still have that smile. The one that somehow made everything feel a little lighter just by existing.",
-    "By the way... Happy Birthday, Madam.",
+    "By the way... Happy Birthday, Ma'am.",
     "I know you don't want to see me or talk to me. This isn't meant to change anything. I know that. I just realized somewhere along the way that some things deserve to be said, even when the right moment has already passed. And somehow, saying them out loud isn't something I can do anymore.",
     "I never needed anything from you. I never really did. I just always wanted to see you happy. I still do. That part never changed, no matter how much everything else did.",
     "I always wished you could truly see how much you meant to me. Because even in what I thought could've been my last moment, during that accident... you were there too.",
-    "Maybe that says more than I ever could. I hope you'll have a great time here.",
-    "I\'m dedicating this journal to YOU.",
-    "I love You, Nurin. I always do...",
+    "Maybe that says more than I ever could.",
+    "I hope you'll have a great time here.",
   ]
 
   const bodyGroups = chunkParagraphs(BODY_PARAGRAPHS, 3)
@@ -134,14 +81,19 @@ export function buildPageList() {
   // ── Memories header
   pages.push({ type: 'memories-header' })
 
-  // ── Memory cards — 1 per page, StPageFlip pairs them as spreads
-  for (let i = 0; i < memories.length; i++) {
+  // ── Memory cards — 2 per page, paired side by side ────────────────────────
+  const tabColors = ['#D4956A', '#C4837A', '#8B6D4A', '#B8860B', '#C4681A']
+  for (let i = 0; i < memories.length; i += 2) {
+    const cardA = memories[i]
+    const cardB = memories[i + 1] || null  // may be null if odd number
     pages.push({
-      type: 'memory',
-      card: memories[i],
-      cardIndex: i,
-      rotation: ((i % 3 === 0) ? -2.5 : (i % 3 === 1) ? 1.8 : -1.2) + (i % 2 === 0 ? 0.4 : -0.4),
-      tabColor: ['#D4956A', '#C4837A', '#8B6D4A', '#B8860B', '#C4681A'][i % 5],
+      type: 'memory-pair',
+      cardA,
+      cardB,
+      rotationA: [-2.8, 1.5, -1.8][i % 3],
+      rotationB: [2.2, -1.2, 2.8][(i + 1) % 3],
+      tabColorA: tabColors[i % tabColors.length],
+      tabColorB: tabColors[(i + 1) % tabColors.length],
     })
   }
 

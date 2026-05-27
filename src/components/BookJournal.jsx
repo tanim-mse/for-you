@@ -281,82 +281,112 @@ function TimelineYearContent({ page }) {
         </p>
       )}
 
-      {/* Body text — chunker guarantees this fits the page */}
-      <div style={{ flex: 1, minHeight: 0 }}>
-        {bodyChunk.split('\n\n').map((para, i, arr) => (
-          <p key={i} style={{
-            fontFamily: fonts.crimson,
-            fontSize: 'clamp(12px, 1.6vw, 14px)',
-            lineHeight: 1.90,
-            color: ink.secondary,
-            letterSpacing: '0.010em',
-            marginBottom: i < arr.length - 1 ? 14 : 0,
-          }}>
-            {para.trim()}
-          </p>
-        ))}
+      {/* Body text — splits on \n and \n\n both */}
+      <div style={{ flex: 1 }}>
+        {bodyChunk
+          .split(/\n+/)
+          .map(p => p.trim())
+          .filter(Boolean)
+          .map((para, i, arr) => (
+            <p key={i} style={{
+              fontFamily: fonts.crimson,
+              fontSize: 13,
+              lineHeight: 1.85,
+              color: ink.secondary,
+              letterSpacing: '0.010em',
+              marginBottom: i < arr.length - 1 ? 12 : 0,
+            }}>
+              {para}
+            </p>
+          ))
+        }
       </div>
     </div>
   )
 }
 
-// ── Memory card — sticky note, rotated ────────────────────────────────────────
-function MemoryCardContent({ card, rotation, tabColor }) {
+// ── Single sticky note card (used inside pair) ─────────────────────────────────
+function MemoryCard({ card, rotation, tabColor }) {
   return (
     <div style={{
-      height: '100%', display: 'flex',
-      alignItems: 'center', justifyContent: 'center',
+      width: '82%',
+      transform: `rotate(${rotation}deg)`,
+      position: 'relative',
+      filter: 'drop-shadow(0 4px 12px rgba(80,40,10,0.18))',
     }}>
       <div style={{
-        width: '84%', maxWidth: 195,
-        transform: `rotate(${rotation}deg)`,
-        position: 'relative',
-        filter: 'drop-shadow(0 5px 16px rgba(80,40,10,0.20))',
+        position: 'absolute', top: -10, left: '50%',
+        transform: 'translateX(-50%)',
+        width: 38, height: 11, backgroundColor: tabColor,
+        borderRadius: '2px 2px 0 0', opacity: 0.88,
+      }} />
+      <div style={{
+        backgroundColor: '#FFF8ED',
+        border: '1px solid rgba(160,110,50,0.18)',
+        borderRadius: 2, padding: '13px 13px 17px', position: 'relative',
+        backgroundImage: 'repeating-linear-gradient(to bottom, transparent, transparent 22px, rgba(140,90,30,0.06) 22px, rgba(140,90,30,0.06) 23px)',
+        backgroundPosition: '0 30px',
       }}>
-        {/* Sticky tab */}
-        <div style={{
-          position: 'absolute', top: -11, left: '50%',
-          transform: 'translateX(-50%)',
-          width: 44, height: 12, backgroundColor: tabColor,
-          borderRadius: '2px 2px 0 0', opacity: 0.88,
-        }} />
-        {/* Card body */}
-        <div style={{
-          backgroundColor: '#FFF8ED',
-          border: '1px solid rgba(160,110,50,0.18)',
-          borderRadius: 2, padding: '16px 16px 20px', position: 'relative',
-          backgroundImage: 'repeating-linear-gradient(to bottom, transparent, transparent 23px, rgba(140,90,30,0.06) 23px, rgba(140,90,30,0.06) 24px)',
-          backgroundPosition: '0 36px',
+        <p style={{
+          fontFamily: fonts.dm, fontSize: 6.5, letterSpacing: '0.20em',
+          color: ink.muted, textTransform: 'uppercase', marginBottom: 7,
         }}>
-          <p style={{
-            fontFamily: fonts.dm, fontSize: 7, letterSpacing: '0.22em',
-            color: ink.muted, textTransform: 'uppercase', marginBottom: 9,
-          }}>
-            {card.date}
-          </p>
-          <p style={{
-            fontFamily: fonts.garamond, fontStyle: 'italic',
-            fontSize: 13, lineHeight: 1.65, color: ink.primary,
-          }}>
-            {card.quote}
-          </p>
-          {card.note && (
-            <>
-              <div style={{ height: 1, background: 'rgba(140,90,30,0.14)', margin: '10px 0' }} />
-              <p style={{
-                fontFamily: fonts.crimson, fontStyle: 'italic',
-                fontSize: 10.5, lineHeight: 1.52, color: ink.secondary,
-              }}>
-                {card.note}
-              </p>
-            </>
-          )}
-          <span style={{
-            position: 'absolute', bottom: 7, right: 8,
-            fontSize: 7.5, color: ink.muted, opacity: 0.40,
-          }}>✦</span>
-        </div>
+          {card.date}
+        </p>
+        <p style={{
+          fontFamily: fonts.garamond, fontStyle: 'italic',
+          fontSize: 11.5, lineHeight: 1.58, color: ink.primary,
+        }}>
+          {card.quote}
+        </p>
+        {card.note && (
+          <>
+            <div style={{ height: 1, background: 'rgba(140,90,30,0.13)', margin: '8px 0' }} />
+            <p style={{
+              fontFamily: fonts.crimson, fontStyle: 'italic',
+              fontSize: 10, lineHeight: 1.48, color: ink.secondary,
+            }}>
+              {card.note}
+            </p>
+          </>
+        )}
+        <span style={{
+          position: 'absolute', bottom: 6, right: 7,
+          fontSize: 7, color: ink.muted, opacity: 0.38,
+        }}>✦</span>
       </div>
+    </div>
+  )
+}
+
+// ── Two memory cards per page, stacked vertically with different rotations ──────
+function MemoryPairContent({ page }) {
+  return (
+    <div style={{
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: page.cardB ? 'space-evenly' : 'center',
+      alignItems: 'center',
+    }}>
+      <MemoryCard
+        card={page.cardA}
+        rotation={page.rotationA}
+        tabColor={page.tabColorA}
+      />
+      {page.cardB && (
+        <>
+          <div style={{
+            width: '55%', height: 1, flexShrink: 0,
+            background: 'linear-gradient(to right, transparent, rgba(140,90,30,0.13), transparent)',
+          }} />
+          <MemoryCard
+            card={page.cardB}
+            rotation={page.rotationB}
+            tabColor={page.tabColorB}
+          />
+        </>
+      )}
     </div>
   )
 }
@@ -385,11 +415,12 @@ function PageContent({ page }) {
     case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I remember them." />
     case 'timeline-year':   return <TimelineYearContent page={page} />
     case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry." />
-    case 'memory':          return <MemoryCardContent card={page.card} rotation={page.rotation} tabColor={page.tabColor} />
+    case 'memory-pair':     return <MemoryPairContent page={page} />
     case 'back-cover':      return <BackCoverContent />
     default:                return null
   }
 }
+
 
 // ── Main ───────────────────────────────────────────────────────────────────────
 export default function BookJournal({ onClose }) {
@@ -434,7 +465,7 @@ export default function BookJournal({ onClose }) {
         const yearIndex = years.indexOf(p.year)
         map[i] = yearTracks[yearIndex % yearTracks.length]
 
-      } else if (p.type === 'memories-header' || p.type === 'memory') {
+      } else if (p.type === 'memories-header' || p.type === 'memory-pair') {
         map[i] = 'reels'   // different feel for the memory fragments
 
       } else if (p.type === 'blank-end' || p.type === 'back-cover') {
@@ -470,10 +501,10 @@ export default function BookJournal({ onClose }) {
     const vh = window.innerHeight
     const pageW = isMobile
       ? Math.min(vw * 0.94, 390)
-      : Math.min(Math.floor(vw * 0.38), 380)
+      : Math.min(Math.floor(vw * 0.36), 360)
     const pageH = isMobile
-      ? Math.min(vh * 0.80, 560)
-      : Math.min(Math.floor(vh * 0.80), 580)
+      ? Math.min(vh * 0.78, 540)
+      : Math.min(Math.floor(vh * 0.78), 560)
 
     let f1, f2
     f1 = requestAnimationFrame(() => {

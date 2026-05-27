@@ -8,33 +8,67 @@ export const timeline = [
     year: 2020,
     chapter: 1,
     title: "The year everything started",
-    body: `We studied in the same school. Same place, same years, but I never noticed you before. I never noticed anyone like that, not once. I don\'t know why. Maybe I just wasn\'t looking, or there was nothing to look at that made me stop. I don\'t know, but I never did.
-
-Then one day after the SSC exam... I\'m walking, just walking, like everyone else. There\'s a big crowd, people everywhere, noise everywhere. I don\'t know what made me look to the behind. I wasn\'t thinking about looking anywhere. Something just made me... Three-quarters to the behind, and you were right there. Right at the exact moment I looked, you were there.
-
+    body: `We studied in the same school. Same place, same years, but I never noticed you before. 
+    I never noticed anyone like that, not once. I don\'t know why. 
+    Maybe I just wasn\'t looking, or there was nothing to look at that made me stop. 
+    I don\'t know, but I never did.
+Then one day after the SSC exam... I\'m walking, just walking, like everyone else. 
+There\'s a big crowd, people everywhere, noise everywhere. 
+I don\'t know what made me look to the behind. I wasn\'t thinking about looking anywhere. 
+Something just made me... Three-quarters to the behind, and you were right there. 
+Right at the exact moment I looked, you were there.
+---PAGEBREAK---
 I don\'t know how to explain what happened after that.
 
-The sun was hitting your face. That glow... I don\'t have a better word for it, I just know that in that moment, in that crowd with all those people and all that noise, I forgot all of it. My eyes just stayed on you but I didn\'t tell them to. You were with your father. You weren\'t doing anything special. You were just there. And somehow that was enough to make everything else disappear for a moment.
+The sun was hitting your face. That glow... I don\'t have a better word for it, 
+I just know that in that moment, in that crowd with all those people and all that noise, 
+I forgot all of it. My eyes just stayed on you but I didn\'t tell them to. 
+You were with your father. You weren\'t doing anything special. 
+You were just there. And somehow that was enough to make everything else disappear for a moment.
 
 You left, walked away with uncle and that was it...
-However, I\'m standing there. Not moving, not even thinking anything clear. Just blank... Like someone pressed pause on me and forgot to press play again. I forgot what I was doing before. For a moment it was just nothing. A good nothing I think, or a confusing nothing. I don\'t know what it was. I still don\'t.
+However, I\'m standing there. Not moving, not even thinking anything clear. 
+Just blank... Like someone pressed pause on me and forgot to press play again. 
+I forgot what I was doing before. For a moment it was just nothing. 
+A good nothing I think, or a confusing nothing. I don\'t know what it was. I still don\'t.
 
-It maybe sounds cringy to someone reading this. I know that, but you only understand it when you\'re actually in it. When it\'s actually happening to you, then it doesn\'t feel cringy at all. It feels like the most real thing that\'s happened to you. 
+It maybe sounds cringy to someone reading this. I know that, but you only understand it when you\'re actually in it. 
+When it\'s actually happening to you, then it doesn\'t feel cringy at all. 
+It feels like the most real thing that\'s happened to you. 
 
-I don't know what this is, I genuinely don't. I\'m not going to pretend I do... I don\'t even know if I\'ll ever see you again, but it was really something different.
+I don't know what this is, I genuinely don't. I\'m not going to pretend I do... 
+I don\'t even know if I\'ll ever see you again, but it was really something different.
 
 Things are going well, life feels okay, and then the best thing happens. I see you again...
-And immediately my mind does the same thing, even though I see you in the online. Goes blank... Like it just shuts off when you're nearby. I want to say something, do something, but there\'s just nothing there. No thoughts, no words... Just that same feeling from before, the one I still don\'t have a name for.
+And immediately my mind does the same thing, even though I see you in the online. Goes blank... 
+Like it just shuts off when you're nearby. I want to say something, do something, but there\'s just nothing there. 
+No thoughts, no words... Just that same feeling from before, the one I still don\'t have a name for.
     
-I want to text you, I think about it. Then I stop. Then I think about it again. This goes on... Every time I get close to doing it my mind just goes quiet. I don\'t know what I\'m afraid of exactly. Maybe that you\'ll ignore me, or maybe that you won\'t and then I\'ll have to figure out what to say next. I don\'t know...
+I want to text you, I think about it. Then I stop. Then I think about it again. This goes on... 
+Every time I get close to doing it my mind just goes quiet. I don\'t know what I\'m afraid of exactly. 
+Maybe that you\'ll ignore me, or maybe that you won\'t and then I\'ll have to figure out what to say next. I don\'t know...
+
 May 20, I do it.
-Just "Hi". That\'s all I manage. I think about that one word more times than I\'d like to admit. There\'s a solid chance you ignore me. I know that going in. I\'ve accepted that possibility. But I send it anyway because I think, what if I don\'t and then I spend a long time wondering.
+Just "Hi". That\'s all I manage. I think about that one word more times than I\'d like to admit. 
+There\'s a solid chance you ignore me. I know that going in. I\'ve accepted that possibility. 
+But I send it anyway because I think, what if I don\'t and then I spend a long time wondering.
 
-You don\'t ignore me. We talk. It\'s easy, actually. Easier than I expected. We\'re from the same school, so it\'s not a stranger conversation completely, not weird, just two people talking who somehow never talked before even though they were in the same place for years. We talk about general things, nothing big. Nothing that would mean anything to someone looking in from outside. But to me, it means something, even if I can\'t explain what yet. 
+You don\'t ignore me. We talk. It\'s easy, actually. Easier than I expected. 
+We\'re from the same school, so it\'s not a stranger conversation completely, not weird, 
+just two people talking who somehow never talked before even though they were in the same place for years. 
+We talk about general things, nothing big. Nothing that would mean anything to someone looking in from outside. 
+But to me, it means something, even if I can\'t explain what yet. 
 
-I don\'t know yet that you already have an idea about me. That you think I\'m a playboy. I have no idea you\'re thinking that while we\'re talking. I find out later, and honestly it\'s kind of funny. The kind of funny that also makes you think a little, that this is how it started. You with the wrong idea about me, and me with no idea at all about what any of this is.
+I don\'t know yet that you already have an idea about me. 
+That you think I\'m a playboy. I have no idea you\'re thinking that while 
+we\'re talking. I find out later, and honestly it\'s kind of funny. The kind of funny 
+that also makes you think a little, that this is how it started. You with the wrong idea about me, 
+and me with no idea at all about what any of this is.
 
-There are billions of people in this world. I don\'t take that lightly. Billions... And yet we met. We talked. We were in the same school for years and it took one moment in a crowd after an exam for my eyes to find you. I believe nothing happens without a reason. I really do. Allah brought you into my life, the same girl who made me stop mid-step the first time I saw her without even knowing her name. 
+There are billions of people in this world. I don\'t take that lightly. Billions... 
+And yet we met. We talked. We were in the same school for years and it took one moment in a crowd after an exam for my eyes to find you. 
+I believe nothing happens without a reason. I really do. Allah brought you into my life, 
+the same girl who made me stop mid-step the first time I saw her without even knowing her name. 
 
 I\'m glad I looked to the behind that day.
 
@@ -49,34 +83,34 @@ I don\'t fully understand any of this yet. But I\'m glad...
     chapter: 2,
     title: "The year I learned what love feels like.",
     body: `We\'re talking more now. More than before. It\'s become a thing: texting you. I don\'t think about it as a thing, it just is one. 
-
-Then one day I see something on your profile. A guy... And something happens in my chest that I don\'t have a word for. Something uncomfortable. Something I don\'t like. I don\'t want to look at it but I can\'t stop looking at it either. 
-
-So, I stop texting you.
-
-Just like that. I don\'t explain it to you. I don\'t explain it to myself either, not properly. I just stop. Because I don\'t know what\'s happening inside me and I don\'t want to find out. A couple of weeks pass. Then we start texting again. Like nothing happened. 
-You probably didn\'t even notice I was gone. 
-
-However, I noticed...
-
-May 22, I don\'t know what makes me sit down and actually think about it that day. But I do. I think about why I stopped texting you. I think about that feeling in my chest when I saw that guy on your profile. I think about why it hurt, because it did hurt. I can say that now, why it actually hurt to see that.
-
-And then it hits me.
-
-I\'m in love!!!!
-
-I put the phone down. I just sit there for a moment.
-
-How!! How on earth does a cold-hearted person fall in love. I\'m not supposed to feel this. I was never supposed to feel this. I\'ve gone my whole life not feeling this and I was fine with that. More than fine. I thought love was a transaction. Someone does things for you, you do things for them, and people call that love because it sounds better than what it actually is. Expectations... That's all it ever looked like to me from the outside. 
-
-No one ever loved me the way people talk about love. The ones who did, they died when I was a child. After that I learned how to feel nothing. I got good at it. I thought that was just who I am now. A void. You can\'t put feelings in a void. There\'s nowhere for them to go. 
-
-So then what is this!!!
-What is this thing in my chest when I see her with someone else. What was that pain. Is that what love feels like? That specific kind of pain? Because if it is then I understand why people are afraid of it. I\'m afraid of it right now. I\'m sitting here afraid of something I didn\'t even believe in.
-
-I don\'t want to tell you. I want to keep this inside me where it can\'t bother you. My feelings, my possessiveness, this over-protective thing I feel that I don\'t even fully understand yet. None of this is your problem. You didn\'t ask for any of it. So, I\'ll carry it. I\'m used to carrying things alone. 
-
-Who is Toukir!! Should I ask her?
+    Then one day I see something on your profile. A guy... And something happens in my chest that I don\'t have a word for. Something uncomfortable. Something I don\'t like. I don\'t want to look at it but I can\'t stop looking at it either. 
+    
+    So, I stop texting you.
+    
+    Just like that. I don\'t explain it to you. I don\'t explain it to myself either, not properly. I just stop. Because I don\'t know what\'s happening inside me and I don\'t want to find out. 
+    ---PAGEBREAK---
+    A couple of weeks pass. 
+    Then we start texting again. Like nothing happened. You probably didn\'t even notice I was gone. 
+    
+    However, I noticed...
+    
+    May 22, I don\'t know what makes me sit down and actually think about it that day. But I do. I think about why I stopped texting you. I think about that feeling in my chest when I saw that guy on your profile. I think about why it hurt, because it did hurt. I can say that now, why it actually hurt to see that. And then it hits me.
+    
+    
+    I\'m in love!!!!
+    
+    I put the phone down. I just sit there for a moment.
+    
+    How!! How on earth does a cold-hearted person fall in love. I\'m not supposed to feel this. I was never supposed to feel this. I\'ve gone my whole life not feeling this and I was fine with that. More than fine. I thought love was a transaction. Someone does things for you, you do things for them, and people call that love because it sounds better than what it actually is. Expectations... That's all it ever looked like to me from the outside. 
+    
+    No one ever loved me the way people talk about love. The ones who did, they died when I was a child. After that I learned how to feel nothing. I got good at it. I thought that was just who I am now. A void. You can\'t put feelings in a void. There\'s nowhere for them to go. 
+    
+    So then what is this!!!
+    What is this thing in my chest when I see her with someone else. What was that pain. Is that what love feels like? That specific kind of pain? Because if it is then I understand why people are afraid of it. I\'m afraid of it right now. I\'m sitting here afraid of something I didn\'t even believe in.
+    I don\'t want to tell you. I want to keep this inside me where it can\'t bother you. My feelings, my possessiveness, this over-protective thing I feel that I don\'t even fully understand yet. None of this is your problem. You didn\'t ask for any of it. So, I\'ll carry it. I\'m used to carrying things alone. 
+    
+    
+    Who is Toukir!! Should I ask her?
 
 I see it\'s your male best friend! Here we go again, the possessiveness hits again, but much harder this time. I don\'t know how to handle this. I don\'t have practice with this kind of feeling. I\'ve never needed practice before. I was supposed to be a heartless guy, and here I\'m... What the hell!
 

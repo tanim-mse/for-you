@@ -2,57 +2,41 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { setTrack, setMuted, isMuted } from '../utils/audio'
 
-// Track → route mapping
+// With HashRouter, location.pathname IS the route (e.g. '/journal')
+// location.hash is the fragment after a second # (not used here)
 const ROUTE_TRACKS = {
+  '/':         'journal',   // auth gate — queued until first click
   '/journal':  'journal',
-  '/letters':  'letters',
   '/reels':    'reels',
   '/birthday': 'birthday',
-  '/secret':   null,       // silence
+  '/secret':   null,        // silence
   '/ending':   'ending',
 }
 
 export default function AudioManager() {
   const location = useLocation()
 
-  // Change track on route change
   useEffect(() => {
-    // Extract path from hash: '#/journal' → '/journal'
-    const path = location.hash.replace('#', '') || '/'
-
-    // Auth gate — use journal track (waits for first interaction)
-    if (path === '/') {
-      setTrack('journal')
-      return
-    }
-
+    // HashRouter puts the route in location.pathname directly
+    const path = location.pathname || '/'
     const track = ROUTE_TRACKS[path]
 
-    // track === undefined means route not in map — do nothing
+    // undefined = unknown route, skip. null = silence.
     if (track !== undefined) {
       setTrack(track)
     }
-  }, [location.hash])
+  }, [location.pathname])
 
-  // Sync mute state from localStorage on mount
-  // (in case user reloaded with music_muted set)
+  // Sync mute state from localStorage on mount + poll for navbar toggle
   useEffect(() => {
-    const stored = localStorage.getItem('music_muted') === 'true'
-    if (stored !== isMuted()) {
-      setMuted(stored)
+    const sync = () => {
+      const stored = localStorage.getItem('music_muted') === 'true'
+      if (stored !== isMuted()) setMuted(stored)
     }
-
-    // Poll for navbar toggle changes every 500ms
-    // (navbar writes to localStorage, AudioManager reads it)
-    const id = setInterval(() => {
-      const current = localStorage.getItem('music_muted') === 'true'
-      if (current !== isMuted()) {
-        setMuted(current)
-      }
-    }, 500)
-
+    sync()
+    const id = setInterval(sync, 500)
     return () => clearInterval(id)
   }, [])
 
-  return null // renders nothing
+  return null
 }
