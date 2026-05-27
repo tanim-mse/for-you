@@ -6,26 +6,65 @@
 import { memories } from '../data/memories'
 import { timeline } from '../data/timeline'
 
-const MAX_CHARS_PER_TIMELINE_PAGE = 750
+const MAX_CHARS_PER_TIMELINE_PAGE = 700
 
-// Split timeline body text into page-sized chunks
+// Split timeline body text into page-sized chunks.
+// Handles both \n\n and \n paragraph breaks.
+// NEVER cuts mid-sentence — always ends on a complete sentence.
 function chunkBody(body, maxChars = MAX_CHARS_PER_TIMELINE_PAGE) {
-  // Respect existing double-newline paragraph breaks first
-  const paragraphs = body.split(/\n\n+/).map(p => p.trim()).filter(Boolean)
+  // Normalise: treat single newlines as paragraph breaks too
+  const normalised = body
+    .replace(/\r\n/g, '\n')
+    .replace(/\n{2,}/g, '\n')   // collapse multiple newlines to one
+    .trim()
+
+  // Split into paragraphs
+  const paragraphs = normalised
+    .split('\n')
+    .map(p => p.trim())
+    .filter(Boolean)
+
   const chunks = []
   let current = ''
 
   for (const para of paragraphs) {
     const candidate = current ? current + '\n\n' + para : para
+
     if (candidate.length > maxChars && current.length > 0) {
+      // Current chunk is full — save it and start a new one
       chunks.push(current.trim())
       current = para
     } else {
       current = candidate
     }
   }
+
   if (current.trim()) chunks.push(current.trim())
-  return chunks.length > 0 ? chunks : [body.trim()]
+
+  // Safety: if a single paragraph is longer than maxChars,
+  // split it by sentence so we never overflow a page
+  const result = []
+  for (const chunk of chunks) {
+    if (chunk.length <= maxChars) {
+      result.push(chunk)
+      continue
+    }
+    // Split by sentence boundary
+    const sentences = chunk.match(/[^.!?…]+[.!?…]+[\s]*/g) || [chunk]
+    let sentenceChunk = ''
+    for (const sentence of sentences) {
+      const candidate = sentenceChunk + sentence
+      if (candidate.length > maxChars && sentenceChunk.length > 0) {
+        result.push(sentenceChunk.trim())
+        sentenceChunk = sentence
+      } else {
+        sentenceChunk = candidate
+      }
+    }
+    if (sentenceChunk.trim()) result.push(sentenceChunk.trim())
+  }
+
+  return result.length > 0 ? result : [body.trim()]
 }
 
 // Split body paragraphs array into groups of max N paragraphs per page
@@ -59,7 +98,6 @@ export function buildPageList() {
     "Maybe that says more than I ever could. I hope you'll have a great time here.",
     "I\'m dedicating this journal to YOU.",
     "I love You, Nurin. I always do...",
-    
   ]
 
   const bodyGroups = chunkParagraphs(BODY_PARAGRAPHS, 3)

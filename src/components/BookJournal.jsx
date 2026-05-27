@@ -14,7 +14,7 @@ import BookPage from './BookPage'
 import Ornament from './Ornament'
 import { setTrack } from '../utils/audio'
 
-const HER_NAME   = 'Tortoise'
+const HER_NAME   = 'Her Name'
 const BIRTH_YEAR = 2004
 
 const OPENING_LINES = [
@@ -281,16 +281,16 @@ function TimelineYearContent({ page }) {
         </p>
       )}
 
-      {/* Body text — paragraph spacing preserved from the data */}
-      <div style={{ flex: 1, overflow: 'hidden' }}>
-        {bodyChunk.split('\n\n').map((para, i) => (
+      {/* Body text — chunker guarantees this fits the page */}
+      <div style={{ flex: 1, minHeight: 0 }}>
+        {bodyChunk.split('\n\n').map((para, i, arr) => (
           <p key={i} style={{
             fontFamily: fonts.crimson,
-            fontSize: 'clamp(11.5px, 1.5vw, 13.5px)',
-            lineHeight: 1.88,
+            fontSize: 'clamp(12px, 1.6vw, 14px)',
+            lineHeight: 1.90,
             color: ink.secondary,
             letterSpacing: '0.010em',
-            marginBottom: i < bodyChunk.split('\n\n').length - 1 ? 12 : 0,
+            marginBottom: i < arr.length - 1 ? 14 : 0,
           }}>
             {para.trim()}
           </p>
@@ -382,9 +382,9 @@ function PageContent({ page }) {
     case 'title':           return <TitlePageContent />
     case 'opening':         return <OpeningPageContent />
     case 'opening-body':    return <OpeningBodyContent paragraphs={page.paragraphs} />
-    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I live them." />
+    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I remember them." />
     case 'timeline-year':   return <TimelineYearContent page={page} />
-    case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry. And I will always..." />
+    case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry." />
     case 'memory':          return <MemoryCardContent card={page.card} rotation={page.rotation} tabColor={page.tabColor} />
     case 'back-cover':      return <BackCoverContent />
     default:                return null

@@ -54,7 +54,8 @@ Then one day I see something on your profile. A guy... And something happens in 
 
 So, I stop texting you.
 
-Just like that. I don\'t explain it to you. I don\'t explain it to myself either, not properly. I just stop. Because I don\'t know what\'s happening inside me and I don\'t want to find out. A couple of weeks pass. Then we start texting again. Like nothing happened. You probably didn\'t even notice I was gone. 
+Just like that. I don\'t explain it to you. I don\'t explain it to myself either, not properly. I just stop. Because I don\'t know what\'s happening inside me and I don\'t want to find out. A couple of weeks pass. Then we start texting again. Like nothing happened. 
+You probably didn\'t even notice I was gone. 
 
 However, I noticed...
 
@@ -125,25 +126,156 @@ You came back and you came back first... `,
   {
     year: 2023,
     chapter: 4,
-    title: "The year I started writing things down.",
-    body: `I can't say it out loud so I write it instead. These aren't for anyone. They're just somewhere to put things so they stop circling. I write your name once and then close the document. That's enough for one night.`,
+    title: "The year I started feeling more things.",
+    body: `You approach me again. I don\'t question it. I\'m just happy to see you again. I always love it to spend time with you. 
+We fall back into conversation like no time passed. Normal things, everyday things. The kind of texting that doesn't feel like anything from the outside but feels like everything from where I'm sitting.
+
+I never planned to let you know. I really didn\'t. I wanted to keep it inside, the way I\'ve kept everything inside, the way I\'ve always been better at carrying things quietly than putting them down in front of someone. But apparently I\'m not as unreadable as I thought.
+
+You figured it out. 
+Not because I told you. Because you watched how I behaved around you and you understood what it meant. You\'re an intelligent girl. I knew that already. But something about being seen, actually seen, without saying a word felt like something I didn\'t know I needed until it happened. 
+
+You rejected me. I can understand your perspective.
+I\'m not going to pretend that didn\'t hurt. It did. I tried my best not to show it, and I think I mostly managed. But it hurts. Of course it hurts. When you care about someone the way I care about you, and they say no, there\'s nowhere for that to go. You just carry it and keep going. 
+
+Even though I told you you can go whenever you want. But I never had any intention of letting you go. That part didn\'t change. It didn\'t even shake. Because what I feel for you was never about what I\'d get back. 
+I want to love you the way you want to be loved. Put in efforts, stand beside you when you need somewhere comfortable to be. I want to take care of you, not for a season, not until something better comes along. I want it for the rest of my life if you\'ll let me. That\'s not something a rejection switches off. 
+
+So I keep going. 
+
+I few weeks later, her friend tells me something.
+I\'m the only man in your life. And you like me. 
+I sit with that for a long time. I think about it from every angle, the way I think about everything, quietly, and thoroughly. And I believe it. I\'m grateful to your friend in a way I don't think I\'ll ever fully be able to say. She gave me something that day without knowing how much it meant.
+
+You become even more important to me after that. Which I didn\'t think was possible. But you did. And with that comes something that sits heavy on me. I have to be more careful now. More careful about everything I do, everything I say. I don\'t allow anyone to hurt you, including myself. I\'ve made that a rule I don\'t break. Your smile is something I want to protect. I don\'t know how else to say it. I just know I\'ll do whatever it takes. 
+
+And then there\'s the small things. The things I carry around with me like they\'re mine to keep. To be honest, these aren\'t feel small things to me. These are precious to me, just like every memory of yours.
+You once said, "এখন পুরাতন হয়ে গেছি তো...", and every single time, no matter how mad I am at you, that line would come into my head and I\'d feel myself smiling before I could stop it. Genuinely mad at you, actually frustrated, and then that line, and then a smile. You have no idea how many times you saved yourself from arguments with that one sentence without knowing it. 
+
+And then : "আমি করলে ঠিক আছে, কিন্তু তুমি করতে পারবা না", this one just melts me every time. They way you said it. The complete confidence of it. I don\'t even argue. I just feel something warm in my chest and let it sit there. I love this one very much. 
+
+I gave you a nickname this year, "Tortoise". I didn\'t think you\'d like it. I genuinely didn\'t think. I thought you might ignore it. You have two options between "Nishi", and "Tortoise"- and you kept this one. You actually kept it, tortoise... And now I can\'t think of a name that suits you better, my slow replying queen, taking your time with everything, unbothered, completely yourself. It fits you perfectly and I think some part of me knew that when I chose it. 
+
+We have fights, arguments... The block-unblock scenes. Moments where I\'m genuinely mad and moments where you are. But here\'s the thing, even when you\'re angry at me, even when you\'re taunting me or saying something sharp, I\'m just glad to hear from you. I smile. I actually smile. Because it\'s you, Tortoise. Because any version of you talking to me is better than silence. You have no idea how much I admire you, your word, moody nature, arguments- everything...
+
+I\'ll be honest about something. Sometimes I start the fights on purpose. Not to hurt you, never that... Just to keep things alive, to make sure you're never bored, to give you something to push against. And when I do, I try to bring the same topics, the same things we\'ve argued about before. So you can get the hint. So, you can see that I\'m doing it carefully, that I\'m not repeating real mistakes, just creating small friction so there\'s something between us that feels alive, they way you want it. 
+
+I hope you can see that. I think you do, you\'re too smart not to. 
+I don\'t want you to ever feel bored. I don\'t want you to ever feel like I\'ve stopped paying attention. I notice everything, the small things, the tiny details, the things you probably don\'t think anyone catches. I catch them, I keep them. I\'ll learn and adapt things that make you happy.
+
+That's just how I love. Quietly. In detail. Without missing anything. I don\'t know how you want to be loved, Tortoise. But I hope one day you let me know...`,
   },
   {
     year: 2024,
     chapter: 5,
     title: "The year I accepted what this was.",
-    body: `I stop waiting for it to go away. It isn't going anywhere. I'm not sure it's supposed to. Some things aren't problems to be solved. Some things are just true about you, the way your name is true, the way a year is true once it's happened.`,
+    body: `We fight a lot now. But we fix it. Every time, we fix it. And that's what matters. I hope you stay like this. That's how a good bonding stays beautiful. Even when it takes me trying again and again. You told me once that you like it when I put effort. Even when you don't forgive me right away, you like that I try. I heard that. I kept it. And I'll never stop putting effort into you. Never... You're my pasandita aurat after all. 
+
+The only person I love, the person I will ever love is you... You, Nurin... You still say no, and we're not in a relationship, not in the way the world would recognize it. But I believe one day you'll see it. You'll see what this is. You'll see how much of my life has quietly been about making sure you're okay, making sure you're safe, making sure you're smiling. 
+
+Due to busy schedules, I forgot to write for a couple of days. It's been a week or two.
+I don't know if you realized it or not, but I want to marry you, Madam. I've asked Allah for you more times than I can count. I ask sincerely, the way you ask for something when you mean it with your whole heart. I believe Allah sees genuine intentions. He sees effort. And I hope, really really hope, that one day He make us together. That all of this, all the fights, the fixing, the waiting, carrying it all quietly inside me- that it meant something in the end. 
+
+Tortoise... I think about what it would look like to finally see you in person. Actually see you, your face when you smile, the way you carry yourself, all the small things I've only been able to imagine. I want to see you when you sleep and know you're safe. I want to spend whatever time I have left in this life making sure you never feel alone in it, and feel love every day with every little things... I would keep learning from you to give you the best possible treatment. 
+
+I know how that sounds written down here. If someone ever comes into contact with this journal, they may think of me as a crazy guy. However, I don't expect anyone to understand my feelings for you. I don't even know if you ever actually see how much I love you and how deeply I feel for you. Even if it takes time, I'm not gonna give up on you, Tortoise... you're all over my heart, my silence queen. Sometimes I wish I could mention you as sweetheart, but because of our situation, you may feel overwhelmed and uncomfortable. And I don't want to make you feel that. Even though you're my sweetheart, I have to keep the nickname to myself until you feel for me the same way.
+
+I think, maybe I've overwhelmed you sometimes with the effort, and the care. But I can't do anything halfway when it comes to you. If I have, I'm sorry, Tortoise... Even though I try to resist and limit myself. I limit myself so that I can't make you feel uncomfortable. But I can't be sorry for the feeling itself. I either love completely or I feel nothing. There's no middle for me. There never has been. And that's why I feel deeply for you, and feel nothing for the world.
+
+The fights, the warnings, the things that probably sound controlling from the outside. However, that's not what it is. It comes from knowing what this world does to people. Knowing what it's done to me. And not being able to stand the thought of any of that touching you. I want to protect you from everything. Even the things you don't think you need protecting from. I know it doesn't always come out perfectly. But every single one of those moments comes from the same place: your happiness, your safety. A life where nothing hurts you if I can do anything about it. 
+
+I'm not perfect. I've made mistakes this year. Real ones. But I find them, I fix then as fast as I can, and I don't repeat them. That's the only promise I know how to keep. 
+
+
+I wonder if you can see that. After everything you know about people, after everything you've seen, can you see that this is different? Can you see what I carry for you? I'm scared sometimes, Nurin, that you'll look at it from the wrong angle and see something ugly when it actually isn't. I don't blame you or mean anything that may hurt you. But I don't know exactly how you read my text. I wish I could talk to you, so that you can hear from me, my voice, my tone, and how gently I speak to you. I don't know how you read my text...
+
+Your actions tell me things sometimes. Small things that slip through even when you're being careful. The way you respond, the way you show up in certain moments. And in those moments, I think, she feels something. Even if it's small, even if she won't say it. Then the other times... your words catch me somewhere tender, and it takes me a moment to recover. I don't tell you that. I just absorb it and keep going. And I'll keep absorbing it. Every mood, every sharp word, every silence that goes on a little too long.
+Keep all of it, Tortoise. I'll handle it gently, my beautiful lady...
+
+After all nothing in this world will ever make me unlove you. Not a fight, not a silence, not a No. Not time. Not anything this world puts between us. 
+Nothing... My heart only feels for you and chooses you. And it doesn't have any interest in choosing anyone else. 
+
+If you get to see how deeply I feel for you, how whole heartedly I want to spend my life with you, will you stay with me? Or you will see my obsession, protectiveness, caring, and possessiveness, and get the wrong idea and call me a wrong person? This scares me a lot. Will you understand my love for you, or get the wrong idea? Will you love someone who is obsessed with you in a way that he himself will never be able to unlove you? Will you appreciate this kind of love language that wants to hold your hand gently forever, or are you gonna think something horrible about it and stay away from me?
+In the end, even if you get the wrong idea about me, I'll keep trying to clear your misunderstanding if you get any. Just don't make my fear real, the one where you leave me. And I won't get to see you again. I don't want to lose you, Nurin. No matter what I don't want to lose my beloved one. I'll do anything to fix things between us, but don't just ruin the future I have been building for you, for us. I'm nothing but a void without you, Nurin. You complete me. You're the reason I'm feeling like a normal human. I can feel love and care for someone. I never thought I could be like this. I'm not a bad person, nor a completely good person. But for us, I keep trying to get better, a better human being. You deserve better and I'll get better so that I can give you the best treatment. I only feel things when I'm with you. Only with you... I love you, Nurin. I love you so so much... more than you know.
+
+I don't know if you ever see me, but my love for you that is so deep that I can't feel for anyone else except you. I can pretend to move on, cutting you off from my life. Pretend to feel for anyone else to make you feel jealous ( I won't do this unless I have to, didn't use this yet.), but I can't truly feel for anyone else. My heart will never let me feel something like that. It only allows you, and sees you differently. You are and will always be my sweetheart, my little slow princess. You complete me, and I have no intention to choose anything else over you or anything like that. I'm not gonna let you go. Instead, I'll put every effort into making things work out for us. I'll never give up on you, but will I ever get to see your love?
+I don't know that answer, but I'm still here. Still waiting for the day... May Allah only give you to me. I deserve the place beside you. It makes me feel sick even if someone breathes near you. 
+
+Sometimes I wonder why my love language is so weird. Why do I feel so deeply for you, and then again feel nothing at all for rest of the world? I'm so weird, man!!!
+
+This year is going to end very soon. At least we're together. We made it together. I hope we stay like this forever. I hope you never give up on me, just like I'm never gonna give up on you... `,
   },
   {
     year: 2025,
     chapter: 6,
     title: "The year I decided to build this.",
-    body: `I don't know what I'm doing exactly. I know I want there to be something real — something that exists outside of my head. Something she could read, if she ever wanted to. Not a confession. Just a record. Just proof that all of this was real.`,
+    body: `You have your exam.. Maaan...!! I won't get to see you that much now. I keep telling myself, "Keep yourself busy, don't text her, don't disturb her studies." But then again, I just want to see you, want to listen to how your day goes, just want to talk to you. That's all. Nothing big... I just miss you, Nurin. Your silence is pressing on my chest like something physical. Should I text? Let's do it...
+
+Man... Blocked again! AGAIN!! I didn't even do anything wrong. I just missed her. Fine, I'll wait. I always wait for you. That's what I do. 
+
+It's been a couple of weeks, and your friend tells me you're married!! I just saw her story... HOW!!! Whyyyy!!!!
+I don't believe this. You are not like this... I can't even write this properly. I don't know how to write this. My hands are doing writing, but my head isn't here. You're married, and I'm sitting here and I don't know what to do with my body, what to do with my hands, what to do with any of this that's been sitting in my heart for YEARS!!...
+
+What did I do wrong, Allah?? 
+Tell me... Tell meee what I did wrong!!! I stayed, I was honest. I loved her and onlyyy herrr... I didn't look at anyone else, didn't talk to anyone else, made myself better BECAUSE of her, prayed for her, asked for her... Only her... only ever her, as my wife... That's all I asked. ONE thing. And you took her away like this???
+Where was I getting it wrong. WHERE??? I need to know, I need to understand this. I fixed my mistakes, I learned, I prayed. I believed in You even when it was hard. Don't you know what she means to me? Don't You see any of it? The years, the patience, the carrying it all alone, the never giving up...
+Then How did you let this happen??? HOWW.....
+
+I lost her. And the moment I lost her I felt something go out in me. Like a light that's been on for years just off. And what came in after that light went out was something dark. A true darkness... 
+
+
+September 18, I came to know she isn't married. She's not marriedddd.... I don't know what to do with that either. I sit there and something starts coming back, slowly, painfully, like feeling returning to a limb that's been numb too long. It hurts. Coming back hurts. I texted her with everything I had. The excitement, the missing her, the months of hell I went through internally.
+I became the monster again right in front of her. Said the things I said, did the damage I did. Allah... why did you let me reach her in this state! Why didn't you stop me? Why didn't I stop myself!!!
+This me is something I don't recognize. Something I never was before and never wanted to be. I have become a monster... The person who took over after I lost her, I don't claim him, I don't want him either. But he was there. He is real, and he did real damage. I said things...To you... About your family.. Things I can not take back. Things that came from a place so dark and so broken that I didn't even know that place existed inside me. I hurt her. The one and only person in this entire world I would do anything to protect. I hurt her. With my own words, my own hands, because I wasn't me anymore and the thing I had become didn't know how to do anything except bleed on everyone around it. I will carry that. I deserve to carry that.
+
+There is no excuse for what I said. The pain I was in doesn't excuse it. Losing her doesn't excuse it. Nothing excuses it. I know that. And if she never forgives me for it, I understand. I genuinely understand. But if you forgive me, then that would be a redemption for me. And I won't let you down ever again.
+
+
+BUT here's what I know now. 
+Something is happening inside me. Something small, something I don't trust fully because I've been broken for so long I don't know what feeling okay is supposed to feel like anymore.
+Allah game me the truth. She's not married. She's still there. And somehow, even after everything I became, everything I said, everything I did, that truth rearranged something inside me. I'm grateful, Allah. Even after everything I said to You in those dark months, even after the rage, the blame, the things I threw at You that I'm not proud of. I'm grateful, because You game me the truth. You didn't have to, but You did...
+
+Now I'm sitting here realizing: I can't talk to her. Not yet. Not like this... Not as whatever I became during those months. She deserves better than what I am right now. She always deserved better. That never changed even when everything else did. 
+
+I don't know how yet. I don't know how long it will take. But I feel it, for the first time in a long time I feel something that isn't rage or pain or emptiness. I feel like I want to be someone she can come back to.
+
+That's where 2025 ends. Not fixed, not even close. But wanting to be. And for now, that's enough to hold onto.`,
   },
   {
     year: 2026,
     chapter: 7,
     title: "The year I finally said something.",
-    body: `This one is right now. You're reading it, which means it worked. I don't know what comes after this. I'm not asking for anything. I just needed you to know that someone has been paying attention, quietly, for a long time. That's all this is. That's everything it is.`,
+    body: `This year has one goal. 
+ONE...
+Fixing myself for her. For a future I don't know the shape of yet, but refuse to stop believing in. It may take a long time. More efforts than I've given anything in my life. .I don't know if I can fully change, I don't know if anyone fully changes. But there is no other option. Either a life with my pasandita aurat, or a life without my soul. There is no third choice.
+So, I'm doing it. Whatever it takes. However long it takes.
+
+I wonder sometimes, Madam... Will you ever truly see me? The one who waits for you, chooses you every time over anyone, anything. The one who has been waiting sine before he even knew what he was waiting for. What do I need to prove that you mean everything to me? How am I supposed to break the wall between us when you're the one who built it? 
+
+What are you thinking, Tortoise... Why did you choose silence over a text? We both suffered, why didn't you share yours with me.. We didn't have to go through all of that separately. We didn't have to. And I know, I know... part of that is my fault too... I was too free with you sometimes. Said things without thinking about how they landed. I should have been more careful. More gentle. Maybe then you would have felt safe enough to open up. Maybe then the wouldn't exist... I failed you, Nurin...I failed youuu and I'm really sorry. 
+
+I hurt you.. Maybe I've written about it last year, but I need to write it directly. I hurt you. Said things about you, about your family, things that should never have come from someone who loves you the way I love you. There is no reason that justifies it. Not the pain I was in, no the months of losing myself, not anything. It happened. I did it. And I carry that.
+
+My punishment is this: staying away from you while I become someone who deserves to come back. That's the sentence I gave myself. And I'm serving it... Every day I'm serving it... It's painful to stay away from you... Even though I have lots of things to talk to you, but I have to serve my punishment. 
+
+
+I saw the moon last night. I remember something that you used to say, "আজকে চাঁদ দেখেছো?"
+And before I could think about anything else, before my mind could do anything, it went to you again. Your voice saying that, just trying to imagine that. 
+You're in the moon, you're in the quiet after a long day. You're also in the moment before I fall asleep when my mind finally stops running and just settles somewhere. I just find you in everything, all the time, even without trying.
+
+Maybe that's what five years does. That's what this kind of love does. It stops being something you feel and starts being something you just are...
+I talked to a few girls and learned about girls way of nature, learned a few articles online. Even though I have no interest to talk to girls, but I had to learn from the original method, from the real world. 
+You took up all the space years ago and I never asked for it back. You're all over my heart, and my heart values that. 
+
+I'm learning, growing, and becoming more careful with my words. More patience with my anger, more aware of the parts of me that still need work. I'm not there yet. But I'm closer than I was in the last September. Closer than I was in the dark months. Closer than I've ever been to being the person she deserves to receive love from. 
+
+Your Birthday is coming... I've been working on something for you. A site, a letter, and everything I've carried in these pages, everything I never said out loud. Even though my initial idea didn't have the plan to give you access to the journal, then again you deserve to know my feelings for you. You'll see these pages even if you arrive tomorrow or years from now. It will be in the site that is built for long time purpose. 
+
+I can't stand in front of you yet. Can't show up in real life the way I want to, but I can do this... I can build you a place that holds all of it. The 2020 crowd and the sun on your face, May 20, the first Hi, The Tortoise, fights, fixing, arguments, breaking and the becoming- all of it, in one place that is waiting for you.
+
+I hope one day we celebrate your birthday in real life. Together. Not like this, not through a screen, not through a site, not through words on a page you may or may not read. In a way that I can see you, and you can see me. In real life. Your laughing. Me watching you laugh and thinking YES, this, this is what all of it was for... I hope Allah allows that. I really hope he does. Until then I'll keep going.
+
+I'll meet you again, Tortoise. And when I do, I'll be my best. The best version of whatever I am. Gentle enough to hold you right. Strong enough to handle all of you, the moods, the blocks, the sharp words, the silence. 
+I'll be back, Nurin. I will... Just please don't marry someone else. I'm trying not to take too long. I really am... See you soon, Sweetheart. `,
   },
 ]
