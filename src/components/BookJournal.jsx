@@ -185,7 +185,6 @@ function OpeningBodyContent({ paragraphs = [] }) {
           color: ink.secondary,
           letterSpacing: '0.010em',
           marginBottom: i < paragraphs.length - 1 ? 16 : 0,
-          flexShrink: 0,
         }}>
           {para}
         </p>
@@ -282,7 +281,7 @@ function TimelineYearContent({ page }) {
       )}
 
       {/* Body text — splits on \n and \n\n both */}
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, overflow: 'hidden' }}>
         {bodyChunk
           .split(/\n+/)
           .map(p => p.trim())

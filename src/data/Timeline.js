@@ -15,11 +15,12 @@ export const timeline = [
 
 Then one day after the SSC exam... I\'m walking, just walking, like everyone else. 
 There\'s a big crowd, people everywhere, noise everywhere. 
-I don\'t know what made me look to the behind. I wasn\'t thinking about looking anywhere. 
-Something just made me... Three-quarters to the behind, and you were right there. 
-Right at the exact moment I looked, you were there.
+I don\'t know what made me look to the behind. I wasn\'t thinking about looking anywhere.
 
 ---PAGEBREAK---
+
+Something just made me... Three-quarters to the behind, and you were right there. 
+Right at the exact moment I looked, you were there.
 
 I don\'t know how to explain what happened after that.
 
@@ -28,6 +29,8 @@ I just know that in that moment, in that crowd with all those people and all tha
 I forgot all of it. My eyes just stayed on you but I didn\'t tell them to. 
 You were with your father. You weren\'t doing anything special. 
 You were just there. And somehow that was enough to make everything else disappear for a moment.
+
+---PAGEBREAK---
 
 You left, walked away with uncle and that was it...
 However, I\'m standing there. Not moving, not even thinking anything clear. 
