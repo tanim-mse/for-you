@@ -12,14 +12,14 @@
 
 export const memories = [
   {
-    date: 'SOMEWHERE IN 2020',
-    quote: 'You were explaining something and you used your hands when you talked and I stopped hearing the words.',
+    date: 'AFTER THE SSC EXAM',
+    quote: 'Something just made me look. Three-quarters to the behind. And you were right there, at that exact moment I looked. I lost in you... Destiny played its card... I am gratful that I looked back out of nowhere.',
     note: null,
   },
   {
-    date: 'A TUESDAY, PROBABLY',
-    quote: 'You laughed at something I said and for exactly three seconds I forgot everything complicated.',
-    note: "I've thought about those three seconds more than I should have.",
+    date: 'Early 2020, AFTER THE SSC EXAM',
+    quote: 'The First Glance... Oh My Allah!!! You have to calm and sweet presence... ',
+    note: "The sun was hitting your face. In that crowd with all those people and all that noise, I forgot all of it. I don't have a better word for it. I just know that in that moment, everything else disappeared. Only you was there...",
   },
   {
     date: 'BEFORE I KNEW BETTER',
