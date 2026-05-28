@@ -22,7 +22,7 @@ export default function BookPage({ side = 'left', pageNumber, children }) {
         ? 'inset -8px 0 18px rgba(100,60,20,0.10)'
         : 'inset 8px 0 18px rgba(100,60,20,0.10)',
       // Padding: top, outer edge, bottom (leaves room for page number), inner gutter
-      padding: isLeft ? '36px 32px 48px 40px' : '36px 40px 48px 32px',
+      padding: isLeft ? '28px 28px 36px 36px' : '28px 36px 36px 28px',
     }}>
 
       {/* Faint ruled lines */}
@@ -50,8 +50,8 @@ export default function BookPage({ side = 'left', pageNumber, children }) {
         pointerEvents: 'none', zIndex: 1,
       }} />
 
-      {/* Content */}
-      <div style={{ position: 'relative', zIndex: 2, height: 'calc(100% - 28px)', overflow: 'hidden' }}>
+      {/* Content — height accounts for top padding (36px) + bottom padding (48px) = 84px */}
+      <div style={{ position: 'relative', zIndex: 2, height: 'calc(100% - 64px)', overflow: 'hidden' }}>
         {children}
       </div>
 

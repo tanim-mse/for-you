@@ -227,8 +227,9 @@ function TimelineYearContent({ page }) {
 
   return (
     <div style={{
-      height: '100%', display: 'flex', flexDirection: 'column',
+      display: 'flex', flexDirection: 'column',
       position: 'relative', overflow: 'hidden',
+      height: '100%',
     }}>
       {/* Ghost year */}
       <div style={{
@@ -281,7 +282,7 @@ function TimelineYearContent({ page }) {
       )}
 
       {/* Body text — splits on \n and \n\n both */}
-      <div style={{ flex: 1, overflow: 'hidden' }}>
+      <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
         {bodyChunk
           .split(/\n+/)
           .map(p => p.trim())
