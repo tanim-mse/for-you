@@ -276,7 +276,7 @@ And then: "আমি করলে ঠিক আছে, কিন্তু তু
 This one just melts me every time. The way you said it. It sounds so sweet... I don't even argue. I just feel something warm in my chest and let it sit there.
 
 I gave you a nickname this year, "Tortoise". I didn't think you'd like it. I genuinely didn't think.
-I thought you might ignore it. You had two options between "Nishi" and "Tortoise" — and you kept this one.
+I thought you might ignore it. You had two options between "Nishi" and "Tortoise" - and you kept this one.
 You actually kept it, Tortoise... And now I can't think of a name that suits you better, my slow replying queen. Take your time with everything.
 
 ---PAGEBREAK---
@@ -394,16 +394,16 @@ Will you appreciate this kind of love language that wants to hold your hand gent
 or are you gonna think something horrible about it and stay away from me?
 
 In the end, even if you get the wrong idea about me, I'll keep trying to clear your misunderstanding if you get any.
-Just don't make my fear real, the one where you leave me. And I won't get to see you again. I don't want to lose you, Nurin. No matter what.
 
 ---PAGEBREAK---
+
+Just don't make my fear real, the one where you leave me. And I won't get to see you again. I don't want to lose you, Nurin. No matter what.
 
 I don't know if you ever see me, but my love for you is so deep that I can't feel for anyone else except you.
 I can pretend to move on, cutting you off from my life. Pretend to feel for anyone else... but I can't truly feel for anyone else.
 My heart will never let me. It only allows you, and sees you differently.
 
-You are and will always be my sweetheart, my little moody lady...
-You complete me, and I have no intention of choosing anything else over you. I'm not gonna let you go. Instead, I'll put every effort into making things work out for us.
+You are and will always be my sweetheart, my little moody lady... You complete me, and I have no intention of choosing anything else over you. I'm not gonna let you go. Instead, I'll put every effort into making things work out for us.
 I'll never give up on you.
 
 ---PAGEBREAK---
@@ -466,10 +466,10 @@ I don't know what to do with that either. I sit there and something starts comin
 
 I texted her with everything I had. The excitement, the missing her, the months of hell I went through internally. I became the monster again right in front of her. Said the things I said, did the damage I did.
 Allah... why did you let me reach her in this state! Why didn't you stop me? Why didn't I stop myself!!!
-This me is something I don't recognize. Something I never was before and never wanted to be. I have become a monster...
+This me is something I don't recognize. Something I never was before and never wanted to be. 
 
 ---PAGEBREAK---
-
+I have become a monster...
 The person who took over after I lost her, I don't claim him, I don't want him either. But he was there. He is real, and he did real damage.
 I said things... To you... About your family... Things I cannot take back. Things that came from a place so dark and so broken that I didn't even know that place existed inside me.
 
@@ -489,8 +489,7 @@ Allah gave me the truth. She's not married. She's still there. And somehow, even
 I'm grateful, Allah. Even after everything I said to You in those dark months, even after the rage, the blame, the things I threw at You that I'm not proud of. I'm grateful, because You gave me the truth. You didn't have to, but You did...
 Now I'm sitting here realizing: I can't talk to her. Not yet. Not like this... Not as whatever I became during those months. She deserves better than what I am right now. She always deserved better. So, I'll be better...
 
-I don't know how long it will take. But I feel it, for the first time in a long time. Something that isn't rage or pain or emptiness.
-I feel like I want to be someone she can come back to.
+I don't know how long it will take. But I feel it, for the first time in a long time. Something that isn't rage or pain or emptiness. I feel like I want to be someone she can come back to.
 
 That's where 2025 ends. Not fixed, not even close. But wanting to be. And for now, that's enough to hold onto.`,
   },
