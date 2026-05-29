@@ -412,7 +412,7 @@ function PageContent({ page }) {
     case 'title':           return <TitlePageContent />
     case 'opening':         return <OpeningPageContent />
     case 'opening-body':    return <OpeningBodyContent paragraphs={page.paragraphs} />
-    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I remember them." />
+    case 'timeline-header': return <SectionHeader eyebrow="chapters" title="The years, as I live them." />
     case 'timeline-year':   return <TimelineYearContent page={page} />
     case 'memories-header': return <SectionHeader eyebrow="fragments" title="Things I still carry." />
     case 'memory-pair':     return <MemoryPairContent page={page} />
