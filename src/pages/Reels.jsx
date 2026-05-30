@@ -305,7 +305,7 @@ function ReelCard({ reel, onOpen, index }) {
           <>
             {/* YouTube thumbnail */}
             <img
-              src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`}
+              src={reel.thumb || `https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`}
               alt=""
               loading="lazy"
               style={{
@@ -464,7 +464,7 @@ function ReelsHeader() {
         color: 'var(--text-secondary)',
         display: 'block',
       }}>
-        Probably while thinking about you.
+        While thinking about you.
       </p>
     </div>
   )
