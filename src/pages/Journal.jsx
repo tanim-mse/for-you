@@ -134,8 +134,7 @@ function CoverSection({ onOpen }) {
         transition={{ duration: 0.8, delay: 2.0 }}
         onClick={onOpen}
         style={{
-          position: 'absolute',
-          bottom: 36,
+          marginTop: 32, 
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
