@@ -49,6 +49,13 @@ export default function MemoryCard({ memory, index }) {
           ? `translateY(0) rotate(${rotation}deg)`
           : 'translateY(18px) rotate(0deg)',
         transition: 'opacity 0.75s ease, transform 0.75s ease',
+        // Prevent GPU compositing blur on rotated text
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
+        isolation: 'isolate',
       }}
     >
       {/* Date label */}
@@ -70,11 +77,12 @@ export default function MemoryCard({ memory, index }) {
         className="memory-quote"
         style={{
           fontFamily: "'EB Garamond', Georgia, serif",
-          fontStyle: 'italic',
           fontSize: 19,
           lineHeight: 1.72,
           color: 'var(--text-primary)',
           transition: 'color 0.4s ease',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
         }}
       >
         {memory.quote}
@@ -94,10 +102,11 @@ export default function MemoryCard({ memory, index }) {
           <p
             style={{
               fontFamily: "'Crimson Pro', Georgia, serif",
-              fontStyle: 'italic',
               fontSize: 13,
               lineHeight: 1.6,
               color: 'var(--text-secondary)',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
             }}
           >
             {memory.note}

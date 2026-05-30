@@ -46,4 +46,9 @@ export const memories = [
     quote: 'আমি করলে ঠিক আছে, কিন্তু তুমি করতে পারবা না।',
     note: 'This always melted my heart. I don\'t know why exactly, maybe it was the way you used to say it. I still think of like that, even though you\'re not the same with me. I smile and accept what you do. You were so so cute... Even if you are wrong, I accept it, and my inner thought is like "পছন্দের নারী, ম্যাডাম এসব যদি আমার সাথে না করে তো করবে কার সাথে! করুক, আমি সব সামলে নিবো।"',
   },
+  {
+    date: ' THE MOMENT I ALWAYS WANT TO LIVE...',
+    quote: 'আজকে চাঁদ দেখেছো?',
+    note: 'মনে আছে, নুরিন, যখন তুমি আমাকে প্রতি রাতে বলতে, "আজকে চাঁদ দেখেছো? অনেক সুন্দর লাগছে। দেখে আসো"। আমি কখনো কোনো কিছু ভালোবাসি নাই, বরং জানতাম না জিনিসটা আসলে কি। কিন্তু তোমাকে ভালোবাসে আমি অন্য জিনিস কেও ভালবাসতে শিখেছি। তুমি যখন ই এই কথাটা বলতে, আমি আগে তোমার প্রতিচ্ছবি কল্পনা করে আমার চাঁদ কে দেখতাম। তারপর দ্রুত বাইরে যেয়ে ওই চাঁদ কে দেখে আসতাম। অনেক সময় চলে গেলো, অথচ মনে হচ্ছে এইতো কিছুদিন আগেই আমাকে দেখে আসতে বললে। জানিনা আর তোমার থেকে ওভাবে শুনতে পাবো কিনা... ',
+  },
 ]
