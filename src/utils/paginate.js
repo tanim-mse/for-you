@@ -45,8 +45,10 @@ export function buildPageList() {
     "I know you don't want to see me or talk to me. This isn't meant to change anything. I know that. I just realized somewhere along the way that some things deserve to be said, even when the right moment has already passed. And somehow, saying them out loud isn't something I can do anymore.",
     "I never needed anything from you. I never really did. I just always wanted to see you happy. I still do. That part never changed, no matter how much everything else did.",
     "I always wished you could truly see how much you meant to me. Because even in what I thought could've been my last moment, during that accident... you were there too.",
-    "Maybe that says more than I ever could.",
-    "I hope you'll have a great time here.",
+    "Maybe that says more than I ever could. I hope you'll have a great time here.",
+    "Dedicating this whole part of me to you as a gift for your birthday. I know it\’s nothing much, but it\’s all I\’ve written for you over all these years.",
+    "Maybe it isn\’t much, but I wanted to share my life with you, my thoughts, my feelings, everything I could never fully say out loud. There are still so many feelings I carry inside me, ones I still can\’t quite put into words.",
+    "I love you, Nurin. I always do..."
   ]
 
   const bodyGroups = chunkParagraphs(BODY_PARAGRAPHS, 3)
