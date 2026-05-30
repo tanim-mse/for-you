@@ -13,7 +13,7 @@ export const reels = [
   {
     type: 'youtube',
     id: 'x4K33646cfg',
-    thumb: '/thumbnails/reel1.jpg',
+    thumb: '/for-you/thumbnails/reel1.jpg',
     caption: 'যদি তুমি আমার চোখ দিয়ে তোমাকে দেখতে পেতে, তাহলে বুঝতে তুমি আমার কাছে কত বেশি মূল্যবান...',
     saved: '',
   },
