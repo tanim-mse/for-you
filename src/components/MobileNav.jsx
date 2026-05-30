@@ -1,5 +1,4 @@
 import { useLocation, NavLink } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 
 function IconJournal({ active }) {
   const c = active ? 'var(--flame-warm)' : 'var(--text-tertiary)'
@@ -34,16 +33,6 @@ function IconBirthday({ active }) {
   )
 }
 
-function IconSecret({ active }) {
-  const c = active ? 'var(--flame-warm)' : 'var(--text-tertiary)'
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M9 2a5 5 0 100 10A5 5 0 009 2zM9 15v1M6 15.5l.5-.87M12 15.5l-.5-.87"
-        stroke={c} strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  )
-}
-
 function ActiveDot() {
   return (
     <div style={{
@@ -58,30 +47,15 @@ function ActiveDot() {
 export default function MobileNav({ visible = true }) {
   const location = useLocation()
   const hash     = location.hash
-  const [secretUnlocked, setSecretUnlocked] = useState(false)
-
-  useEffect(() => {
-    const check = () => {
-      const unlocked =
-        localStorage.getItem('candle_blown') === 'true' &&
-        localStorage.getItem('birthday_letter_read') === 'true'
-      setSecretUnlocked(unlocked)
-    }
-    check()
-    const id = setInterval(check, 2000)
-    return () => clearInterval(id)
-  }, [])
 
   if (!visible) return null
 
   const isActive = (path) => hash === `#${path}`
 
-  // Letters removed from items
   const items = [
     { to: '/journal',  Icon: IconJournal,  label: 'Journal'  },
     { to: '/reels',    Icon: IconReels,    label: 'Reels'    },
     { to: '/birthday', Icon: IconBirthday, label: 'Birthday' },
-    ...(secretUnlocked ? [{ to: '/secret', Icon: IconSecret, label: 'Secret' }] : []),
   ]
 
   return (
