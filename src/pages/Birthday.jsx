@@ -7,7 +7,7 @@ import Ornament from '../components/Ornament'
 import { playSfx } from '../utils/audio'
 
 // ── Constants ──────────────────────────────────────────────────────────────────
-const HER_NAME = 'Her Name'   // ← replace with her name
+const HER_NAME = 'Nurin...'   // ← replace with her name
 const HER_AGE  = 22           // ← replace: 2026 - 2004
 
 // ── Birthday letter data — fill in Segment 13 ─────────────────────────────────
@@ -67,27 +67,94 @@ function FloatingWish({ text, onDone }) {
   )
 }
 
+// ── Typewriter cursor ─────────────────────────────────────────────────────────
+const cursorStyle = {
+  display: 'inline-block',
+  width: '1.5px',
+  height: '1em',
+  background: 'rgba(60,38,14,0.6)',
+  marginLeft: 2,
+  verticalAlign: 'text-bottom',
+  animation: 'tw-blink 0.65s step-end infinite',
+}
+
+// Inject blink keyframe once
+if (typeof document !== 'undefined' && !document.getElementById('tw-blink-style')) {
+  const s = document.createElement('style')
+  s.id = 'tw-blink-style'
+  s.textContent = `@keyframes tw-blink { 0%,100%{opacity:1} 50%{opacity:0} }`
+  document.head.appendChild(s)
+}
+
 // ── Birthday letter section ───────────────────────────────────────────────────
 function BirthdayLetter({ onReadEnd }) {
-  const bottomRef = useRef(null)
-  const hasMarked = useRef(false)
+  // All paragraphs in order: salutation, body paragraphs, signoff
+  const allParts = [
+    BIRTHDAY_LETTER.salutation,
+    ...BIRTHDAY_LETTER.body,
+    BIRTHDAY_LETTER.signoff,
+  ]
+
+  const SPEED        = 22   // ms per character — increase to slow down
+  const PARA_DELAY   = 320  // ms pause between paragraphs finishing and next starting
+
+  const [typed, setTyped]         = useState([])   // fully typed paragraphs
+  const [current, setCurrent]     = useState('')    // text being typed right now
+  const [partIdx, setPartIdx]     = useState(0)     // which paragraph we're on
+  const [done, setDone]           = useState(false) // all done
+  const hasMarked                 = useRef(false)
+  const timerRef                  = useRef(null)
 
   useEffect(() => {
-    const el = bottomRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasMarked.current) {
-          hasMarked.current = true
-          localStorage.setItem('birthday_letter_read', 'true')
-          onReadEnd()
-        }
-      },
-      { threshold: 0.9 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [onReadEnd])
+    if (partIdx >= allParts.length) {
+      setDone(true)
+      if (!hasMarked.current) {
+        hasMarked.current = true
+        localStorage.setItem('birthday_letter_read', 'true')
+        onReadEnd()
+      }
+      return
+    }
+
+    const fullText = allParts[partIdx]
+    let i = 0
+    setCurrent('')
+
+    timerRef.current = setInterval(() => {
+      i++
+      setCurrent(fullText.slice(0, i))
+      if (i >= fullText.length) {
+        clearInterval(timerRef.current)
+        // Pause, then commit this paragraph and move to next
+        setTimeout(() => {
+          setTyped(prev => [...prev, fullText])
+          setCurrent('')
+          setPartIdx(prev => prev + 1)
+        }, PARA_DELAY)
+      }
+    }, SPEED)
+
+    return () => clearInterval(timerRef.current)
+  }, [partIdx])   // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Helpers to decide which typed parts are which
+  const typedSalutation = typed[0]
+  const typedBody       = typed.slice(1, 1 + BIRTHDAY_LETTER.body.length)
+  const typedSignoff    = typed[1 + BIRTHDAY_LETTER.body.length]
+
+  const isOnSalutation  = partIdx === 0
+  const isOnBody        = partIdx >= 1 && partIdx <= BIRTHDAY_LETTER.body.length
+  const isOnSignoff     = partIdx === allParts.length - 1
+  const currentBodyIdx  = partIdx - 1   // which body paragraph is being typed
+
+  const paraStyle = {
+    fontFamily: "'Crimson Pro', Georgia, serif",
+    fontSize: 'clamp(15px, 2vw, 17px)',
+    lineHeight: 1.75,
+    color: 'rgba(40,25,8,0.82)',
+    letterSpacing: '0.01em',
+    minHeight: '1.75em',
+  }
 
   return (
     <div
@@ -105,7 +172,7 @@ function BirthdayLetter({ onReadEnd }) {
         `,
       }}
     >
-      {/* Subtle top gradient for text legibility */}
+      {/* Subtle top gradient */}
       <div style={{
         position: 'absolute',
         top: 0, left: 0, right: 0,
@@ -114,7 +181,8 @@ function BirthdayLetter({ onReadEnd }) {
         pointerEvents: 'none',
         borderRadius: '3px 3px 0 0',
       }} />
-      {/* Date */}
+
+      {/* Date — always visible immediately */}
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: 10,
@@ -137,40 +205,47 @@ function BirthdayLetter({ onReadEnd }) {
         marginBottom: 20,
         lineHeight: 1.4,
         position: 'relative', zIndex: 1,
+        minHeight: '1.4em',
       }}>
-        {BIRTHDAY_LETTER.salutation}
+        {typedSalutation ?? (isOnSalutation ? current : '')}
+        {isOnSalutation && <span style={cursorStyle} />}
       </p>
 
-      {/* Body */}
+      {/* Body paragraphs */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 18, position: 'relative', zIndex: 1 }}>
-        {BIRTHDAY_LETTER.body.map((para, i) => (
-          <p key={i} style={{
-            fontFamily: "'Crimson Pro', Georgia, serif",
-            fontSize: 'clamp(15px, 2vw, 17px)',
-            lineHeight: 1.75,
-            color: 'rgba(40,25,8,0.82)',
-            letterSpacing: '0.01em',
-          }}>
-            {para}
-          </p>
-        ))}
+        {BIRTHDAY_LETTER.body.map((_, i) => {
+          const isCurrentPara = isOnBody && currentBodyIdx === i
+          const text = typedBody[i] ?? (isCurrentPara ? current : '')
+          const showCursor = isCurrentPara
+          if (!text && !showCursor) return null
+          return (
+            <p key={i} style={paraStyle}>
+              {text}
+              {showCursor && <span style={cursorStyle} />}
+            </p>
+          )
+        })}
       </div>
 
       {/* Signoff */}
-      <p style={{
-        marginTop: 28,
-        fontFamily: "'EB Garamond', Georgia, serif",
-        fontStyle: 'italic',
-        fontSize: 17,
-        color: 'rgba(60,38,14,0.72)',
-        textAlign: 'right',
-        position: 'relative', zIndex: 1,
-      }}>
-        {BIRTHDAY_LETTER.signoff}
-      </p>
+      {(typedSignoff !== undefined || isOnSignoff) && (
+        <p style={{
+          marginTop: 28,
+          fontFamily: "'EB Garamond', Georgia, serif",
+          fontStyle: 'italic',
+          fontSize: 17,
+          color: 'rgba(60,38,14,0.72)',
+          textAlign: 'right',
+          position: 'relative', zIndex: 1,
+          minHeight: '1.4em',
+        }}>
+          {typedSignoff ?? (isOnSignoff ? current : '')}
+          {isOnSignoff && <span style={cursorStyle} />}
+        </p>
+      )}
 
-      {/* Invisible bottom sentinel */}
-      <div ref={bottomRef} style={{ height: 1, marginTop: 8 }} />
+      {/* Small sentinel div — stays at bottom */}
+      <div style={{ height: 1, marginTop: 8 }} />
     </div>
   )
 }
@@ -342,7 +417,7 @@ export default function Birthday() {
             fontSize: 22,
             color: 'var(--text-secondary)',
           }}>
-            The world is better for it.
+            I hope you have a great day, my moody, sweet angry bird... 
           </p>
         </motion.div>
 
@@ -533,12 +608,12 @@ export default function Birthday() {
         <AnimatePresence>
           {blown && (
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.4, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <BirthdayLetter onReadEnd={() => setLetterRead(true)} />
-            </motion.div>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.4, delay: 1.8 }}
+>
+  <BirthdayLetter onReadEnd={() => setLetterRead(true)} />
+</motion.div>
           )}
         </AnimatePresence>
 

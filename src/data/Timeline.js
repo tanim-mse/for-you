@@ -399,10 +399,7 @@ In the end, even if you get the wrong idea about me, I'll keep trying to clear y
 
 Just don't make my fear real, the one where you leave me. And I won't get to see you again. I don't want to lose you, Nurin. No matter what.
 
-I don't know if you ever see me, but my love for you is so deep that I can't feel for anyone else except you.
-I can pretend to move on, cutting you off from my life. Pretend to feel for anyone else... but I can't truly feel for anyone else.
-My heart will never let me. It only allows you, and sees you differently.
-
+I don't know if you ever see me, but my love for you is so deep that I can't feel for anyone else except you. I can pretend to move on, cutting you off from my life. Pretend to feel for anyone else... but I can't truly feel for anyone else. My heart will never let me. It only allows you, and sees you differently.
 You are and will always be my sweetheart, my little moody lady... You complete me, and I have no intention of choosing anything else over you. I'm not gonna let you go. Instead, I'll put every effort into making things work out for us.
 I'll never give up on you.
 
@@ -497,7 +494,7 @@ That's where 2025 ends. Not fixed, not even close. But wanting to be. And for no
   {
     year: 2026,
     chapter: 7,
-    title: "The year I finally said something.",
+    title: "It's you or nothing...",
     body: `This year has one goal.
 ONE...
 Fixing myself for her.
