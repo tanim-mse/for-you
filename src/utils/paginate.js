@@ -41,14 +41,12 @@ export function buildPageList() {
   // ── Opening body paragraphs — split across pages, max 3 per page
   const BODY_PARAGRAPHS = [
     "Maybe you're reading this on the same day I shared it with you. Or maybe years have already passed, I'm not alive, and the world looks completely different now. Either way, I hope you still have that smile. The one that somehow made everything feel a little lighter just by existing.",
-    "By the way... Happy Birthday, Madam.",
+    "By the way... Happy Birthday, Ma'am.",
     "I know you don't want to see me or talk to me. This isn't meant to change anything. I know that. I just realized somewhere along the way that some things deserve to be said, even when the right moment has already passed. And somehow, saying them out loud isn't something I can do anymore.",
     "I never needed anything from you. I never really did. I just always wanted to see you happy. I still do. That part never changed, no matter how much everything else did.",
     "I always wished you could truly see how much you meant to me. Because even in what I thought could've been my last moment, during that accident... you were there too.",
-    "Maybe that says more than I ever could. I hope you'll have a great time here.",
-    "Dedicating this whole part of me to you as a gift for your birthday. I know it\’s nothing much, but it\’s all I\’ve written for you over all these years.",
-    "Maybe it isn\’t much, but I wanted to share my life with you, my thoughts, my feelings, everything I could never fully say out loud. There are still so many feelings I carry inside me, ones I still can\’t quite put into words.",
-    "I love you, Nurin. I always do...",
+    "Maybe that says more than I ever could.",
+    "I hope you'll have a great time here.",
   ]
 
   const bodyGroups = chunkParagraphs(BODY_PARAGRAPHS, 3)
@@ -85,11 +83,19 @@ export function buildPageList() {
   // ── Memories header
   pages.push({ type: 'memories-header' })
 
-  // ── Memory cards — 2 per page, paired side by side ────────────────────────
+  // ── Memory cards — respects breakBefore/large flags ───────────────────────
   const tabColors = ['#D4956A', '#C4837A', '#8B6D4A', '#B8860B', '#C4681A']
-  for (let i = 0; i < memories.length; i += 2) {
+  let i = 0
+  while (i < memories.length) {
     const cardA = memories[i]
-    const cardB = memories[i + 1] || null  // may be null if odd number
+
+    // Don't pair if this card is flagged as large/standalone,
+    // or if the next card wants to break before itself
+    const forceAlone = cardA.breakBefore || cardA.large
+    const nextBreaks = memories[i + 1]?.breakBefore
+
+    const cardB = (!forceAlone && !nextBreaks && memories[i + 1]) ? memories[i + 1] : null
+
     pages.push({
       type: 'memory-pair',
       cardA,
@@ -99,6 +105,8 @@ export function buildPageList() {
       tabColorA: tabColors[i % tabColors.length],
       tabColorB: tabColors[(i + 1) % tabColors.length],
     })
+
+    i += cardB ? 2 : 1
   }
 
   // ── Pad so back cover lands on a right-hand page
