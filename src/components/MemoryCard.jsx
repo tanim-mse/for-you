@@ -1,21 +1,75 @@
 import { useEffect, useRef, useState } from 'react'
 
+// Inject crisp-text styles once into the document head
+// This is the ONLY reliable way to apply -webkit-font-smoothing in React
+const STYLE_ID = 'memory-card-crisp'
+if (typeof document !== 'undefined' && !document.getElementById(STYLE_ID)) {
+  const style = document.createElement('style')
+  style.id = STYLE_ID
+  style.textContent = `
+    .memory-card,
+    .memory-card * {
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+      text-rendering: optimizeLegibility !important;
+    }
+    .memory-card .memory-date {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .memory-card .memory-quote {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.72;
+      color: var(--text-primary);
+      transition: color 0.4s ease;
+      font-weight: 400;
+    }
+    .memory-card.memory-card--large .memory-quote {
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .memory-card .memory-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .memory-card.memory-card--large .memory-note {
+      font-size: 12px;
+    }
+    .memory-card .memory-divider {
+      height: 1px;
+      background: var(--ink-faded);
+      opacity: 0.15;
+      margin: 14px 0;
+    }
+  `
+  document.head.appendChild(style)
+}
+
 export default function MemoryCard({ memory, index }) {
-  const ref      = useRef(null)
+  const ref     = useRef(null)
   const [visible, setVisible] = useState(false)
 
-  // Seeded rotation — each card tilts slightly, feels placed not arranged
   const rotations = [-1.2, 0.8, -0.6, 1.1, -0.9, 0.5, -1.0, 0.7, -0.4, 1.2, -0.7, 0.6]
   const rotation  = rotations[index % rotations.length]
 
-  // IntersectionObserver — triggers once when card enters viewport
+  // Cards flagged as large get reduced font + more padding
+  const isLarge = !!memory.large
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Stagger based on index so cards cascade in
           setTimeout(() => setVisible(true), index * 100)
           observer.disconnect()
         }
@@ -29,7 +83,7 @@ export default function MemoryCard({ memory, index }) {
   return (
     <div
       ref={ref}
-      className="paper-card memory-card"
+      className={`paper-card memory-card${isLarge ? ' memory-card--large' : ''}`}
       onMouseEnter={e => {
         e.currentTarget.style.transform = `translateY(-3px) rotate(${rotation}deg)`
       }}
@@ -38,79 +92,34 @@ export default function MemoryCard({ memory, index }) {
       }}
       style={{
         borderRadius: 3,
-        padding: '26px 26px 22px',
+        padding: isLarge ? '20px 22px 18px' : '26px 26px 22px',
         breakInside: 'avoid',
         marginBottom: 24,
         position: 'relative',
         cursor: 'default',
-        // Entrance animation via CSS transition
         opacity:   visible ? 1 : 0,
         transform: visible
           ? `translateY(0) rotate(${rotation}deg)`
           : 'translateY(18px) rotate(0deg)',
         transition: 'opacity 0.75s ease, transform 0.75s ease',
-        // Prevent GPU compositing blur on rotated text
+        // Force own compositing layer so text renders before rotation
         willChange: 'transform',
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
-        WebkitFontSmoothing: 'antialiased',
-        MozOsxFontSmoothing: 'grayscale',
         isolation: 'isolate',
       }}
     >
       {/* Date label */}
-      <p
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 9,
-          letterSpacing: '0.22em',
-          color: 'var(--text-tertiary)',
-          textTransform: 'uppercase',
-          marginBottom: 12,
-        }}
-      >
-        {memory.date}
-      </p>
+      <p className="memory-date">{memory.date}</p>
 
       {/* Main quote */}
-      <p
-        className="memory-quote"
-        style={{
-          fontFamily: "'EB Garamond', Georgia, serif",
-          fontSize: 19,
-          lineHeight: 1.72,
-          color: 'var(--text-primary)',
-          transition: 'color 0.4s ease',
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
-        }}
-      >
-        {memory.quote}
-      </p>
+      <p className="memory-quote">{memory.quote}</p>
 
       {/* Optional separator + sub-note */}
       {memory.note && (
         <>
-          <div
-            style={{
-              height: 1,
-              background: 'var(--ink-faded)',
-              opacity: 0.15,
-              margin: '14px 0',
-            }}
-          />
-          <p
-            style={{
-              fontFamily: "'Crimson Pro', Georgia, serif",
-              fontSize: 13,
-              lineHeight: 1.6,
-              color: 'var(--text-secondary)',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale',
-            }}
-          >
-            {memory.note}
-          </p>
+          <div className="memory-divider" />
+          <p className="memory-note">{memory.note}</p>
         </>
       )}
 
