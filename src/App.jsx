@@ -5,7 +5,6 @@ import AuthGate from './pages/AuthGate'
 import Journal from './pages/Journal'
 import Reels from './pages/Reels'
 import Birthday from './pages/Birthday'
-import Secret from './pages/Secret'
 import Ending from './pages/Ending'
 import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
@@ -42,7 +41,6 @@ export default function App() {
           <Route path="/journal"  element={<Journal />} />
           <Route path="/reels"    element={<Reels />} />
           <Route path="/birthday" element={<Birthday />} />
-          <Route path="/secret"   element={<Secret />} />
           <Route path="/ending"   element={<Ending />} />
         </Routes>
       </HashRouter>
