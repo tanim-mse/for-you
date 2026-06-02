@@ -210,14 +210,14 @@ export const reels = [
     type: 'youtube',
     id: '32zgMRElPUQ',
     thumb: '/for-you/thumbnails/reel29.jpg',
-    caption: '',
+    caption: 'Us core...',
     saved: '',
   },
   {
     type: 'youtube',
     id: '0oBy0MT-Jsc',
     thumb: '/for-you/thumbnails/reel30.jpg',
-    caption: '',
+    caption: 'কি একটা জাদু করেছো যে তোমার কথা ভাবলেই মন গলে যায়... ',
     saved: '',
   },
   {
