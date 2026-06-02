@@ -252,7 +252,7 @@ export const reels = [
     type: 'youtube',
     id: 'H2PBIhM3YaE',
     thumb: '/for-you/thumbnails/reel35.jpg',
-    caption: 'I know I\'m obsessive, possessive. And that\'s why no one will ever love you like you do... I promise, I will never leave you, if you let me hold your hands.',
+    caption: 'I know I\'m obsessive, possessive. And that\'s why no one will ever love you like I do... I promise, I will never leave you if you let me hold your hands.',
     saved: '',
   },
   {
@@ -266,7 +266,7 @@ export const reels = [
     type: 'youtube',
     id: 'O9c23ZbBhFU',
     thumb: '/for-you/thumbnails/reel37.jpg',
-    caption: 'ap hi hain mere dil and dimag main, madam. sift apke bare main hi ye dil sochta hain...',
+    caption: 'ap hi hain mere dil and dimag main, madam. sirf apke bare main hi ye dil sochta hain...',
     saved: '',
   },
   {
@@ -294,7 +294,7 @@ export const reels = [
     type: 'youtube',
     id: 'SHIcSCjjavk',
     thumb: '/for-you/thumbnails/reel41.jpg',
-    caption: 'apni galti bhi hamari hi hain. Sab meri galti, ab maf bhi kar dijiye madam ji... ek new start karte hain, please. Ap jo bhi bolo hamein manjhur hain',
+    caption: 'apki galti bhi hamari hi hain. Sab meri galti, ab maf bhi kar dijiye madam ji... ek new start karte hain, please. Ap jo bhi bolo hamein manjhur hain',
     saved: '',
   },
   {
@@ -322,7 +322,7 @@ export const reels = [
     type: 'youtube',
     id: '5D1ysvZTWeg',
     thumb: '/for-you/thumbnails/reel45.jpg',
-    caption: 'I miss you, Nurin. Really really miss you. In every song I try to find pieces of you.',
+    caption: 'I miss you, Nurin. Really really miss you. In every song I find pieces of you.',
     saved: '',
   },
   {
@@ -343,7 +343,7 @@ export const reels = [
     type: 'youtube',
     id: '3ED_D-a4sMk',
     thumb: '/for-you/thumbnails/reel48.jpg',
-    caption: 'The way I admire you, adore your whole existence, try to gently hold your moods - no one will match that level of mine. ',
+    caption: 'The way I admire you, adore your whole existence, and trying to gently hold your moods - no one will match that level of mine. ',
     saved: '',
   },
   {
