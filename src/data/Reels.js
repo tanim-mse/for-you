@@ -357,7 +357,7 @@ export const reels = [
     type: 'youtube',
     id: 'vLIvHdNlTO0',
     thumb: '/for-you/thumbnails/reel50.jpg',
-    caption: 'I am here to fix this. Fix the situation. I will do anything to make it out. Just don\'t leave me and behave like this, please... Nurin...',
+    caption: 'I am here to fix this. Fix the situation. I will do anything to make it work. Just don\'t leave me and behave like this, please... Nurin...',
     saved: '',
   },
 ]
